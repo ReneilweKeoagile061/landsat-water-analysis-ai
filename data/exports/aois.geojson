@@ -1,0 +1,29 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[22.1, -18.85], [23.0, -18.85], [23.0, -19.6], [22.1, -19.6], [22.1, -18.85]]]
+      },
+      "properties": { "aoi": "OKAVANGO", "color": "#42d7ff" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[23.0, -20.0], [25.0, -20.0], [25.0, -22.0], [23.0, -22.0], [23.0, -20.0]]]
+      },
+      "properties": { "aoi": "KALAHARI", "color": "#74b7ff" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[25.0, -21.0], [27.0, -21.0], [27.0, -23.0], [25.0, -23.0], [25.0, -21.0]]]
+      },
+      "properties": { "aoi": "TRANSITIONAL", "color": "#8ea8ff" }
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "scene_id": "LC09_L2SP_175074_20250330_02_T1",
+    "date": "2025-03-30",
+    "cloud": 0.0,
+    "tier": "Tier 1",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC09_L2SP_174074_20250323_02_T1",
+    "date": "2025-03-23",
+    "cloud": 0.0,
+    "tier": "Tier 1",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 88
+  },
+  {
+    "scene_id": "LC08_L2SP_174075_20250416_02_T1",
+    "date": "2025-04-16",
+    "cloud": 0.0,
+    "tier": "Tier 1",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 79
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20250323_02_T1",
+    "date": "2025-03-23",
+    "cloud": 0.0,
+    "tier": "Tier 1",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 76
+  },
+  {
+    "scene_id": "LC09_L2SP_172076_20250205_02_T1",
+    "date": "2025-02-05",
+    "cloud": 0.0,
+    "tier": "Tier 1",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC09_L2SP_172075_20250205_02_T1",
+    "date": "2025-02-05",
+    "cloud": 0.0,
+    "tier": "Tier 1",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 80
+  }
+]

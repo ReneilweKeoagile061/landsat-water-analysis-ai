@@ -1,0 +1,35 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [22.60, -19.10] },
+      "properties": { "aoi": "OKAVANGO", "scene_id": "LC09_L2SP_175074_20250330_02_T1", "ndwi": 0.69, "mndwi": 0.72, "high_prob": 0.95, "predicted_label": "High" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [22.75, -19.25] },
+      "properties": { "aoi": "OKAVANGO", "scene_id": "LC09_L2SP_174074_20250323_02_T1", "ndwi": 0.63, "mndwi": 0.67, "high_prob": 0.88, "predicted_label": "High" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [24.20, -21.10] },
+      "properties": { "aoi": "KALAHARI", "scene_id": "LC08_L2SP_174075_20250416_02_T1", "ndwi": 0.14, "mndwi": 0.18, "high_prob": 0.31, "predicted_label": "Low" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [24.60, -21.40] },
+      "properties": { "aoi": "KALAHARI", "scene_id": "LC09_L2SP_174075_20250323_02_T1", "ndwi": 0.21, "mndwi": 0.25, "high_prob": 0.37, "predicted_label": "Low" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [26.10, -22.00] },
+      "properties": { "aoi": "TRANSITIONAL", "scene_id": "LC09_L2SP_172076_20250205_02_T1", "ndwi": 0.42, "mndwi": 0.48, "high_prob": 0.63, "predicted_label": "Medium" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [25.60, -21.40] },
+      "properties": { "aoi": "TRANSITIONAL", "scene_id": "LC09_L2SP_172075_20250205_02_T1", "ndwi": 0.52, "mndwi": 0.58, "high_prob": 0.74, "predicted_label": "High" }
+    }
+  ]
+}
