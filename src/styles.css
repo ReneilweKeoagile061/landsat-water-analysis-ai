@@ -1,0 +1,116 @@
+@import "../styles.css";
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ghost-btn {
+  border: 1px solid var(--panel-border);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ghost-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: rgba(232, 242, 250, 0.82);
+  backdrop-filter: blur(4px);
+}
+
+.loading-overlay[hidden] {
+  display: none;
+}
+
+.loading-card {
+  padding: 24px 28px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 12px;
+  border: 3px solid rgba(27, 143, 232, 0.18);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.status-banner {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 900;
+  max-width: min(720px, calc(100% - 24px));
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #fff4f4;
+  border: 1px solid #efb6b6;
+  box-shadow: var(--shadow);
+}
+
+.status-banner[hidden] {
+  display: none;
+}
+
+.status-line {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #8a1f1f;
+}
+
+.side-panel.collapsed {
+  display: none;
+}
+
+.tab:focus-visible,
+.primary-btn:focus-visible,
+.ghost-btn:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .side-panel.collapsed {
+    display: flex;
+    max-height: 42vh;
+  }
+}

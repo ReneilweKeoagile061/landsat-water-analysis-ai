@@ -3,50 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="AI-driven Landsat scene filtering and water-potential mapping across Botswana AOIs."
+    />
+    <meta property="og:title" content="Landsat Water Analysis" />
+    <meta
+      property="og:description"
+      content="Interactive dashboard for Landsat 8/9 scene discovery, filtering, and water-potential visualization."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#1b8fe8" />
     <title>Landsat Water Analysis</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛰</text></svg>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-      crossorigin=""
-    />
-    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="dashboard">
+    <noscript>
+      <p style="padding: 1rem; font-family: Inter, sans-serif">
+        This dashboard requires JavaScript. Please enable JavaScript to view the Landsat water analysis map.
+      </p>
+    </noscript>
+
+    <div id="loadingOverlay" class="loading-overlay" aria-live="polite">
+      <div class="loading-card">
+        <div class="spinner" aria-hidden="true"></div>
+        <p>Loading Landsat catalog and map layers…</p>
+      </div>
+    </div>
+
+    <div id="statusBanner" class="status-banner" hidden aria-live="assertive"></div>
+
+    <div class="dashboard" aria-busy="true">
       <header class="topbar">
         <div class="brand-block">
           <h1 class="brand">Landsat<span>Water</span></h1>
           <p>AI-driven Landsat scene filtering &amp; water-potential mapping</p>
         </div>
-        <div class="topbar-metrics">
-          <div class="mini-metric">
-            <span>Discovered</span>
-            <strong id="scenesDiscovered">—</strong>
-          </div>
-          <div class="mini-metric">
-            <span>Retained</span>
-            <strong id="scenesRetained">—</strong>
-          </div>
-          <div class="mini-metric">
-            <span>Avg Cloud</span>
-            <strong id="avgCloud">—</strong>
-          </div>
-          <div class="mini-metric">
-            <span>Water Area</span>
-            <strong id="waterArea">—</strong>
+        <div class="topbar-actions">
+          <button id="panelToggle" class="ghost-btn" type="button" aria-expanded="true">Hide panel</button>
+          <div class="topbar-metrics">
+            <div class="mini-metric">
+              <span>Discovered</span>
+              <strong id="scenesDiscovered">—</strong>
+            </div>
+            <div class="mini-metric">
+              <span>Retained</span>
+              <strong id="scenesRetained">—</strong>
+            </div>
+            <div class="mini-metric">
+              <span>Avg Cloud</span>
+              <strong id="avgCloud">—</strong>
+            </div>
+            <div class="mini-metric">
+              <span>Water Area</span>
+              <strong id="waterArea">—</strong>
+            </div>
           </div>
         </div>
       </header>
 
       <section class="map-stage">
-        <div id="waterMap" aria-label="Water potential heatmap"></div>
+        <div id="waterMap" role="application" aria-label="Water potential heatmap"></div>
 
         <div class="map-float map-layers">
           <p class="float-title">Layers</p>
@@ -56,7 +79,7 @@
           <label><input id="toggleClasses" type="checkbox" checked /> Class points</label>
         </div>
 
-        <div class="map-float map-legend">
+        <div class="map-float map-legend" aria-hidden="true">
           <span>Low</span>
           <div class="legend-gradient"></div>
           <span>High potential</span>
@@ -66,7 +89,7 @@
       </section>
 
       <aside class="side-panel">
-        <nav class="tabs" role="tablist">
+        <nav class="tabs" role="tablist" aria-label="Dashboard sections">
           <button class="tab active" data-tab="overview" type="button">Overview</button>
           <button class="tab" data-tab="filters" type="button">Filters</button>
           <button class="tab" data-tab="scenes" type="button">Scenes</button>
@@ -74,11 +97,11 @@
         </nav>
 
         <div class="tab-panels">
-          <section class="tab-panel active" id="tab-overview">
+          <section class="tab-panel active" id="tab-overview" role="tabpanel">
             <h2>Project Overview</h2>
             <p class="panel-copy">
-              This prototype discovers and filters high-quality Landsat 8/9 imagery for
-              environmental and water-related analysis across Botswana AOIs.
+              This dashboard discovers and filters high-quality Landsat 8/9 imagery for environmental and
+              water-related analysis across Botswana AOIs.
             </p>
             <div class="info-card">
               <p class="info-label">Data source</p>
@@ -101,7 +124,7 @@
             </div>
           </section>
 
-          <section class="tab-panel" id="tab-filters">
+          <section class="tab-panel" id="tab-filters" role="tabpanel" hidden>
             <h2>Scene Filters</h2>
             <p class="panel-copy">Adjust constraints and refresh map layers.</p>
             <div class="form-stack">
@@ -137,17 +160,18 @@
             </div>
           </section>
 
-          <section class="tab-panel" id="tab-scenes">
+          <section class="tab-panel" id="tab-scenes" role="tabpanel" hidden>
             <h2>Candidate Scenes</h2>
-            <p class="panel-copy">Filtered Landsat scenes matching current criteria.</p>
+            <p class="panel-copy">Filtered Landsat scenes matching current criteria. <span id="sceneCount"></span></p>
             <div class="table-wrap">
               <table>
                 <thead>
                   <tr>
-                    <th>Scene</th>
-                    <th>Date</th>
-                    <th>Cloud</th>
-                    <th>AOI</th>
+                    <th scope="col">Scene</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Cloud</th>
+                    <th scope="col">Season</th>
+                    <th scope="col">AOI</th>
                   </tr>
                 </thead>
                 <tbody id="sceneTableBody"></tbody>
@@ -155,13 +179,14 @@
             </div>
           </section>
 
-          <section class="tab-panel" id="tab-model">
+          <section class="tab-panel" id="tab-model" role="tabpanel" hidden>
             <h2>Model Metrics</h2>
             <p class="panel-copy">Performance from notebook classification run.</p>
             <ul id="modelMetricsList" class="metric-list">
               <li>Loading metrics.json…</li>
             </ul>
-            <div class="class-legend">
+            <button id="retryBtn" class="ghost-btn" type="button" hidden>Retry loading data</button>
+            <div class="class-legend" aria-label="Classification legend">
               <span class="class-chip low">Low</span>
               <span class="class-chip medium">Medium</span>
               <span class="class-chip high">High</span>
@@ -171,12 +196,6 @@
       </aside>
     </div>
 
-    <script
-      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-      crossorigin=""
-    ></script>
-    <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
-    <script src="./app.js"></script>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>

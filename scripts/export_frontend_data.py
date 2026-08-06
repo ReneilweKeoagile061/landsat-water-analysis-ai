@@ -12,8 +12,17 @@ AOI_POLYGONS = {
 }
 
 AOI_COLORS = {"OKAVANGO": "#42d7ff", "KALAHARI": "#74b7ff", "TRANSITIONAL": "#8ea8ff"}
+AOI_LABELS = {
+    "OKAVANGO": "Okavango Delta",
+    "KALAHARI": "Kalahari Fringe",
+    "TRANSITIONAL": "Transitional Zone",
+}
 
 CLASS_MAP = {0: "Low", 1: "Medium", 2: "High", "0": "Low", "1": "Medium", "2": "High"}
+
+
+def month_to_season(month: int) -> str:
+    return "Wet Season" if month in (1, 2, 3, 4) else "Dry Season"
 
 
 def ensure_columns(df: pd.DataFrame, required: list[str]) -> None:
@@ -22,12 +31,22 @@ def ensure_columns(df: pd.DataFrame, required: list[str]) -> None:
         raise ValueError(f"Missing required columns: {missing}")
 
 
-def export_files(df: pd.DataFrame, out_dir: Path) -> None:
+def infer_season(row: pd.Series) -> str:
+    if "season" in row and pd.notna(row["season"]):
+        return str(row["season"])
+    if "date" in row and pd.notna(row["date"]):
+        month = pd.to_datetime(row["date"]).month
+        return month_to_season(month)
+    return "Wet Season"
+
+
+def export_files(df: pd.DataFrame, out_dir: Path, metrics_override: dict | None = None) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     points_features = []
     for _, row in df.iterrows():
         pred_class = row.get("predicted_class", row.get("water_potential_class", 1))
+        season = infer_season(row)
         points_features.append(
             {
                 "type": "Feature",
@@ -35,6 +54,8 @@ def export_files(df: pd.DataFrame, out_dir: Path) -> None:
                 "properties": {
                     "aoi": str(row["aoi"]).upper(),
                     "scene_id": str(row.get("scene_id", "")),
+                    "season": season,
+                    "tier": str(row.get("tier", "Tier 1")),
                     "ndwi": float(row["ndwi"]),
                     "mndwi": float(row["mndwi"]),
                     "high_prob": float(row.get("prob_high", 0.0)),
@@ -56,11 +77,16 @@ def export_files(df: pd.DataFrame, out_dir: Path) -> None:
         )
     aois_geojson = {"type": "FeatureCollection", "features": aoi_features}
 
-    scene_cols = ["scene_id", "date", "cloud", "tier", "aoi", "aoi_label", "overlap_pct"]
-    scenes_df = df[[col for col in scene_cols if col in df.columns]].drop_duplicates("scene_id")
+    scene_cols = ["scene_id", "date", "cloud", "tier", "aoi", "aoi_label", "overlap_pct", "season"]
+    scenes_df = df.copy()
+    if "season" not in scenes_df.columns and "date" in scenes_df.columns:
+        scenes_df["season"] = pd.to_datetime(scenes_df["date"]).dt.month.map(month_to_season)
+    if "aoi_label" not in scenes_df.columns and "aoi" in scenes_df.columns:
+        scenes_df["aoi_label"] = scenes_df["aoi"].astype(str).str.upper().map(AOI_LABELS)
+    scenes_df = scenes_df[[col for col in scene_cols if col in scenes_df.columns]].drop_duplicates("scene_id")
     scenes = scenes_df.to_dict(orient="records")
 
-    metrics = {
+    metrics = metrics_override or {
         "scenes_discovered": int(df["scene_id"].nunique()) if "scene_id" in df.columns else len(scenes),
         "water_area_wet_km2": 2145,
         "water_area_dry_km2": 1268,
@@ -68,7 +94,7 @@ def export_files(df: pd.DataFrame, out_dir: Path) -> None:
             "accuracy": 0.9960,
             "weighted_f1": 0.9960,
             "macro_f1": 0.9737,
-            "test_samples": 2500,
+            "test_samples": len(points_features),
         },
     }
 
@@ -81,12 +107,17 @@ def export_files(df: pd.DataFrame, out_dir: Path) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Export notebook outputs for frontend map layers.")
     parser.add_argument("--input-csv", required=True, help="CSV exported from notebook predictions.")
-    parser.add_argument("--output-dir", default="data/exports", help="Export directory for frontend JSON/GeoJSON.")
+    parser.add_argument("--output-dir", default="public/data/exports", help="Export directory for frontend JSON/GeoJSON.")
+    parser.add_argument("--metrics-json", help="Optional metrics JSON exported from the notebook.")
     args = parser.parse_args()
+
+    metrics_override = None
+    if args.metrics_json:
+        metrics_override = json.loads(Path(args.metrics_json).read_text(encoding="utf-8"))
 
     df = pd.read_csv(args.input_csv)
     ensure_columns(df, ["lat_wgs84", "lon_wgs84", "ndwi", "mndwi", "aoi"])
-    export_files(df, Path(args.output_dir))
+    export_files(df, Path(args.output_dir), metrics_override)
     print(f"Exported frontend files to {args.output_dir}")
 
 

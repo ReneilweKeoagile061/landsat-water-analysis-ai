@@ -1,0 +1,5422 @@
+[
+  {
+    "scene_id": "LC08_L2SP_172077_20250430_02_T1",
+    "date": "2025-04-30",
+    "cloud": 5.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC09_L2SP_172078_20250430_02_T1",
+    "date": "2025-04-30",
+    "cloud": 18.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 93
+  },
+  {
+    "scene_id": "LC09_L2SP_174078_20250429_02_T1",
+    "date": "2025-04-29",
+    "cloud": 17.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 89
+  },
+  {
+    "scene_id": "LC08_L2SP_172076_20250429_02_T1",
+    "date": "2025-04-29",
+    "cloud": 20.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20250427_02_T1",
+    "date": "2025-04-27",
+    "cloud": 8.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 64
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20250425_02_T1",
+    "date": "2025-04-25",
+    "cloud": 25.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 78
+  },
+  {
+    "scene_id": "LC08_L2SP_175076_20250424_02_T1",
+    "date": "2025-04-24",
+    "cloud": 24.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC09_L2SP_174076_20250424_02_T1",
+    "date": "2025-04-24",
+    "cloud": 4.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 79
+  },
+  {
+    "scene_id": "LC09_L2SP_174077_20250422_02_T1",
+    "date": "2025-04-22",
+    "cloud": 2.2,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC08_L2SP_176074_20250422_02_T1",
+    "date": "2025-04-22",
+    "cloud": 6.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 62
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20250421_02_T1",
+    "date": "2025-04-21",
+    "cloud": 20.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 83
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20250421_02_T2",
+    "date": "2025-04-21",
+    "cloud": 7.0,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 73
+  },
+  {
+    "scene_id": "LC08_L2SP_174075_20250420_02_T2",
+    "date": "2025-04-20",
+    "cloud": 8.1,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC08_L2SP_178073_20250420_02_T2",
+    "date": "2025-04-20",
+    "cloud": 12.6,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 62
+  },
+  {
+    "scene_id": "LC09_L2SP_174074_20250416_02_T2",
+    "date": "2025-04-16",
+    "cloud": 17.4,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20250416_02_T1",
+    "date": "2025-04-16",
+    "cloud": 6.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC08_L2SP_174075_20250416_02_T1",
+    "date": "2025-04-16",
+    "cloud": 0.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20250415_02_T1",
+    "date": "2025-04-15",
+    "cloud": 17.1,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC08_L2SP_174076_20250415_02_T1",
+    "date": "2025-04-15",
+    "cloud": 7.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 91
+  },
+  {
+    "scene_id": "LC09_L2SP_176075_20250414_02_T1",
+    "date": "2025-04-14",
+    "cloud": 6.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC08_L2SP_174077_20250414_02_T1",
+    "date": "2025-04-14",
+    "cloud": 27.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 87
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20250414_02_T2",
+    "date": "2025-04-14",
+    "cloud": 19.8,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 70
+  },
+  {
+    "scene_id": "LC09_L2SP_177074_20250412_02_T2",
+    "date": "2025-04-12",
+    "cloud": 13.7,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC09_L2SP_176076_20250412_02_T1",
+    "date": "2025-04-12",
+    "cloud": 5.2,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 90
+  },
+  {
+    "scene_id": "LC08_L2SP_176077_20250412_02_T2",
+    "date": "2025-04-12",
+    "cloud": 11.9,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 73
+  },
+  {
+    "scene_id": "LC08_L2SP_174077_20250411_02_T1",
+    "date": "2025-04-11",
+    "cloud": 18.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC08_L2SP_178077_20250409_02_T1",
+    "date": "2025-04-09",
+    "cloud": 17.8,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20250408_02_T1",
+    "date": "2025-04-08",
+    "cloud": 23.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC08_L2SP_178076_20250408_02_T1",
+    "date": "2025-04-08",
+    "cloud": 16.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 97
+  },
+  {
+    "scene_id": "LC08_L2SP_174074_20250406_02_T2",
+    "date": "2025-04-06",
+    "cloud": 25.3,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20250405_02_T1",
+    "date": "2025-04-05",
+    "cloud": 3.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC09_L2SP_174077_20250403_02_T2",
+    "date": "2025-04-03",
+    "cloud": 23.3,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20250402_02_T1",
+    "date": "2025-04-02",
+    "cloud": 17.5,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC09_L2SP_176076_20250330_02_T1",
+    "date": "2025-03-30",
+    "cloud": 9.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 88
+  },
+  {
+    "scene_id": "LC09_L2SP_175076_20250330_02_T1",
+    "date": "2025-03-30",
+    "cloud": 2.8,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 72
+  },
+  {
+    "scene_id": "LC09_L2SP_175074_20250330_02_T1",
+    "date": "2025-03-30",
+    "cloud": 0.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC09_L2SP_175074_20250327_02_T1",
+    "date": "2025-03-27",
+    "cloud": 5.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 90
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20250327_02_T1",
+    "date": "2025-03-27",
+    "cloud": 18.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 79
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20250325_02_T1",
+    "date": "2025-03-25",
+    "cloud": 9.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC09_L2SP_175074_20250325_02_T1",
+    "date": "2025-03-25",
+    "cloud": 15.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 93
+  },
+  {
+    "scene_id": "LC09_L2SP_172078_20250324_02_T1",
+    "date": "2025-03-24",
+    "cloud": 7.5,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 72
+  },
+  {
+    "scene_id": "LC09_L2SP_174074_20250323_02_T1",
+    "date": "2025-03-23",
+    "cloud": 0.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20250323_02_T1",
+    "date": "2025-03-23",
+    "cloud": 0.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20250322_02_T1",
+    "date": "2025-03-22",
+    "cloud": 4.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC08_L2SP_176077_20250321_02_T1",
+    "date": "2025-03-21",
+    "cloud": 24.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC09_L2SP_174074_20250321_02_T1",
+    "date": "2025-03-21",
+    "cloud": 24.1,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 68
+  },
+  {
+    "scene_id": "LC08_L2SP_176076_20250321_02_T2",
+    "date": "2025-03-21",
+    "cloud": 8.6,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 62
+  },
+  {
+    "scene_id": "LC08_L2SP_175076_20250320_02_T1",
+    "date": "2025-03-20",
+    "cloud": 14.8,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC09_L2SP_174078_20250316_02_T1",
+    "date": "2025-03-16",
+    "cloud": 3.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 70
+  },
+  {
+    "scene_id": "LC09_L2SP_175074_20250316_02_T2",
+    "date": "2025-03-16",
+    "cloud": 12.0,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC08_L2SP_178073_20250312_02_T1",
+    "date": "2025-03-12",
+    "cloud": 25.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 97
+  },
+  {
+    "scene_id": "LC09_L2SP_177076_20250312_02_T1",
+    "date": "2025-03-12",
+    "cloud": 9.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC09_L2SP_174077_20250312_02_T1",
+    "date": "2025-03-12",
+    "cloud": 15.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC08_L2SP_174077_20250311_02_T1",
+    "date": "2025-03-11",
+    "cloud": 13.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC09_L2SP_174078_20250310_02_T1",
+    "date": "2025-03-10",
+    "cloud": 4.1,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC09_L2SP_175073_20250309_02_T1",
+    "date": "2025-03-09",
+    "cloud": 0.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 91
+  },
+  {
+    "scene_id": "LC09_L2SP_176073_20250308_02_T1",
+    "date": "2025-03-08",
+    "cloud": 22.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC08_L2SP_172074_20250306_02_T1",
+    "date": "2025-03-06",
+    "cloud": 23.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20250304_02_T1",
+    "date": "2025-03-04",
+    "cloud": 28.5,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 93
+  },
+  {
+    "scene_id": "LC08_L2SP_175075_20250304_02_T2",
+    "date": "2025-03-04",
+    "cloud": 21.3,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC08_L2SP_174076_20250302_02_T1",
+    "date": "2025-03-02",
+    "cloud": 18.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 64
+  },
+  {
+    "scene_id": "LC09_L2SP_177076_20250301_02_T2",
+    "date": "2025-03-01",
+    "cloud": 12.7,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 72
+  },
+  {
+    "scene_id": "LC09_L2SP_176074_20250227_02_T1",
+    "date": "2025-02-27",
+    "cloud": 8.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 68
+  },
+  {
+    "scene_id": "LC09_L2SP_178076_20250226_02_T1",
+    "date": "2025-02-26",
+    "cloud": 16.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC09_L2SP_178077_20250226_02_T2",
+    "date": "2025-02-26",
+    "cloud": 19.4,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 69
+  },
+  {
+    "scene_id": "LC08_L2SP_174074_20250225_02_T1",
+    "date": "2025-02-25",
+    "cloud": 18.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC09_L2SP_178077_20250224_02_T1",
+    "date": "2025-02-24",
+    "cloud": 22.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 66
+  },
+  {
+    "scene_id": "LC09_L2SP_175075_20250220_02_T1",
+    "date": "2025-02-20",
+    "cloud": 1.8,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 78
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20250220_02_T1",
+    "date": "2025-02-20",
+    "cloud": 23.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 91
+  },
+  {
+    "scene_id": "LC08_L2SP_178074_20250220_02_T1",
+    "date": "2025-02-20",
+    "cloud": 6.2,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 72
+  },
+  {
+    "scene_id": "LC08_L2SP_178078_20250219_02_T1",
+    "date": "2025-02-19",
+    "cloud": 20.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 91
+  },
+  {
+    "scene_id": "LC09_L2SP_178073_20250218_02_T1",
+    "date": "2025-02-18",
+    "cloud": 8.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC09_L2SP_178074_20250217_02_T1",
+    "date": "2025-02-17",
+    "cloud": 13.1,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 84
+  },
+  {
+    "scene_id": "LC08_L2SP_177076_20250216_02_T2",
+    "date": "2025-02-16",
+    "cloud": 11.6,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 91
+  },
+  {
+    "scene_id": "LC08_L2SP_174075_20250216_02_T1",
+    "date": "2025-02-16",
+    "cloud": 20.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC09_L2SP_177073_20250216_02_T2",
+    "date": "2025-02-16",
+    "cloud": 5.1,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 68
+  },
+  {
+    "scene_id": "LC08_L2SP_175074_20250215_02_T2",
+    "date": "2025-02-15",
+    "cloud": 14.8,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC08_L2SP_178074_20250214_02_T1",
+    "date": "2025-02-14",
+    "cloud": 24.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC09_L2SP_175077_20250214_02_T1",
+    "date": "2025-02-14",
+    "cloud": 12.2,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 84
+  },
+  {
+    "scene_id": "LC08_L2SP_176074_20250213_02_T2",
+    "date": "2025-02-13",
+    "cloud": 25.1,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 63
+  },
+  {
+    "scene_id": "LC08_L2SP_177075_20250213_02_T1",
+    "date": "2025-02-13",
+    "cloud": 25.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 90
+  },
+  {
+    "scene_id": "LC08_L2SP_174077_20250213_02_T2",
+    "date": "2025-02-13",
+    "cloud": 5.3,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC09_L2SP_175074_20250212_02_T1",
+    "date": "2025-02-12",
+    "cloud": 11.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 79
+  },
+  {
+    "scene_id": "LC08_L2SP_175078_20250211_02_T2",
+    "date": "2025-02-11",
+    "cloud": 22.3,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 84
+  },
+  {
+    "scene_id": "LC09_L2SP_174076_20250210_02_T2",
+    "date": "2025-02-10",
+    "cloud": 15.9,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 85
+  },
+  {
+    "scene_id": "LC08_L2SP_175074_20250209_02_T1",
+    "date": "2025-02-09",
+    "cloud": 18.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC08_L2SP_175078_20250208_02_T2",
+    "date": "2025-02-08",
+    "cloud": 20.6,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC09_L2SP_176077_20250207_02_T1",
+    "date": "2025-02-07",
+    "cloud": 1.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 68
+  },
+  {
+    "scene_id": "LC08_L2SP_176074_20250206_02_T1",
+    "date": "2025-02-06",
+    "cloud": 10.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC09_L2SP_174078_20250205_02_T2",
+    "date": "2025-02-05",
+    "cloud": 14.0,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 84
+  },
+  {
+    "scene_id": "LC09_L2SP_172076_20250205_02_T1",
+    "date": "2025-02-05",
+    "cloud": 0.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC09_L2SP_172075_20250205_02_T1",
+    "date": "2025-02-05",
+    "cloud": 0.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 84
+  },
+  {
+    "scene_id": "LC08_L2SP_174077_20250202_02_T2",
+    "date": "2025-02-02",
+    "cloud": 27.5,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 68
+  },
+  {
+    "scene_id": "LC09_L2SP_177074_20250202_02_T1",
+    "date": "2025-02-02",
+    "cloud": 2.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC09_L2SP_175076_20250202_02_T1",
+    "date": "2025-02-02",
+    "cloud": 25.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC08_L2SP_175078_20250202_02_T1",
+    "date": "2025-02-02",
+    "cloud": 19.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC08_L2SP_175077_20250201_02_T1",
+    "date": "2025-02-01",
+    "cloud": 8.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 66
+  },
+  {
+    "scene_id": "LC08_L2SP_174074_20250131_02_T1",
+    "date": "2025-01-31",
+    "cloud": 7.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 66
+  },
+  {
+    "scene_id": "LC09_L2SP_176073_20250130_02_T2",
+    "date": "2025-01-30",
+    "cloud": 11.8,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC08_L2SP_174073_20250130_02_T1",
+    "date": "2025-01-30",
+    "cloud": 1.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 75
+  },
+  {
+    "scene_id": "LC09_L2SP_175077_20250127_02_T1",
+    "date": "2025-01-27",
+    "cloud": 3.2,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC08_L2SP_172073_20250126_02_T1",
+    "date": "2025-01-26",
+    "cloud": 12.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 66
+  },
+  {
+    "scene_id": "LC08_L2SP_176075_20250126_02_T2",
+    "date": "2025-01-26",
+    "cloud": 6.3,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 86
+  },
+  {
+    "scene_id": "LC09_L2SP_176074_20250125_02_T1",
+    "date": "2025-01-25",
+    "cloud": 27.2,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC08_L2SP_174076_20250124_02_T1",
+    "date": "2025-01-24",
+    "cloud": 24.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 90
+  },
+  {
+    "scene_id": "LC09_L2SP_175076_20250122_02_T1",
+    "date": "2025-01-22",
+    "cloud": 4.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC08_L2SP_172078_20250121_02_T1",
+    "date": "2025-01-21",
+    "cloud": 16.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC08_L2SP_175075_20250120_02_T1",
+    "date": "2025-01-20",
+    "cloud": 17.2,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC08_L2SP_174077_20250120_02_T2",
+    "date": "2025-01-20",
+    "cloud": 23.4,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 66
+  },
+  {
+    "scene_id": "LC09_L2SP_178076_20250119_02_T1",
+    "date": "2025-01-19",
+    "cloud": 15.2,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC09_L2SP_174074_20250117_02_T1",
+    "date": "2025-01-17",
+    "cloud": 25.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 87
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20250117_02_T2",
+    "date": "2025-01-17",
+    "cloud": 13.6,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC08_L2SP_177074_20250117_02_T1",
+    "date": "2025-01-17",
+    "cloud": 15.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC09_L2SP_175074_20250116_02_T1",
+    "date": "2025-01-16",
+    "cloud": 6.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC08_L2SP_175073_20250115_02_T1",
+    "date": "2025-01-15",
+    "cloud": 12.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 83
+  },
+  {
+    "scene_id": "LC08_L2SP_174074_20250113_02_T1",
+    "date": "2025-01-13",
+    "cloud": 20.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC09_L2SP_175076_20250112_02_T1",
+    "date": "2025-01-12",
+    "cloud": 20.2,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC09_L2SP_174076_20250110_02_T1",
+    "date": "2025-01-10",
+    "cloud": 14.5,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC08_L2SP_174073_20250109_02_T1",
+    "date": "2025-01-09",
+    "cloud": 6.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC08_L2SP_175078_20250107_02_T1",
+    "date": "2025-01-07",
+    "cloud": 10.1,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 63
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20250105_02_T1",
+    "date": "2025-01-05",
+    "cloud": 0.1,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 75
+  },
+  {
+    "scene_id": "LC09_L2SP_175075_20250105_02_T1",
+    "date": "2025-01-05",
+    "cloud": 3.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 84
+  },
+  {
+    "scene_id": "LC08_L2SP_174077_20250105_02_T1",
+    "date": "2025-01-05",
+    "cloud": 25.8,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 76
+  },
+  {
+    "scene_id": "LC09_L2SP_176076_20250103_02_T1",
+    "date": "2025-01-03",
+    "cloud": 9.5,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 72
+  },
+  {
+    "scene_id": "LC08_L2SP_175078_20250102_02_T1",
+    "date": "2025-01-02",
+    "cloud": 4.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 62
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20250101_02_T1",
+    "date": "2025-01-01",
+    "cloud": 13.1,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 62
+  },
+  {
+    "scene_id": "LC08_L2SP_178075_20241230_02_T2",
+    "date": "2024-12-30",
+    "cloud": 24.3,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC08_L2SP_175073_20241230_02_T1",
+    "date": "2024-12-30",
+    "cloud": 4.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC09_L2SP_175075_20241228_02_T1",
+    "date": "2024-12-28",
+    "cloud": 10.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 79
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20241227_02_T2",
+    "date": "2024-12-27",
+    "cloud": 10.9,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC08_L2SP_175078_20241227_02_T1",
+    "date": "2024-12-27",
+    "cloud": 6.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC08_L2SP_176076_20241226_02_T1",
+    "date": "2024-12-26",
+    "cloud": 1.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 76
+  },
+  {
+    "scene_id": "LC09_L2SP_175077_20241226_02_T1",
+    "date": "2024-12-26",
+    "cloud": 26.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 72
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20241225_02_T2",
+    "date": "2024-12-25",
+    "cloud": 2.0,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 76
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20241225_02_T1",
+    "date": "2024-12-25",
+    "cloud": 6.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC08_L2SP_172078_20241224_02_T2",
+    "date": "2024-12-24",
+    "cloud": 10.2,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC08_L2SP_178073_20241222_02_T1",
+    "date": "2024-12-22",
+    "cloud": 17.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 70
+  },
+  {
+    "scene_id": "LC08_L2SP_174073_20241222_02_T1",
+    "date": "2024-12-22",
+    "cloud": 28.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 72
+  },
+  {
+    "scene_id": "LC09_L2SP_175074_20241220_02_T1",
+    "date": "2024-12-20",
+    "cloud": 26.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC08_L2SP_175077_20241220_02_T1",
+    "date": "2024-12-20",
+    "cloud": 20.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 70
+  },
+  {
+    "scene_id": "LC09_L2SP_178074_20241220_02_T1",
+    "date": "2024-12-20",
+    "cloud": 26.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 86
+  },
+  {
+    "scene_id": "LC08_L2SP_175075_20241219_02_T1",
+    "date": "2024-12-19",
+    "cloud": 6.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 79
+  },
+  {
+    "scene_id": "LC09_L2SP_175074_20241217_02_T1",
+    "date": "2024-12-17",
+    "cloud": 25.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC08_L2SP_175078_20241217_02_T1",
+    "date": "2024-12-17",
+    "cloud": 22.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 84
+  },
+  {
+    "scene_id": "LC08_L2SP_175078_20241216_02_T1",
+    "date": "2024-12-16",
+    "cloud": 21.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20241215_02_T2",
+    "date": "2024-12-15",
+    "cloud": 21.4,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 83
+  },
+  {
+    "scene_id": "LC09_L2SP_174076_20241214_02_T1",
+    "date": "2024-12-14",
+    "cloud": 16.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 97
+  },
+  {
+    "scene_id": "LC08_L2SP_178076_20241214_02_T1",
+    "date": "2024-12-14",
+    "cloud": 15.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC08_L2SP_178078_20241214_02_T1",
+    "date": "2024-12-14",
+    "cloud": 11.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 73
+  },
+  {
+    "scene_id": "LC09_L2SP_178078_20241214_02_T1",
+    "date": "2024-12-14",
+    "cloud": 9.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC09_L2SP_175073_20241213_02_T1",
+    "date": "2024-12-13",
+    "cloud": 13.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 64
+  },
+  {
+    "scene_id": "LC08_L2SP_174077_20241213_02_T1",
+    "date": "2024-12-13",
+    "cloud": 8.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 66
+  },
+  {
+    "scene_id": "LC09_L2SP_178077_20241211_02_T1",
+    "date": "2024-12-11",
+    "cloud": 24.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC08_L2SP_175076_20241210_02_T1",
+    "date": "2024-12-10",
+    "cloud": 1.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 83
+  },
+  {
+    "scene_id": "LC08_L2SP_177077_20241210_02_T1",
+    "date": "2024-12-10",
+    "cloud": 6.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 73
+  },
+  {
+    "scene_id": "LC09_L2SP_172077_20241209_02_T1",
+    "date": "2024-12-09",
+    "cloud": 13.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 89
+  },
+  {
+    "scene_id": "LC09_L2SP_175073_20241209_02_T2",
+    "date": "2024-12-09",
+    "cloud": 15.0,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC08_L2SP_174073_20241209_02_T1",
+    "date": "2024-12-09",
+    "cloud": 11.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 93
+  },
+  {
+    "scene_id": "LC08_L2SP_177075_20241208_02_T1",
+    "date": "2024-12-08",
+    "cloud": 7.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC08_L2SP_177077_20241207_02_T2",
+    "date": "2024-12-07",
+    "cloud": 8.5,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 68
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20241207_02_T1",
+    "date": "2024-12-07",
+    "cloud": 22.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 88
+  },
+  {
+    "scene_id": "LC09_L2SP_175073_20241207_02_T1",
+    "date": "2024-12-07",
+    "cloud": 10.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC09_L2SP_176074_20241206_02_T2",
+    "date": "2024-12-06",
+    "cloud": 19.3,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 73
+  },
+  {
+    "scene_id": "LC08_L2SP_172077_20241204_02_T1",
+    "date": "2024-12-04",
+    "cloud": 23.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC09_L2SP_172075_20241204_02_T1",
+    "date": "2024-12-04",
+    "cloud": 12.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 70
+  },
+  {
+    "scene_id": "LC08_L2SP_174076_20241202_02_T2",
+    "date": "2024-12-02",
+    "cloud": 13.2,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20241201_02_T1",
+    "date": "2024-12-01",
+    "cloud": 20.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC09_L2SP_175075_20241128_02_T1",
+    "date": "2024-11-28",
+    "cloud": 13.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC09_L2SP_174077_20241126_02_T1",
+    "date": "2024-11-26",
+    "cloud": 1.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 68
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20241125_02_T2",
+    "date": "2024-11-25",
+    "cloud": 23.2,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20241122_02_T1",
+    "date": "2024-11-22",
+    "cloud": 6.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20241121_02_T2",
+    "date": "2024-11-21",
+    "cloud": 25.9,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC09_L2SP_172078_20241121_02_T1",
+    "date": "2024-11-21",
+    "cloud": 1.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC08_L2SP_174076_20241119_02_T1",
+    "date": "2024-11-19",
+    "cloud": 2.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 89
+  },
+  {
+    "scene_id": "LC09_L2SP_174077_20241117_02_T1",
+    "date": "2024-11-17",
+    "cloud": 12.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC09_L2SP_175077_20241116_02_T1",
+    "date": "2024-11-16",
+    "cloud": 5.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 70
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20241116_02_T1",
+    "date": "2024-11-16",
+    "cloud": 17.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC08_L2SP_176076_20241114_02_T1",
+    "date": "2024-11-14",
+    "cloud": 25.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC08_L2SP_175074_20241113_02_T1",
+    "date": "2024-11-13",
+    "cloud": 21.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 70
+  },
+  {
+    "scene_id": "LC08_L2SP_176074_20241113_02_T1",
+    "date": "2024-11-13",
+    "cloud": 23.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 79
+  },
+  {
+    "scene_id": "LC09_L2SP_176077_20241112_02_T1",
+    "date": "2024-11-12",
+    "cloud": 12.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC08_L2SP_175074_20241110_02_T1",
+    "date": "2024-11-10",
+    "cloud": 5.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 88
+  },
+  {
+    "scene_id": "LC08_L2SP_175073_20241110_02_T1",
+    "date": "2024-11-10",
+    "cloud": 8.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC08_L2SP_177078_20241107_02_T1",
+    "date": "2024-11-07",
+    "cloud": 4.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 91
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20241106_02_T1",
+    "date": "2024-11-06",
+    "cloud": 21.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 90
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20241103_02_T2",
+    "date": "2024-11-03",
+    "cloud": 6.4,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC09_L2SP_176078_20241101_02_T1",
+    "date": "2024-11-01",
+    "cloud": 19.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC08_L2SP_175073_20241101_02_T1",
+    "date": "2024-11-01",
+    "cloud": 20.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC09_L2SP_174074_20241031_02_T1",
+    "date": "2024-10-31",
+    "cloud": 5.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 69
+  },
+  {
+    "scene_id": "LC08_L2SP_174073_20241031_02_T1",
+    "date": "2024-10-31",
+    "cloud": 14.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC08_L2SP_172077_20241030_02_T2",
+    "date": "2024-10-30",
+    "cloud": 4.4,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 83
+  },
+  {
+    "scene_id": "LC08_L2SP_174077_20241030_02_T2",
+    "date": "2024-10-30",
+    "cloud": 5.1,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 97
+  },
+  {
+    "scene_id": "LC08_L2SP_174074_20241030_02_T1",
+    "date": "2024-10-30",
+    "cloud": 21.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 84
+  },
+  {
+    "scene_id": "LC09_L2SP_174074_20241030_02_T1",
+    "date": "2024-10-30",
+    "cloud": 0.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC09_L2SP_178074_20241028_02_T1",
+    "date": "2024-10-28",
+    "cloud": 24.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 72
+  },
+  {
+    "scene_id": "LC08_L2SP_174077_20241027_02_T1",
+    "date": "2024-10-27",
+    "cloud": 24.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 83
+  },
+  {
+    "scene_id": "LC09_L2SP_178077_20241027_02_T1",
+    "date": "2024-10-27",
+    "cloud": 9.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 73
+  },
+  {
+    "scene_id": "LC08_L2SP_177073_20241026_02_T1",
+    "date": "2024-10-26",
+    "cloud": 26.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC08_L2SP_178075_20241026_02_T1",
+    "date": "2024-10-26",
+    "cloud": 23.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC09_L2SP_175075_20241026_02_T1",
+    "date": "2024-10-26",
+    "cloud": 24.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC09_L2SP_175077_20241025_02_T1",
+    "date": "2024-10-25",
+    "cloud": 18.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 88
+  },
+  {
+    "scene_id": "LC08_L2SP_175076_20241024_02_T1",
+    "date": "2024-10-24",
+    "cloud": 16.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 66
+  },
+  {
+    "scene_id": "LC08_L2SP_174077_20241023_02_T1",
+    "date": "2024-10-23",
+    "cloud": 8.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20241023_02_T1",
+    "date": "2024-10-23",
+    "cloud": 13.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 85
+  },
+  {
+    "scene_id": "LC09_L2SP_172078_20241022_02_T1",
+    "date": "2024-10-22",
+    "cloud": 21.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC09_L2SP_175074_20241022_02_T1",
+    "date": "2024-10-22",
+    "cloud": 6.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC09_L2SP_175077_20241021_02_T1",
+    "date": "2024-10-21",
+    "cloud": 0.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 87
+  },
+  {
+    "scene_id": "LC09_L2SP_175073_20241021_02_T1",
+    "date": "2024-10-21",
+    "cloud": 12.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC08_L2SP_175077_20241021_02_T2",
+    "date": "2024-10-21",
+    "cloud": 26.0,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 88
+  },
+  {
+    "scene_id": "LC08_L2SP_178077_20241020_02_T1",
+    "date": "2024-10-20",
+    "cloud": 22.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 85
+  },
+  {
+    "scene_id": "LC08_L2SP_175074_20241019_02_T1",
+    "date": "2024-10-19",
+    "cloud": 24.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 88
+  },
+  {
+    "scene_id": "LC09_L2SP_175074_20241018_02_T1",
+    "date": "2024-10-18",
+    "cloud": 0.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC08_L2SP_174076_20241018_02_T1",
+    "date": "2024-10-18",
+    "cloud": 5.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 86
+  },
+  {
+    "scene_id": "LC08_L2SP_174077_20241017_02_T2",
+    "date": "2024-10-17",
+    "cloud": 11.1,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC09_L2SP_174074_20241016_02_T1",
+    "date": "2024-10-16",
+    "cloud": 3.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 86
+  },
+  {
+    "scene_id": "LC08_L2SP_174074_20241016_02_T1",
+    "date": "2024-10-16",
+    "cloud": 14.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 63
+  },
+  {
+    "scene_id": "LC08_L2SP_174076_20241015_02_T2",
+    "date": "2024-10-15",
+    "cloud": 13.3,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 78
+  },
+  {
+    "scene_id": "LC09_L2SP_178077_20241014_02_T1",
+    "date": "2024-10-14",
+    "cloud": 17.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC08_L2SP_175073_20241010_02_T1",
+    "date": "2024-10-10",
+    "cloud": 26.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 93
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20241010_02_T1",
+    "date": "2024-10-10",
+    "cloud": 6.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 86
+  },
+  {
+    "scene_id": "LC08_L2SP_178077_20241010_02_T1",
+    "date": "2024-10-10",
+    "cloud": 10.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC08_L2SP_172076_20241009_02_T1",
+    "date": "2024-10-09",
+    "cloud": 17.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 85
+  },
+  {
+    "scene_id": "LC08_L2SP_176076_20241009_02_T1",
+    "date": "2024-10-09",
+    "cloud": 9.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 84
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20241007_02_T1",
+    "date": "2024-10-07",
+    "cloud": 0.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 72
+  },
+  {
+    "scene_id": "LC09_L2SP_172078_20241006_02_T1",
+    "date": "2024-10-06",
+    "cloud": 14.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC08_L2SP_174076_20241005_02_T1",
+    "date": "2024-10-05",
+    "cloud": 5.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC08_L2SP_176074_20241004_02_T1",
+    "date": "2024-10-04",
+    "cloud": 0.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC08_L2SP_175073_20241002_02_T1",
+    "date": "2024-10-02",
+    "cloud": 19.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 62
+  },
+  {
+    "scene_id": "LC08_L2SP_178073_20241002_02_T2",
+    "date": "2024-10-02",
+    "cloud": 25.0,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 89
+  },
+  {
+    "scene_id": "LC08_L2SP_174074_20241001_02_T1",
+    "date": "2024-10-01",
+    "cloud": 5.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC09_L2SP_175076_20240929_02_T1",
+    "date": "2024-09-29",
+    "cloud": 9.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC08_L2SP_178073_20240929_02_T1",
+    "date": "2024-09-29",
+    "cloud": 10.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 79
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20240929_02_T1",
+    "date": "2024-09-29",
+    "cloud": 6.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC09_L2SP_172077_20240927_02_T1",
+    "date": "2024-09-27",
+    "cloud": 11.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC09_L2SP_174074_20240926_02_T1",
+    "date": "2024-09-26",
+    "cloud": 8.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 85
+  },
+  {
+    "scene_id": "LC09_L2SP_175076_20240926_02_T1",
+    "date": "2024-09-26",
+    "cloud": 11.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 70
+  },
+  {
+    "scene_id": "LC09_L2SP_175076_20240925_02_T1",
+    "date": "2024-09-25",
+    "cloud": 20.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC09_L2SP_176078_20240922_02_T1",
+    "date": "2024-09-22",
+    "cloud": 1.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC08_L2SP_175076_20240918_02_T1",
+    "date": "2024-09-18",
+    "cloud": 25.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 72
+  },
+  {
+    "scene_id": "LC08_L2SP_174075_20240918_02_T2",
+    "date": "2024-09-18",
+    "cloud": 27.8,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC09_L2SP_172076_20240918_02_T1",
+    "date": "2024-09-18",
+    "cloud": 11.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 85
+  },
+  {
+    "scene_id": "LC09_L2SP_172078_20240916_02_T1",
+    "date": "2024-09-16",
+    "cloud": 8.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC09_L2SP_177077_20240916_02_T2",
+    "date": "2024-09-16",
+    "cloud": 15.2,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC08_L2SP_175075_20240916_02_T1",
+    "date": "2024-09-16",
+    "cloud": 8.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC08_L2SP_176073_20240915_02_T1",
+    "date": "2024-09-15",
+    "cloud": 12.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20240915_02_T2",
+    "date": "2024-09-15",
+    "cloud": 11.9,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC09_L2SP_176074_20240914_02_T2",
+    "date": "2024-09-14",
+    "cloud": 1.6,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 69
+  },
+  {
+    "scene_id": "LC08_L2SP_176078_20240914_02_T1",
+    "date": "2024-09-14",
+    "cloud": 14.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 84
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20240913_02_T1",
+    "date": "2024-09-13",
+    "cloud": 2.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 83
+  },
+  {
+    "scene_id": "LC09_L2SP_174077_20240913_02_T1",
+    "date": "2024-09-13",
+    "cloud": 14.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC08_L2SP_174076_20240913_02_T1",
+    "date": "2024-09-13",
+    "cloud": 10.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 88
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20240912_02_T2",
+    "date": "2024-09-12",
+    "cloud": 8.3,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 79
+  },
+  {
+    "scene_id": "LC08_L2SP_175073_20240912_02_T1",
+    "date": "2024-09-12",
+    "cloud": 17.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 62
+  },
+  {
+    "scene_id": "LC08_L2SP_175078_20240912_02_T1",
+    "date": "2024-09-12",
+    "cloud": 21.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 97
+  },
+  {
+    "scene_id": "LC09_L2SP_175076_20240911_02_T1",
+    "date": "2024-09-11",
+    "cloud": 26.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC08_L2SP_174076_20240910_02_T1",
+    "date": "2024-09-10",
+    "cloud": 23.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 83
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20240908_02_T1",
+    "date": "2024-09-08",
+    "cloud": 1.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC09_L2SP_172078_20240908_02_T1",
+    "date": "2024-09-08",
+    "cloud": 1.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC08_L2SP_176077_20240907_02_T1",
+    "date": "2024-09-07",
+    "cloud": 16.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC09_L2SP_175076_20240907_02_T2",
+    "date": "2024-09-07",
+    "cloud": 7.6,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC09_L2SP_177077_20240906_02_T1",
+    "date": "2024-09-06",
+    "cloud": 25.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 74
+  },
+  {
+    "scene_id": "LC08_L2SP_172078_20240904_02_T2",
+    "date": "2024-09-04",
+    "cloud": 3.2,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 88
+  },
+  {
+    "scene_id": "LC09_L2SP_174076_20240903_02_T1",
+    "date": "2024-09-03",
+    "cloud": 1.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 86
+  },
+  {
+    "scene_id": "LC08_L2SP_177075_20240903_02_T1",
+    "date": "2024-09-03",
+    "cloud": 28.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC08_L2SP_175077_20240902_02_T1",
+    "date": "2024-09-02",
+    "cloud": 27.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC09_L2SP_174076_20240902_02_T1",
+    "date": "2024-09-02",
+    "cloud": 18.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC09_L2SP_172077_20240901_02_T1",
+    "date": "2024-09-01",
+    "cloud": 15.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 88
+  },
+  {
+    "scene_id": "LC08_L2SP_178077_20240831_02_T1",
+    "date": "2024-08-31",
+    "cloud": 17.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 64
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20240830_02_T1",
+    "date": "2024-08-30",
+    "cloud": 19.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 97
+  },
+  {
+    "scene_id": "LC08_L2SP_175078_20240830_02_T1",
+    "date": "2024-08-30",
+    "cloud": 14.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC09_L2SP_174077_20240828_02_T1",
+    "date": "2024-08-28",
+    "cloud": 19.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 78
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20240827_02_T2",
+    "date": "2024-08-27",
+    "cloud": 15.7,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC09_L2SP_175075_20240826_02_T1",
+    "date": "2024-08-26",
+    "cloud": 28.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC09_L2SP_177073_20240826_02_T1",
+    "date": "2024-08-26",
+    "cloud": 3.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC09_L2SP_172074_20240825_02_T1",
+    "date": "2024-08-25",
+    "cloud": 21.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 90
+  },
+  {
+    "scene_id": "LC08_L2SP_177078_20240825_02_T1",
+    "date": "2024-08-25",
+    "cloud": 27.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 74
+  },
+  {
+    "scene_id": "LC09_L2SP_174077_20240824_02_T1",
+    "date": "2024-08-24",
+    "cloud": 27.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 64
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20240824_02_T1",
+    "date": "2024-08-24",
+    "cloud": 22.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC09_L2SP_176075_20240824_02_T1",
+    "date": "2024-08-24",
+    "cloud": 3.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 89
+  },
+  {
+    "scene_id": "LC08_L2SP_178075_20240823_02_T2",
+    "date": "2024-08-23",
+    "cloud": 9.8,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 84
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20240823_02_T1",
+    "date": "2024-08-23",
+    "cloud": 28.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 76
+  },
+  {
+    "scene_id": "LC08_L2SP_175073_20240822_02_T1",
+    "date": "2024-08-22",
+    "cloud": 2.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC08_L2SP_178077_20240822_02_T1",
+    "date": "2024-08-22",
+    "cloud": 18.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 83
+  },
+  {
+    "scene_id": "LC08_L2SP_175076_20240821_02_T1",
+    "date": "2024-08-21",
+    "cloud": 18.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC09_L2SP_174076_20240820_02_T1",
+    "date": "2024-08-20",
+    "cloud": 14.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC08_L2SP_175076_20240820_02_T1",
+    "date": "2024-08-20",
+    "cloud": 20.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 78
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20240820_02_T2",
+    "date": "2024-08-20",
+    "cloud": 9.3,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 62
+  },
+  {
+    "scene_id": "LC09_L2SP_175075_20240819_02_T2",
+    "date": "2024-08-19",
+    "cloud": 3.9,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC09_L2SP_175073_20240818_02_T1",
+    "date": "2024-08-18",
+    "cloud": 5.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 86
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20240818_02_T1",
+    "date": "2024-08-18",
+    "cloud": 14.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 75
+  },
+  {
+    "scene_id": "LC09_L2SP_178078_20240817_02_T2",
+    "date": "2024-08-17",
+    "cloud": 2.7,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 76
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20240816_02_T1",
+    "date": "2024-08-16",
+    "cloud": 18.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC09_L2SP_177074_20240815_02_T2",
+    "date": "2024-08-15",
+    "cloud": 24.4,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 68
+  },
+  {
+    "scene_id": "LC08_L2SP_175078_20240812_02_T2",
+    "date": "2024-08-12",
+    "cloud": 23.7,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 66
+  },
+  {
+    "scene_id": "LC09_L2SP_172073_20240812_02_T1",
+    "date": "2024-08-12",
+    "cloud": 27.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 88
+  },
+  {
+    "scene_id": "LC08_L2SP_175073_20240811_02_T1",
+    "date": "2024-08-11",
+    "cloud": 7.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC08_L2SP_177073_20240811_02_T1",
+    "date": "2024-08-11",
+    "cloud": 12.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 87
+  },
+  {
+    "scene_id": "LC08_L2SP_174073_20240809_02_T1",
+    "date": "2024-08-09",
+    "cloud": 21.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 70
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20240809_02_T1",
+    "date": "2024-08-09",
+    "cloud": 2.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 62
+  },
+  {
+    "scene_id": "LC08_L2SP_172075_20240808_02_T1",
+    "date": "2024-08-08",
+    "cloud": 17.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 64
+  },
+  {
+    "scene_id": "LC08_L2SP_174075_20240806_02_T1",
+    "date": "2024-08-06",
+    "cloud": 23.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20240804_02_T1",
+    "date": "2024-08-04",
+    "cloud": 10.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC09_L2SP_174077_20240802_02_T1",
+    "date": "2024-08-02",
+    "cloud": 8.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 93
+  },
+  {
+    "scene_id": "LC09_L2SP_175075_20240731_02_T1",
+    "date": "2024-07-31",
+    "cloud": 23.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 86
+  },
+  {
+    "scene_id": "LC09_L2SP_178076_20240731_02_T1",
+    "date": "2024-07-31",
+    "cloud": 3.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC08_L2SP_175075_20240731_02_T1",
+    "date": "2024-07-31",
+    "cloud": 4.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC09_L2SP_174074_20240731_02_T1",
+    "date": "2024-07-31",
+    "cloud": 12.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20240730_02_T1",
+    "date": "2024-07-30",
+    "cloud": 24.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20240730_02_T1",
+    "date": "2024-07-30",
+    "cloud": 16.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC08_L2SP_178073_20240728_02_T2",
+    "date": "2024-07-28",
+    "cloud": 27.6,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 66
+  },
+  {
+    "scene_id": "LC09_L2SP_177078_20240728_02_T1",
+    "date": "2024-07-28",
+    "cloud": 15.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC08_L2SP_174073_20240727_02_T1",
+    "date": "2024-07-27",
+    "cloud": 25.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC08_L2SP_175074_20240724_02_T1",
+    "date": "2024-07-24",
+    "cloud": 16.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC09_L2SP_174078_20240723_02_T2",
+    "date": "2024-07-23",
+    "cloud": 18.5,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 90
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20240723_02_T1",
+    "date": "2024-07-23",
+    "cloud": 24.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 79
+  },
+  {
+    "scene_id": "LC09_L2SP_177078_20240723_02_T1",
+    "date": "2024-07-23",
+    "cloud": 11.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC09_L2SP_172075_20240722_02_T2",
+    "date": "2024-07-22",
+    "cloud": 5.7,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC09_L2SP_176077_20240722_02_T1",
+    "date": "2024-07-22",
+    "cloud": 19.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 63
+  },
+  {
+    "scene_id": "LC08_L2SP_175077_20240722_02_T1",
+    "date": "2024-07-22",
+    "cloud": 4.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 72
+  },
+  {
+    "scene_id": "LC09_L2SP_177074_20240721_02_T2",
+    "date": "2024-07-21",
+    "cloud": 18.3,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC09_L2SP_176076_20240719_02_T1",
+    "date": "2024-07-19",
+    "cloud": 13.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC08_L2SP_174074_20240717_02_T1",
+    "date": "2024-07-17",
+    "cloud": 14.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC09_L2SP_174077_20240717_02_T1",
+    "date": "2024-07-17",
+    "cloud": 0.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC08_L2SP_175076_20240716_02_T1",
+    "date": "2024-07-16",
+    "cloud": 20.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 63
+  },
+  {
+    "scene_id": "LC08_L2SP_174074_20240715_02_T1",
+    "date": "2024-07-15",
+    "cloud": 20.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 66
+  },
+  {
+    "scene_id": "LC09_L2SP_174076_20240715_02_T2",
+    "date": "2024-07-15",
+    "cloud": 5.1,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 64
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20240714_02_T2",
+    "date": "2024-07-14",
+    "cloud": 15.1,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 91
+  },
+  {
+    "scene_id": "LC09_L2SP_172076_20240713_02_T1",
+    "date": "2024-07-13",
+    "cloud": 14.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 75
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20240712_02_T1",
+    "date": "2024-07-12",
+    "cloud": 17.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 74
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20240712_02_T1",
+    "date": "2024-07-12",
+    "cloud": 5.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 72
+  },
+  {
+    "scene_id": "LC09_L2SP_175076_20240711_02_T1",
+    "date": "2024-07-11",
+    "cloud": 27.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC08_L2SP_174075_20240711_02_T2",
+    "date": "2024-07-11",
+    "cloud": 7.3,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC09_L2SP_172077_20240711_02_T2",
+    "date": "2024-07-11",
+    "cloud": 6.4,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 87
+  },
+  {
+    "scene_id": "LC08_L2SP_175075_20240709_02_T1",
+    "date": "2024-07-09",
+    "cloud": 1.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20240708_02_T1",
+    "date": "2024-07-08",
+    "cloud": 8.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 78
+  },
+  {
+    "scene_id": "LC09_L2SP_172078_20240707_02_T1",
+    "date": "2024-07-07",
+    "cloud": 2.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20240705_02_T1",
+    "date": "2024-07-05",
+    "cloud": 21.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 72
+  },
+  {
+    "scene_id": "LC08_L2SP_172074_20240702_02_T1",
+    "date": "2024-07-02",
+    "cloud": 6.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 73
+  },
+  {
+    "scene_id": "LC09_L2SP_172075_20240629_02_T1",
+    "date": "2024-06-29",
+    "cloud": 3.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC09_L2SP_174074_20240628_02_T1",
+    "date": "2024-06-28",
+    "cloud": 22.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 76
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20240628_02_T2",
+    "date": "2024-06-28",
+    "cloud": 9.0,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 70
+  },
+  {
+    "scene_id": "LC09_L2SP_174076_20240627_02_T2",
+    "date": "2024-06-27",
+    "cloud": 2.5,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 69
+  },
+  {
+    "scene_id": "LC08_L2SP_174075_20240626_02_T2",
+    "date": "2024-06-26",
+    "cloud": 18.7,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC09_L2SP_175077_20240625_02_T1",
+    "date": "2024-06-25",
+    "cloud": 21.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 86
+  },
+  {
+    "scene_id": "LC08_L2SP_172075_20240625_02_T1",
+    "date": "2024-06-25",
+    "cloud": 2.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 83
+  },
+  {
+    "scene_id": "LC09_L2SP_172073_20240625_02_T1",
+    "date": "2024-06-25",
+    "cloud": 1.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 66
+  },
+  {
+    "scene_id": "LC09_L2SP_176075_20240624_02_T1",
+    "date": "2024-06-24",
+    "cloud": 9.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC08_L2SP_175073_20240624_02_T1",
+    "date": "2024-06-24",
+    "cloud": 14.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 97
+  },
+  {
+    "scene_id": "LC08_L2SP_174074_20240624_02_T1",
+    "date": "2024-06-24",
+    "cloud": 18.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 91
+  },
+  {
+    "scene_id": "LC08_L2SP_177076_20240624_02_T2",
+    "date": "2024-06-24",
+    "cloud": 14.0,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 74
+  },
+  {
+    "scene_id": "LC09_L2SP_176078_20240623_02_T1",
+    "date": "2024-06-23",
+    "cloud": 4.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 91
+  },
+  {
+    "scene_id": "LC08_L2SP_175077_20240621_02_T1",
+    "date": "2024-06-21",
+    "cloud": 3.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 89
+  },
+  {
+    "scene_id": "LC09_L2SP_178075_20240620_02_T1",
+    "date": "2024-06-20",
+    "cloud": 23.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 70
+  },
+  {
+    "scene_id": "LC09_L2SP_175073_20240618_02_T1",
+    "date": "2024-06-18",
+    "cloud": 27.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC09_L2SP_174074_20240618_02_T1",
+    "date": "2024-06-18",
+    "cloud": 15.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC09_L2SP_175076_20240617_02_T1",
+    "date": "2024-06-17",
+    "cloud": 11.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC09_L2SP_175074_20240616_02_T1",
+    "date": "2024-06-16",
+    "cloud": 25.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 79
+  },
+  {
+    "scene_id": "LC08_L2SP_178074_20240616_02_T2",
+    "date": "2024-06-16",
+    "cloud": 9.1,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 87
+  },
+  {
+    "scene_id": "LC09_L2SP_175075_20240616_02_T1",
+    "date": "2024-06-16",
+    "cloud": 7.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC08_L2SP_175073_20240615_02_T2",
+    "date": "2024-06-15",
+    "cloud": 8.4,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 85
+  },
+  {
+    "scene_id": "LC08_L2SP_175077_20240615_02_T1",
+    "date": "2024-06-15",
+    "cloud": 23.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 87
+  },
+  {
+    "scene_id": "LC09_L2SP_175076_20240613_02_T1",
+    "date": "2024-06-13",
+    "cloud": 24.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 83
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20240612_02_T1",
+    "date": "2024-06-12",
+    "cloud": 14.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 63
+  },
+  {
+    "scene_id": "LC09_L2SP_172075_20240609_02_T1",
+    "date": "2024-06-09",
+    "cloud": 3.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC08_L2SP_172078_20240607_02_T1",
+    "date": "2024-06-07",
+    "cloud": 7.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 70
+  },
+  {
+    "scene_id": "LC08_L2SP_172075_20240607_02_T1",
+    "date": "2024-06-07",
+    "cloud": 7.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC08_L2SP_177076_20240607_02_T1",
+    "date": "2024-06-07",
+    "cloud": 20.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC08_L2SP_178077_20240605_02_T1",
+    "date": "2024-06-05",
+    "cloud": 21.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 84
+  },
+  {
+    "scene_id": "LC08_L2SP_177076_20240604_02_T1",
+    "date": "2024-06-04",
+    "cloud": 11.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC09_L2SP_175075_20240602_02_T1",
+    "date": "2024-06-02",
+    "cloud": 5.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC09_L2SP_178076_20240601_02_T2",
+    "date": "2024-06-01",
+    "cloud": 28.2,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC09_L2SP_177078_20240601_02_T1",
+    "date": "2024-06-01",
+    "cloud": 11.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 93
+  },
+  {
+    "scene_id": "LC08_L2SP_178074_20240531_02_T1",
+    "date": "2024-05-31",
+    "cloud": 14.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC08_L2SP_177073_20240531_02_T1",
+    "date": "2024-05-31",
+    "cloud": 0.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC09_L2SP_175077_20240531_02_T1",
+    "date": "2024-05-31",
+    "cloud": 7.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC08_L2SP_174076_20240531_02_T1",
+    "date": "2024-05-31",
+    "cloud": 27.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 69
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20240531_02_T1",
+    "date": "2024-05-31",
+    "cloud": 18.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC08_L2SP_177074_20240530_02_T1",
+    "date": "2024-05-30",
+    "cloud": 5.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 97
+  },
+  {
+    "scene_id": "LC09_L2SP_175075_20240526_02_T1",
+    "date": "2024-05-26",
+    "cloud": 27.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 97
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20240526_02_T1",
+    "date": "2024-05-26",
+    "cloud": 25.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC08_L2SP_174077_20240524_02_T1",
+    "date": "2024-05-24",
+    "cloud": 4.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 74
+  },
+  {
+    "scene_id": "LC08_L2SP_178073_20240523_02_T1",
+    "date": "2024-05-23",
+    "cloud": 12.8,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC09_L2SP_174076_20240520_02_T1",
+    "date": "2024-05-20",
+    "cloud": 27.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 73
+  },
+  {
+    "scene_id": "LC08_L2SP_174075_20240520_02_T1",
+    "date": "2024-05-20",
+    "cloud": 15.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC09_L2SP_172073_20240520_02_T1",
+    "date": "2024-05-20",
+    "cloud": 22.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC08_L2SP_176076_20240519_02_T1",
+    "date": "2024-05-19",
+    "cloud": 6.7,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 87
+  },
+  {
+    "scene_id": "LC09_L2SP_178074_20240519_02_T1",
+    "date": "2024-05-19",
+    "cloud": 3.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 91
+  },
+  {
+    "scene_id": "LC09_L2SP_177075_20240519_02_T1",
+    "date": "2024-05-19",
+    "cloud": 26.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 70
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20240518_02_T1",
+    "date": "2024-05-18",
+    "cloud": 14.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20240517_02_T1",
+    "date": "2024-05-17",
+    "cloud": 26.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20240517_02_T1",
+    "date": "2024-05-17",
+    "cloud": 17.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 62
+  },
+  {
+    "scene_id": "LC08_L2SP_175076_20240516_02_T1",
+    "date": "2024-05-16",
+    "cloud": 7.6,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 64
+  },
+  {
+    "scene_id": "LC09_L2SP_172077_20240515_02_T2",
+    "date": "2024-05-15",
+    "cloud": 22.3,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC09_L2SP_175075_20240515_02_T2",
+    "date": "2024-05-15",
+    "cloud": 2.6,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC08_L2SP_177076_20240515_02_T1",
+    "date": "2024-05-15",
+    "cloud": 7.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 68
+  },
+  {
+    "scene_id": "LC08_L2SP_175077_20240513_02_T1",
+    "date": "2024-05-13",
+    "cloud": 1.2,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 69
+  },
+  {
+    "scene_id": "LC08_L2SP_174076_20240510_02_T1",
+    "date": "2024-05-10",
+    "cloud": 10.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC08_L2SP_176076_20240510_02_T1",
+    "date": "2024-05-10",
+    "cloud": 18.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 85
+  },
+  {
+    "scene_id": "LC09_L2SP_175077_20240508_02_T2",
+    "date": "2024-05-08",
+    "cloud": 24.1,
+    "tier": "Tier 2",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20240507_02_T1",
+    "date": "2024-05-07",
+    "cloud": 4.9,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 87
+  },
+  {
+    "scene_id": "LC08_L2SP_175078_20240507_02_T1",
+    "date": "2024-05-07",
+    "cloud": 12.1,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 63
+  },
+  {
+    "scene_id": "LC09_L2SP_178074_20240507_02_T1",
+    "date": "2024-05-07",
+    "cloud": 20.5,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 79
+  },
+  {
+    "scene_id": "LC09_L2SP_172073_20240505_02_T1",
+    "date": "2024-05-05",
+    "cloud": 21.0,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC09_L2SP_175074_20240503_02_T1",
+    "date": "2024-05-03",
+    "cloud": 8.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 86
+  },
+  {
+    "scene_id": "LC09_L2SP_178073_20240501_02_T1",
+    "date": "2024-05-01",
+    "cloud": 8.4,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 91
+  },
+  {
+    "scene_id": "LC08_L2SP_172076_20240501_02_T1",
+    "date": "2024-05-01",
+    "cloud": 24.3,
+    "tier": "Tier 1",
+    "season": "Dry Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 87
+  },
+  {
+    "scene_id": "LC08_L2SP_175075_20240430_02_T1",
+    "date": "2024-04-30",
+    "cloud": 3.5,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC09_L2SP_177078_20240429_02_T1",
+    "date": "2024-04-29",
+    "cloud": 16.1,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC09_L2SP_174076_20240429_02_T1",
+    "date": "2024-04-29",
+    "cloud": 21.5,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC08_L2SP_176076_20240428_02_T1",
+    "date": "2024-04-28",
+    "cloud": 5.1,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 62
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20240427_02_T1",
+    "date": "2024-04-27",
+    "cloud": 6.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC08_L2SP_175073_20240426_02_T1",
+    "date": "2024-04-26",
+    "cloud": 17.1,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 62
+  },
+  {
+    "scene_id": "LC08_L2SP_178073_20240425_02_T1",
+    "date": "2024-04-25",
+    "cloud": 11.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 76
+  },
+  {
+    "scene_id": "LC08_L2SP_175073_20240424_02_T1",
+    "date": "2024-04-24",
+    "cloud": 14.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20240424_02_T2",
+    "date": "2024-04-24",
+    "cloud": 16.8,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC08_L2SP_175078_20240423_02_T1",
+    "date": "2024-04-23",
+    "cloud": 21.2,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC08_L2SP_178075_20240422_02_T1",
+    "date": "2024-04-22",
+    "cloud": 5.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 76
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20240419_02_T1",
+    "date": "2024-04-19",
+    "cloud": 20.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC09_L2SP_174077_20240418_02_T1",
+    "date": "2024-04-18",
+    "cloud": 12.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 69
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20240412_02_T1",
+    "date": "2024-04-12",
+    "cloud": 24.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 90
+  },
+  {
+    "scene_id": "LC08_L2SP_175078_20240412_02_T1",
+    "date": "2024-04-12",
+    "cloud": 20.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 84
+  },
+  {
+    "scene_id": "LC09_L2SP_177076_20240411_02_T2",
+    "date": "2024-04-11",
+    "cloud": 24.3,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 68
+  },
+  {
+    "scene_id": "LC09_L2SP_177073_20240410_02_T1",
+    "date": "2024-04-10",
+    "cloud": 2.5,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC08_L2SP_174076_20240409_02_T2",
+    "date": "2024-04-09",
+    "cloud": 27.5,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC09_L2SP_177077_20240408_02_T2",
+    "date": "2024-04-08",
+    "cloud": 8.0,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC08_L2SP_174073_20240407_02_T1",
+    "date": "2024-04-07",
+    "cloud": 3.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 75
+  },
+  {
+    "scene_id": "LC08_L2SP_175077_20240406_02_T1",
+    "date": "2024-04-06",
+    "cloud": 26.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 88
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20240406_02_T1",
+    "date": "2024-04-06",
+    "cloud": 21.8,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC09_L2SP_175074_20240405_02_T1",
+    "date": "2024-04-05",
+    "cloud": 19.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 66
+  },
+  {
+    "scene_id": "LC09_L2SP_174078_20240404_02_T2",
+    "date": "2024-04-04",
+    "cloud": 15.5,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20240402_02_T1",
+    "date": "2024-04-02",
+    "cloud": 21.8,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 88
+  },
+  {
+    "scene_id": "LC08_L2SP_175073_20240401_02_T1",
+    "date": "2024-04-01",
+    "cloud": 0.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 87
+  },
+  {
+    "scene_id": "LC08_L2SP_176076_20240401_02_T1",
+    "date": "2024-04-01",
+    "cloud": 17.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC09_L2SP_175075_20240330_02_T1",
+    "date": "2024-03-30",
+    "cloud": 22.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 85
+  },
+  {
+    "scene_id": "LC09_L2SP_178078_20240330_02_T1",
+    "date": "2024-03-30",
+    "cloud": 17.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 84
+  },
+  {
+    "scene_id": "LC09_L2SP_174076_20240329_02_T1",
+    "date": "2024-03-29",
+    "cloud": 25.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 79
+  },
+  {
+    "scene_id": "LC09_L2SP_176073_20240329_02_T2",
+    "date": "2024-03-29",
+    "cloud": 4.8,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 75
+  },
+  {
+    "scene_id": "LC08_L2SP_175074_20240329_02_T1",
+    "date": "2024-03-29",
+    "cloud": 23.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC09_L2SP_175073_20240328_02_T2",
+    "date": "2024-03-28",
+    "cloud": 17.6,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 85
+  },
+  {
+    "scene_id": "LC09_L2SP_174077_20240328_02_T1",
+    "date": "2024-03-28",
+    "cloud": 20.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 86
+  },
+  {
+    "scene_id": "LC08_L2SP_174073_20240328_02_T1",
+    "date": "2024-03-28",
+    "cloud": 27.8,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC09_L2SP_176078_20240327_02_T1",
+    "date": "2024-03-27",
+    "cloud": 9.8,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 66
+  },
+  {
+    "scene_id": "LC09_L2SP_177075_20240327_02_T1",
+    "date": "2024-03-27",
+    "cloud": 4.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 89
+  },
+  {
+    "scene_id": "LC09_L2SP_174076_20240326_02_T1",
+    "date": "2024-03-26",
+    "cloud": 18.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 91
+  },
+  {
+    "scene_id": "LC08_L2SP_176077_20240325_02_T1",
+    "date": "2024-03-25",
+    "cloud": 2.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 75
+  },
+  {
+    "scene_id": "LC08_L2SP_172074_20240325_02_T1",
+    "date": "2024-03-25",
+    "cloud": 2.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 84
+  },
+  {
+    "scene_id": "LC08_L2SP_174076_20240324_02_T2",
+    "date": "2024-03-24",
+    "cloud": 22.2,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 75
+  },
+  {
+    "scene_id": "LC08_L2SP_176075_20240323_02_T1",
+    "date": "2024-03-23",
+    "cloud": 20.2,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 84
+  },
+  {
+    "scene_id": "LC08_L2SP_175078_20240323_02_T1",
+    "date": "2024-03-23",
+    "cloud": 5.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 69
+  },
+  {
+    "scene_id": "LC08_L2SP_174074_20240321_02_T1",
+    "date": "2024-03-21",
+    "cloud": 11.8,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC08_L2SP_172073_20240321_02_T1",
+    "date": "2024-03-21",
+    "cloud": 1.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 90
+  },
+  {
+    "scene_id": "LC09_L2SP_178075_20240320_02_T1",
+    "date": "2024-03-20",
+    "cloud": 21.8,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 68
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20240319_02_T1",
+    "date": "2024-03-19",
+    "cloud": 22.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC09_L2SP_177078_20240318_02_T1",
+    "date": "2024-03-18",
+    "cloud": 12.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 79
+  },
+  {
+    "scene_id": "LC08_L2SP_175077_20240318_02_T1",
+    "date": "2024-03-18",
+    "cloud": 1.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 84
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20240317_02_T2",
+    "date": "2024-03-17",
+    "cloud": 15.9,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC09_L2SP_172074_20240316_02_T1",
+    "date": "2024-03-16",
+    "cloud": 7.1,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20240315_02_T2",
+    "date": "2024-03-15",
+    "cloud": 19.7,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20240314_02_T1",
+    "date": "2024-03-14",
+    "cloud": 8.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 87
+  },
+  {
+    "scene_id": "LC09_L2SP_172073_20240310_02_T2",
+    "date": "2024-03-10",
+    "cloud": 5.2,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 78
+  },
+  {
+    "scene_id": "LC08_L2SP_175077_20240310_02_T2",
+    "date": "2024-03-10",
+    "cloud": 22.4,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC09_L2SP_176073_20240309_02_T2",
+    "date": "2024-03-09",
+    "cloud": 19.0,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 97
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20240309_02_T2",
+    "date": "2024-03-09",
+    "cloud": 20.7,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 87
+  },
+  {
+    "scene_id": "LC08_L2SP_174075_20240307_02_T1",
+    "date": "2024-03-07",
+    "cloud": 22.8,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 69
+  },
+  {
+    "scene_id": "LC09_L2SP_175075_20240306_02_T1",
+    "date": "2024-03-06",
+    "cloud": 5.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 66
+  },
+  {
+    "scene_id": "LC09_L2SP_177074_20240305_02_T1",
+    "date": "2024-03-05",
+    "cloud": 24.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 69
+  },
+  {
+    "scene_id": "LC09_L2SP_175078_20240303_02_T1",
+    "date": "2024-03-03",
+    "cloud": 15.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 72
+  },
+  {
+    "scene_id": "LC08_L2SP_174075_20240303_02_T2",
+    "date": "2024-03-03",
+    "cloud": 22.6,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC08_L2SP_177073_20240301_02_T1",
+    "date": "2024-03-01",
+    "cloud": 11.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 76
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20240229_02_T1",
+    "date": "2024-02-29",
+    "cloud": 6.2,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 73
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20240228_02_T1",
+    "date": "2024-02-28",
+    "cloud": 16.1,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 97
+  },
+  {
+    "scene_id": "LC08_L2SP_175076_20240227_02_T2",
+    "date": "2024-02-27",
+    "cloud": 25.0,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC09_L2SP_178073_20240227_02_T1",
+    "date": "2024-02-27",
+    "cloud": 11.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 68
+  },
+  {
+    "scene_id": "LC09_L2SP_178078_20240225_02_T1",
+    "date": "2024-02-25",
+    "cloud": 12.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 97
+  },
+  {
+    "scene_id": "LC08_L2SP_172075_20240225_02_T1",
+    "date": "2024-02-25",
+    "cloud": 7.1,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 64
+  },
+  {
+    "scene_id": "LC09_L2SP_175074_20240225_02_T1",
+    "date": "2024-02-25",
+    "cloud": 12.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 69
+  },
+  {
+    "scene_id": "LC09_L2SP_178075_20240224_02_T1",
+    "date": "2024-02-24",
+    "cloud": 10.2,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC09_L2SP_174078_20240224_02_T1",
+    "date": "2024-02-24",
+    "cloud": 2.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 87
+  },
+  {
+    "scene_id": "LC09_L2SP_176073_20240222_02_T2",
+    "date": "2024-02-22",
+    "cloud": 4.0,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 62
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20240222_02_T1",
+    "date": "2024-02-22",
+    "cloud": 11.2,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 76
+  },
+  {
+    "scene_id": "LC09_L2SP_175075_20240221_02_T2",
+    "date": "2024-02-21",
+    "cloud": 22.5,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC08_L2SP_178074_20240221_02_T1",
+    "date": "2024-02-21",
+    "cloud": 27.8,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 88
+  },
+  {
+    "scene_id": "LC09_L2SP_177073_20240218_02_T1",
+    "date": "2024-02-18",
+    "cloud": 5.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC08_L2SP_175076_20240218_02_T2",
+    "date": "2024-02-18",
+    "cloud": 25.4,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 62
+  },
+  {
+    "scene_id": "LC08_L2SP_175073_20240217_02_T1",
+    "date": "2024-02-17",
+    "cloud": 0.5,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 74
+  },
+  {
+    "scene_id": "LC09_L2SP_172075_20240217_02_T2",
+    "date": "2024-02-17",
+    "cloud": 21.4,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC09_L2SP_174077_20240217_02_T1",
+    "date": "2024-02-17",
+    "cloud": 24.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 69
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20240217_02_T1",
+    "date": "2024-02-17",
+    "cloud": 9.5,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 62
+  },
+  {
+    "scene_id": "LC09_L2SP_174074_20240216_02_T1",
+    "date": "2024-02-16",
+    "cloud": 24.5,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC09_L2SP_174074_20240215_02_T1",
+    "date": "2024-02-15",
+    "cloud": 6.2,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 81
+  },
+  {
+    "scene_id": "LC09_L2SP_175076_20240215_02_T2",
+    "date": "2024-02-15",
+    "cloud": 12.7,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 69
+  },
+  {
+    "scene_id": "LC08_L2SP_175073_20240214_02_T1",
+    "date": "2024-02-14",
+    "cloud": 11.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 88
+  },
+  {
+    "scene_id": "LC08_L2SP_177075_20240214_02_T1",
+    "date": "2024-02-14",
+    "cloud": 6.5,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 79
+  },
+  {
+    "scene_id": "LC08_L2SP_174074_20240213_02_T1",
+    "date": "2024-02-13",
+    "cloud": 23.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC08_L2SP_172077_20240213_02_T1",
+    "date": "2024-02-13",
+    "cloud": 11.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 77
+  },
+  {
+    "scene_id": "LC09_L2SP_174078_20240210_02_T1",
+    "date": "2024-02-10",
+    "cloud": 28.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 73
+  },
+  {
+    "scene_id": "LC08_L2SP_177075_20240210_02_T1",
+    "date": "2024-02-10",
+    "cloud": 8.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 89
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20240210_02_T2",
+    "date": "2024-02-10",
+    "cloud": 12.4,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20240209_02_T1",
+    "date": "2024-02-09",
+    "cloud": 6.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 96
+  },
+  {
+    "scene_id": "LC08_L2SP_174074_20240209_02_T1",
+    "date": "2024-02-09",
+    "cloud": 22.5,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC09_L2SP_177073_20240208_02_T1",
+    "date": "2024-02-08",
+    "cloud": 27.5,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 87
+  },
+  {
+    "scene_id": "LC08_L2SP_175078_20240207_02_T1",
+    "date": "2024-02-07",
+    "cloud": 11.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 89
+  },
+  {
+    "scene_id": "LC09_L2SP_172076_20240207_02_T2",
+    "date": "2024-02-07",
+    "cloud": 9.2,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 71
+  },
+  {
+    "scene_id": "LC09_L2SP_176074_20240207_02_T2",
+    "date": "2024-02-07",
+    "cloud": 1.0,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 63
+  },
+  {
+    "scene_id": "LC09_L2SP_176077_20240206_02_T1",
+    "date": "2024-02-06",
+    "cloud": 21.1,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 89
+  },
+  {
+    "scene_id": "LC09_L2SP_176075_20240205_02_T2",
+    "date": "2024-02-05",
+    "cloud": 26.2,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 82
+  },
+  {
+    "scene_id": "LC09_L2SP_178078_20240205_02_T1",
+    "date": "2024-02-05",
+    "cloud": 16.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 93
+  },
+  {
+    "scene_id": "LC08_L2SP_175074_20240205_02_T1",
+    "date": "2024-02-05",
+    "cloud": 12.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 90
+  },
+  {
+    "scene_id": "LC08_L2SP_177073_20240203_02_T1",
+    "date": "2024-02-03",
+    "cloud": 16.1,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC09_L2SP_177077_20240201_02_T1",
+    "date": "2024-02-01",
+    "cloud": 2.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 91
+  },
+  {
+    "scene_id": "LC08_L2SP_175078_20240201_02_T2",
+    "date": "2024-02-01",
+    "cloud": 24.1,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 89
+  },
+  {
+    "scene_id": "LC08_L2SP_175077_20240126_02_T1",
+    "date": "2024-01-26",
+    "cloud": 0.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20240126_02_T1",
+    "date": "2024-01-26",
+    "cloud": 2.5,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC09_L2SP_174073_20240126_02_T1",
+    "date": "2024-01-26",
+    "cloud": 16.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 87
+  },
+  {
+    "scene_id": "LC09_L2SP_175075_20240126_02_T1",
+    "date": "2024-01-26",
+    "cloud": 0.8,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 80
+  },
+  {
+    "scene_id": "LC09_L2SP_174074_20240125_02_T1",
+    "date": "2024-01-25",
+    "cloud": 17.6,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 92
+  },
+  {
+    "scene_id": "LC09_L2SP_178077_20240125_02_T2",
+    "date": "2024-01-25",
+    "cloud": 26.8,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 86
+  },
+  {
+    "scene_id": "LC08_L2SP_176078_20240124_02_T1",
+    "date": "2024-01-24",
+    "cloud": 22.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 67
+  },
+  {
+    "scene_id": "LC08_L2SP_174074_20240124_02_T1",
+    "date": "2024-01-24",
+    "cloud": 16.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 66
+  },
+  {
+    "scene_id": "LC08_L2SP_178073_20240124_02_T2",
+    "date": "2024-01-24",
+    "cloud": 8.7,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 93
+  },
+  {
+    "scene_id": "LC08_L2SP_172073_20240124_02_T2",
+    "date": "2024-01-24",
+    "cloud": 22.0,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 78
+  },
+  {
+    "scene_id": "LC09_L2SP_174078_20240123_02_T1",
+    "date": "2024-01-23",
+    "cloud": 4.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 90
+  },
+  {
+    "scene_id": "LC09_L2SP_172076_20240123_02_T1",
+    "date": "2024-01-23",
+    "cloud": 28.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 78
+  },
+  {
+    "scene_id": "LC08_L2SP_178073_20240123_02_T1",
+    "date": "2024-01-23",
+    "cloud": 2.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 94
+  },
+  {
+    "scene_id": "LC09_L2SP_175075_20240122_02_T1",
+    "date": "2024-01-22",
+    "cloud": 26.0,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 89
+  },
+  {
+    "scene_id": "LC08_L2SP_172077_20240121_02_T1",
+    "date": "2024-01-21",
+    "cloud": 8.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC09_L2SP_177074_20240120_02_T1",
+    "date": "2024-01-20",
+    "cloud": 4.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 95
+  },
+  {
+    "scene_id": "LC09_L2SP_174077_20240118_02_T1",
+    "date": "2024-01-18",
+    "cloud": 12.8,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 85
+  },
+  {
+    "scene_id": "LC08_L2SP_174078_20240117_02_T2",
+    "date": "2024-01-17",
+    "cloud": 11.9,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 63
+  },
+  {
+    "scene_id": "LC08_L2SP_175075_20240116_02_T2",
+    "date": "2024-01-16",
+    "cloud": 24.4,
+    "tier": "Tier 2",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 97
+  },
+  {
+    "scene_id": "LC09_L2SP_172077_20240115_02_T1",
+    "date": "2024-01-15",
+    "cloud": 6.1,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 83
+  },
+  {
+    "scene_id": "LC09_L2SP_175077_20240114_02_T1",
+    "date": "2024-01-14",
+    "cloud": 27.4,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC08_L2SP_175075_20240114_02_T1",
+    "date": "2024-01-14",
+    "cloud": 17.8,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 79
+  },
+  {
+    "scene_id": "LC08_L2SP_174077_20240113_02_T1",
+    "date": "2024-01-13",
+    "cloud": 1.1,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 79
+  },
+  {
+    "scene_id": "LC08_L2SP_172078_20240113_02_T1",
+    "date": "2024-01-13",
+    "cloud": 1.7,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC09_L2SP_175073_20240110_02_T1",
+    "date": "2024-01-10",
+    "cloud": 18.9,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 76
+  },
+  {
+    "scene_id": "LC09_L2SP_175077_20240110_02_T1",
+    "date": "2024-01-10",
+    "cloud": 4.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "OKAVANGO",
+    "aoi_label": "Okavango Delta",
+    "overlap_pct": 93
+  },
+  {
+    "scene_id": "LC08_L2SP_176076_20240109_02_T1",
+    "date": "2024-01-09",
+    "cloud": 4.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 65
+  },
+  {
+    "scene_id": "LC09_L2SP_177073_20240108_02_T1",
+    "date": "2024-01-08",
+    "cloud": 7.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 78
+  },
+  {
+    "scene_id": "LC08_L2SP_177078_20240108_02_T1",
+    "date": "2024-01-08",
+    "cloud": 22.5,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "TRANSITIONAL",
+    "aoi_label": "Transitional Zone",
+    "overlap_pct": 98
+  },
+  {
+    "scene_id": "LC08_L2SP_175077_20240107_02_T1",
+    "date": "2024-01-07",
+    "cloud": 17.3,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 90
+  },
+  {
+    "scene_id": "LC09_L2SP_174075_20240106_02_T1",
+    "date": "2024-01-06",
+    "cloud": 2.5,
+    "tier": "Tier 1",
+    "season": "Wet Season",
+    "aoi": "KALAHARI",
+    "aoi_label": "Kalahari Fringe",
+    "overlap_pct": 62
+  }
+]
