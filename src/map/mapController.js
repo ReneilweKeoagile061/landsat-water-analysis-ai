@@ -1,5 +1,8 @@
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+
+window.L = L; // expose L globally so leaflet.heat and leaflet.markercluster can find it
+
 import "leaflet.heat";
 import "leaflet.markercluster";
 import "leaflet.markercluster/dist/MarkerCluster.css";
