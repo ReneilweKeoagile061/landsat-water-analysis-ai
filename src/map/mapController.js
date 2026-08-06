@@ -1,8 +1,12 @@
-import L from "./leafletSetup.js";
-import "leaflet.heat";
-import "leaflet.markercluster";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
+
+window.L = L;
+
+await import("leaflet.heat");
+await import("leaflet.markercluster");
 
 import { AOI_LABELS, HEATMAP_MAX_POINTS, HEATMAP_OFFSETS } from "../config.js";
 import {

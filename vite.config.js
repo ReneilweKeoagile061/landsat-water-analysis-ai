@@ -4,15 +4,9 @@ export default defineConfig({
   base: "/",
   publicDir: "public",
   build: {
+    target: "es2022",
     outDir: "dist",
     sourcemap: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          leaflet: ["leaflet", "leaflet.heat", "leaflet.markercluster"],
-        },
-      },
-    },
   },
   test: {
     environment: "node",
