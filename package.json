@@ -9,12 +9,12 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:py": "py -3 -m pytest",
+    "test:py": "python -m pytest",
     "lint": "eslint src tests",
-    "generate-data": "py -3 scripts/generate_catalog_data.py",
-    "export-data": "py -3 scripts/export_frontend_data.py",
-    "fetch-soilgrids": "py -3 scripts/fetch_soilgrids.py",
-    "fetch-stac": "py -3 scripts/fetch_stac_catalog.py"
+    "generate-data": "python scripts/generate_catalog_data.py",
+    "export-data": "python scripts/export_frontend_data.py",
+    "fetch-soilgrids": "python scripts/fetch_soilgrids.py",
+    "fetch-stac": "python scripts/fetch_stac_catalog.py"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
