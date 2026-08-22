@@ -12,6 +12,19 @@ This repository combines a Jupyter-based geospatial machine learning pipeline wi
 
 The frontend presents those results on a map-first dashboard with heatmaps, AOI overlays, model metrics, and scene filtering — designed to showcase the project clearly for portfolios, demos, and coursework submission.
 
+## Current Project Status
+
+This repository is a working static web application plus a Python geospatial data pipeline. The
+dashboard runs from checked-in GeoJSON/JSON exports, while the pipeline consumes notebook prediction
+CSVs and produces validated frontend data.
+
+The checked-in catalog is a deterministic demonstration catalog. Its hydrogeology values are marked
+`synthetic demonstration` and must not be interpreted as field measurements. Real public connectors
+are available for Microsoft Planetary Computer STAC metadata and ISRIC SoilGrids v2.0 point queries.
+The project does not currently claim live BGS Africa, Fan DTWT, GLHYMPS, GRACE-FO, or Botswana AEM
+coverage; those sources require separate downloads, credentials, service agreements, or local survey
+files.
+
 ---
 
 ## Problem Statement
@@ -109,6 +122,51 @@ K-Means is fitted with an optional `holdout_region` so spatial CV no longer labe
 └─────────────────────────────┘                   └──────────────────────────┘
 ```
 
+### System design
+
+The system separates offline data preparation from a lightweight browser client:
+
+1. **Acquisition:** the notebook and `fetch_stac_catalog.py` query Planetary Computer. The STAC
+    command records scene IDs, dates, cloud cover, bounds, and available assets for Landsat Collection
+    2 or Sentinel-1 RTC.
+2. **Feature engineering:** notebook code computes NDWI, MNDWI, NDVI, AWEI, NDMI, LSWI, WRI, moisture
+    ratio, elevation, and slope features.
+3. **Labeling and modeling:** `labeling.py` creates composite-score/K-Means labels. XGBoost and the
+    other models are trained by `train_water_potential.py`, with spatial holdout support.
+4. **Subsurface enrichment:** `fetch_soilgrids.py` adds real modeled clay observations at four depths.
+    `subsurface_metrics.py` derives DTWT classes, phreatophyte screening, infiltration interpretation,
+    evidence confidence, drill-depth ranges, and validation steps.
+5. **Export contract:** `export_frontend_data.py` converts prediction rows into GeoJSON/JSON and
+    preserves optional hydrogeology, provenance, quality, and query timestamp fields.
+6. **Browser state:** `loadData.js` fetches four static resources and validates them with Zod.
+    `filters.js` applies AOI, season, tier, cloud, and water-confidence filters.
+7. **Map and interaction:** `mapController.js` renders Leaflet base maps, heatmaps, DTWT/borehole
+    layers, clustered points, popups, property drawing, and site reports.
+8. **Decision support:** polygon analysis aggregates point classes and subsurface averages, then
+    synchronizes with the water-capture calculator.
+
+### Data trust model
+
+| Evidence level | Meaning | Appropriate use |
+|---|---|---|
+| `measured` | Field or survey observation | Engineering review and calibration |
+| `modeled` | External model such as SoilGrids | Regional screening with uncertainty |
+| `screening` | Derived satellite or proxy feature | Prioritizing investigation areas |
+| `synthetic demonstration` | Generated catalog value | UI and demo testing only |
+
+Every subsurface point can carry `subsurface_data_source`, `subsurface_data_quality`,
+`evidence_confidence`, and `validation_next_step`. A recommendation means “investigate here next,”
+not “drill here with guaranteed success.”
+
+### Main logic
+
+- Surface water potential uses normalized spectral indices and produces Low, Medium, or High classes.
+- DTWT is categorized as Shallow (`<25 m`), Moderate (`25-75 m`), or Deep (`>75 m`).
+- The phreatophyte index scores NDVI persistence and optionally weights cooler dry-season LST.
+- The infiltration score is a shallow-clay proxy: `100 - clay percentage`; it is not a hydraulic model.
+- Property analysis counts points inside a polygon and averages available subsurface fields.
+- Water capture is a planning estimate based on area, rainfall, and class shares, not calibrated recharge.
+
 ---
 
 ## Project Structure
@@ -143,9 +201,24 @@ landsat-water-analysis-ai/
 │       └── metrics.json                                  # Model KPIs
 ├── scripts/
 │   ├── export_frontend_data.py                           # Notebook CSV → frontend exports
-│   └── generate_catalog_data.py                          # Full scene/water-point catalog export
+│   ├── fetch_soilgrids.py                                # Real ISRIC clay enrichment
+│   ├── fetch_stac_catalog.py                             # Planetary Computer STAC query
+│   ├── generate_catalog_data.py                          # Deterministic demo catalog
+│   ├── subsurface_metrics.py                             # DTWT and proxy logic
+│   ├── indices.py                                        # Spectral index functions
+│   ├── dem_features.py                                   # Elevation and slope features
+│   ├── labeling.py                                       # K-Means and rule labels
+│   ├── train_water_potential.py                          # Training and spatial validation
+│   └── validate_labels.py                                # Independent agreement checks
 ├── tests/
-│   └── filters.test.js                                   # Unit tests for filter + geo helpers
+│   ├── filters.test.js                                   # Frontend filter and geometry tests
+│   ├── test_indices.py                                  # Python feature/label tests
+│   ├── test_dem_features.py                             # DEM feature tests
+│   └── fixtures/label_sample.csv                        # Validation fixture
+├── public/data/exports/                                  # Files served by Vite
+├── data/landsat_stac.json                               # Example live STAC response
+├── data/sentinel1_stac.json                             # Example radar STAC response
+├── .github/workflows/ci.yml                             # Automated CI
 └── README.md
 ```
 
@@ -156,8 +229,9 @@ landsat-water-analysis-ai/
 | Layer | Stack |
 |-------|-------|
 | Notebook | Python, Jupyter, PySTAC, Planetary Computer, Rasterio, Shapely, XGBoost, scikit-learn |
-| Frontend | HTML, CSS, JavaScript, Leaflet, Leaflet.heat |
-| Data | GeoJSON, JSON, Landsat 8/9 Collection 2 L2SP |
+| Frontend | HTML, CSS, JavaScript, Vite, Leaflet, Leaflet.heat, Zod |
+| Data clients | Requests, Planetary Computer STAC, ISRIC SoilGrids v2.0 |
+| Data | GeoJSON, JSON, Landsat 8/9 L2SP, optional Sentinel-1 RTC |
 
 ---
 
@@ -165,9 +239,9 @@ landsat-water-analysis-ai/
 
 ### Prerequisites
 
-- **Python 3.8+** (for notebook and export script)
+- **Python 3.10+** (for notebook and export scripts)
 - **Modern web browser** (for dashboard)
-- No Node.js required for the frontend
+- **Node.js 18+ and npm** (for Vite, lint, build, and tests)
 
 ### 1. Run the notebook
 
@@ -179,7 +253,7 @@ landsat-water-analysis-ai/
 **Local machine**
 
 ```bash
-pip install planetary-computer pystac-client rasterio shapely xgboost scikit-learn pandas
+pip install -r requirements.txt
 jupyter notebook
 ```
 
@@ -195,6 +269,10 @@ python scripts/export_frontend_data.py --input-csv path/to/predictions.csv --out
 **Required CSV columns:** `lat_wgs84`, `lon_wgs84`, `ndwi`, `mndwi`, `aoi`
 
 **Optional columns:** `predicted_class`, `prob_high`, `scene_id`, `date`, `cloud`, `tier`, `aoi_label`, `overlap_pct`
+
+Optional enrichment columns include `depth_to_water_table_m`, `aquifer_type`,
+`aquifer_productivity_ls`, `borehole_feasibility_score`, `clay_fraction_pct`, `ndvi`, and
+`land_surface_temperature_c`.
 
 ### Real SoilGrids enrichment
 
@@ -228,18 +306,40 @@ vegetation, wavelength, and processing conditions.
 The dashboard loads data via `fetch()`, so it must be served over HTTP (not opened as a `file://` URL).
 
 ```bash
-python -m http.server 8000
+npm install
+npm run dev
 ```
 
-Open [http://localhost:8000](http://localhost:8000)
+Open the Vite URL shown in the terminal, normally [http://localhost:5173](http://localhost:5173).
+
+For a production-like check:
+
+```bash
+npm run build
+npm run preview
+```
 
 ### Dashboard usage
 
 1. Use the **Filters** tab to select AOI, cloud threshold, season, and tier
 2. Click **Apply filters** to refresh the map and scene table
-3. Toggle map layers: **NDWI heat**, **MNDWI heat**, **AOI gradients**, **Class points**
+3. Toggle map layers: **NDWI**, **MNDWI**, **slope**, **groundwater depth**, **borehole feasibility**,
+   AOI gradients, and class points
 4. Hover over regions and points for detailed spectral and classification info
-5. Review model metrics in the **Model** tab
+5. Open a point popup to review evidence quality, DTWT class, infiltration, and the next validation step
+6. Download a site-investigation report from a point popup
+7. Draw a property boundary to aggregate points and synchronize the water-capture calculator
+
+### Developer commands
+
+```bash
+npm run lint
+npm test
+python -m pytest
+npm run generate-data
+npm run fetch-stac -- --collection landsat --limit 20 --output data/landsat_stac.json
+npm run fetch-soilgrids -- --input-csv predictions.csv --output-csv data/enriched_predictions.csv --limit 5
+```
 
 ---
 
@@ -248,6 +348,58 @@ Open [http://localhost:8000](http://localhost:8000)
 - [Microsoft Planetary Computer](https://planetarycomputer.microsoft.com/)
 - Landsat Collection 2 Level-2 Surface Reflectance (L2SP)
 - Landsat 8 and Landsat 9 sensors
+- [ISRIC SoilGrids v2.0](https://rest.isric.org/soilgrids/v2.0/properties/query) for modeled soil clay horizons
+- Optional Planetary Computer `sentinel-1-rtc` collection for radar scene metadata
+
+Source data should be cached with acquisition/query dates and version information. Do not put API
+secrets in the browser or commit private survey data to this repository.
+
+---
+
+## Improvement Roadmap
+
+### Phase 1: Data credibility and reproducibility
+
+- Replace generated DTWT, productivity, aquifer type, and borehole scores with sourced BGS/Fan/GLHYMPS
+    layers where licensing and download terms permit.
+- Add robust spatial joins with CRS checks, nearest-cell distance, source resolution, and no-data handling.
+- Store dataset version, acquisition date, processing commit, and uncertainty for every metric.
+- Add retry, caching, rate-limit handling, and partial-failure reporting to enrichment jobs.
+- Add fixtures for real API responses so tests do not depend on live network availability.
+
+### Phase 2: Scientific quality
+
+- Add Landsat LST/TIRS processing for dry-season September-October phreatophyte screening.
+- Process Sentinel-1 backscatter/coherence and document radar as a surface/structure proxy where appropriate.
+- Add GRACE-FO as a regional groundwater anomaly layer, clearly showing its coarse resolution.
+- Add AEM/resistivity imports for high-confidence investigation zones and saline-water risk.
+- Calibrate prospectivity against verified boreholes, static water levels, pump-test yields, and seasonal records.
+- Replace K-Means-only labels with independently validated targets and report calibration, precision/recall,
+    spatial transfer performance, and confidence intervals.
+
+### Phase 3: Commercial product
+
+- Add accounts, projects, saved AOIs, role-based sharing, and an auditable report history.
+- Provide PDF/CSV/GeoJSON reports with maps, source citations, uncertainty, and professional disclaimers.
+- Provide an API and batch processing for consultants, government teams, and drilling partners.
+- Add time-series charts, drought monitoring, groundwater trend alerts, and wetland-change alerts.
+- Add field feedback so surveyors can upload borehole outcomes as training and validation data.
+- Add billing, usage quotas, observability, job queues, and notifications.
+
+### Phase 4: Production architecture
+
+- Move long-running enrichment and model jobs from the static browser build to a versioned backend worker.
+- Use object storage for immutable datasets and a spatial database for AOIs, observations, and reports.
+- Add API authentication, input validation, audit logs, secret management, and rate limits.
+- Add CI checks for schema compatibility, dependency security, data freshness, and reproducible exports.
+- Publish a model card and data card covering intended use, limitations, bias, resolution, and failure modes.
+
+## Product Positioning
+
+The commercially defensible product is a **groundwater prospectivity and land-water planning platform**.
+It should prioritize and explain investigation areas, help plan field surveys, and combine satellite,
+soil, geological, geophysical, and field evidence. A map score should not be marketed as a guaranteed
+borehole success probability until it has been calibrated against an independent borehole dataset.
 
 ---
 
