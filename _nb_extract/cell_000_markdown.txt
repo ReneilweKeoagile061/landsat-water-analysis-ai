@@ -1,0 +1,21 @@
+CET313- Artificial Intelligence
+
+**Student Name:** Reneilwe Keoagile
+
+**Student ID:**  Bida22-061/ bj10zo
+
+**Assignment Title:** AI-Driven Surface Water Potential Mapping Using Satellite data.
+
+**Date:** 12/12/2025
+
+---
+## 🛰️ Project Overview — Problem, Dataset, Goal
+
+**Problem Being Solved**  
+This project addresses the challenge of reliably identifying surface water potential in semi-arid regions where traditional field-based monitoring is limited, slow, and spatially incomplete. Using satellite-derived spectral indices and machine learning allows automated, scalable, and repeatable mapping of low, medium, and high water-potential zones across Botswana.
+
+**Dataset Used**  
+The dataset is derived from multispectral Landsat surface-reflectance imagery processed into hydrologically relevant features. It includes ~8,000–10,000 georeferenced samples containing spectral bands (Blue, Green, Red, NIR, SWIR1, SWIR2), engineered indices (NDWI, MNDWI, NDVI, AWEI, NDMI, moisture ratio, etc.), and machine-learning labels refined through AOI rules and KMeans clustering.
+
+**Main Goal of the Project**  
+The primary goal is to develop an end-to-end AI prototype that predicts surface water potential and generates interpretable geospatial visualizations of high-value water zones. The system supports environmental monitoring, decision-making, and early-stage hydrogeological analysis.

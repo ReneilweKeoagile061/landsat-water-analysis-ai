@@ -1,0 +1,41 @@
+## 🔬 Feature Importance Analysis — Identifying the Most Influential Water Indicators
+
+This section visualises the **feature importance** extracted from the XGBoost classifier, providing insights into which spectral indices and engineered features contribute most to accurate water-potential prediction.
+
+Understanding feature importance is essential for:
+- Transparent model interpretation  
+- Scientific validation of the selected indices  
+- Strengthening the Methodology & Discussion sections  
+- Demonstrating why certain indices matter more for Botswana’s hydrological landscape  
+
+
+
+### 🌍 Why Feature Importance Matters in Water Resource Prediction
+
+Surface water detection and moisture estimation heavily depend on spectral behaviour across visible, NIR, and SWIR bands.  
+The XGBoost model quantifies this by assigning **importance scores** to each feature.
+
+Key roles of feature importance:
+- ✔ Validates NDWI/MNDWI as primary water indicators  
+- ✔ Shows how vegetation and soil-moisture indices contribute to boundary detection  
+- ✔ Highlights the value of advanced indices (AWEI, NDMI, LSWI) in distinguishing wet soil from open water  
+- ✔ Confirms that engineered composite scores (e.g., water_score_norm) meaningfully improve prediction  
+
+This strengthens my project by linking hydrological remote-sensing theory with empirical machine-learning evidence.
+
+### 📘 Interpretation of the Plot
+
+The bar chart ranks features from **most** to **least** important:
+
+- Longer bars = stronger influence on predicting Medium/High water potential  
+- Colour gradient ("viridis") helps distinguish features visually  
+- Ordering shows clear dominance of water-sensitive indices such as:
+  - NDWI  
+  - MNDWI  
+  - AWEI (shadow & non-shadow variants)  
+  - NDMI  
+  - LSWI  
+  - Moisture ratio  
+
+The importance plot provides empirical proof that my feature-engineering pipeline is scientifically well-grounded.
+

@@ -49,6 +49,19 @@ This project automates scene discovery and quality filtering, then applies machi
 - **Live filtering** — AOI, cloud threshold, season, and data tier
 - **Data-driven** — loads exported GeoJSON and JSON from `data/exports/`
 
+### Subsurface screening
+
+- DTWT categories: shallow (`<25 m`), moderate (`25-75 m`), and deep (`>75 m`)
+- Dry-season phreatophyte screening from NDVI, optionally weighted by land-surface temperature
+- Shallow-soil infiltration proxy from clay fraction, with an explicit infiltration/seal class
+- Provenance and data-quality fields on every subsurface point
+- Export support for measured hydrogeology columns when supplied by an enrichment dataset
+
+The checked-in catalog is a deterministic demonstration dataset and marks its subsurface values as
+`synthetic demonstration`. It is not a substitute for BGS, Fan DTWT, GLHYMPS, SoilGrids, GRACE,
+SAR, or AEM observations. Those sources must be joined into the notebook export before their values
+can be treated as measured.
+
 ---
 
 ## Areas of Interest (AOIs)
@@ -63,22 +76,20 @@ This project automates scene discovery and quality filtering, then applies machi
 
 ## Model Performance
 
-From the improved XGBoost run in the notebook:
+Headline XGBoost scores (against **K-Means labels**, 2,500 test samples):
 
 | Metric | Value |
 |--------|-------|
 | Accuracy | 99.60% |
 | Weighted F1 | 0.9960 |
 | Macro F1 | 0.9737 |
-| Test samples | 2,500 |
+| Spatial-block CV mean | 99.57% |
 
-Per-class results:
+Per-class F1: Low 0.9957 · Medium 0.9968 · High 0.9286.
 
-| Class | Precision | Recall | F1-Score |
-|-------|-----------|--------|----------|
-| Low | 0.9968 | 0.9946 | 0.9957 |
-| Medium | 0.9961 | 0.9974 | 0.9968 |
-| High | 0.9286 | 0.9286 | 0.9286 |
+Those figures measure how faithfully the classifier copies internally generated labels. Independent NDWI/AOI rules agree with K-Means only **26.7%** of the time (chance baseline **33.3%**). The Model tab on the dashboard surfaces this directly.
+
+K-Means is fitted with an optional `holdout_region` so spatial CV no longer labels the held-out longitude block during `.fit()`.
 
 ---
 
@@ -106,8 +117,24 @@ Per-class results:
 landsat-water-analysis-ai/
 ├── CET313_Artificial_Intelligence_Prototype (1).ipynb   # Main ML pipeline
 ├── index.html                                            # Dashboard entry point
-├── styles.css                                            # Dashboard styling
-├── app.js                                                # Map logic, filters, data loading
+├── styles.css                                            # Shared design tokens (colors, layout)
+├── src/
+│   ├── main.js                                           # App bootstrap and event wiring
+│   ├── config.js                                         # AOI labels, filter defaults, constants
+│   ├── styles.css                                        # Component styles (imports root styles.css)
+│   ├── api/
+│   │   ├── loadData.js                                   # Fetch + retry logic for all data sources
+│   │   └── schema.js                                     # Zod schemas validating every loaded file
+│   ├── state/
+│   │   └── filters.js                                    # Pure filtering logic + DOM filter reader
+│   ├── map/
+│   │   └── mapController.js                              # Leaflet layers, heatmaps, clustering, tooltips
+│   ├── ui/
+│   │   ├── dashboard.js                                  # Safe (non-innerHTML) DOM rendering
+│   │   └── tabs.js                                       # Tab/panel toggle behavior
+│   └── utils/
+│       ├── dom.js                                        # DOM helpers, loading/error UI
+│       └── geo.js                                        # Normalization, sampling, debounce
 ├── data/
 │   └── exports/
 │       ├── aois.geojson                                  # AOI polygon boundaries
@@ -115,7 +142,10 @@ landsat-water-analysis-ai/
 │       ├── scenes.json                                   # Filtered Landsat scenes
 │       └── metrics.json                                  # Model KPIs
 ├── scripts/
-│   └── export_frontend_data.py                           # Notebook CSV → frontend exports
+│   ├── export_frontend_data.py                           # Notebook CSV → frontend exports
+│   └── generate_catalog_data.py                          # Full scene/water-point catalog export
+├── tests/
+│   └── filters.test.js                                   # Unit tests for filter + geo helpers
 └── README.md
 ```
 
@@ -165,6 +195,33 @@ python scripts/export_frontend_data.py --input-csv path/to/predictions.csv --out
 **Required CSV columns:** `lat_wgs84`, `lon_wgs84`, `ndwi`, `mndwi`, `aoi`
 
 **Optional columns:** `predicted_class`, `prob_high`, `scene_id`, `date`, `cloud`, `tier`, `aoi_label`, `overlap_pct`
+
+### Real SoilGrids enrichment
+
+ISRIC SoilGrids v2.0 provides modeled clay percentages at four depth horizons through a public point
+API. Enrich a notebook prediction CSV before exporting it to the dashboard:
+
+```bash
+pip install -r requirements.txt
+python scripts/fetch_soilgrids.py --input-csv path/to/predictions.csv --output-csv data/enriched_predictions.csv
+python scripts/export_frontend_data.py --input-csv data/enriched_predictions.csv --output-dir public/data/exports
+```
+
+Use `--limit 5` for a trial run. The exporter preserves the SoilGrids source, query timestamp, depth
+horizons, and modeled quality label. Planetary Computer remains the real Landsat/STAC source. GRACE,
+BGS, Fan DTWT, GLHYMPS, and Botswana AEM require separate downloaded products or authenticated services;
+they are not guessed or represented as live data by this static dashboard.
+
+Query live optical Landsat or Sentinel-1 radar metadata from Planetary Computer:
+
+```bash
+python scripts/fetch_stac_catalog.py --collection landsat --limit 20 --output data/landsat_stac.json
+python scripts/fetch_stac_catalog.py --collection sentinel1 --limit 20 --output data/sentinel1_stac.json
+```
+
+The STAC command records scene IDs, dates, cloud cover, bounding boxes, and available assets. It does
+not claim that radar penetration equals a fixed depth; penetration depends on soil moisture, roughness,
+vegetation, wavelength, and processing conditions.
 
 ### 3. Run the web dashboard
 

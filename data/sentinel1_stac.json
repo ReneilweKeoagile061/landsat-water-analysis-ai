@@ -1,0 +1,5 @@
+{
+  "source": "https://planetarycomputer.microsoft.com/api/stac/v1",
+  "collection": "sentinel-1-rtc",
+  "scenes": []
+}

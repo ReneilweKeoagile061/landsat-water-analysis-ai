@@ -1,0 +1,91 @@
+# CELL 1: Analyze Data Distribution & Create Better Labels
+import numpy as np
+import pandas as pd
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+print("🔍 DATA-DRIVEN LABEL GENERATION")
+print("="*60)
+
+df = pd.read_parquet("data/features/landsat_features_wgs84.parquet")
+print(f"Loaded: {len(df):,} samples\n")
+
+# Analyze water indices distribution
+print("📊 Water Index Statistics:")
+print(f"  NDWI:  {df['ndwi'].mean():.3f} ± {df['ndwi'].std():.3f}")
+print(f"  MNDWI: {df['mndwi'].mean():.3f} ± {df['mndwi'].std():.3f}")
+print(f"  NDVI:  {df['ndvi'].mean():.3f} ± {df['ndvi'].std():.3f}")
+
+# Create composite water score (Literature-based: Tesfaye 2025)
+# High NDWI + MNDWI + Low NDVI = High water potential
+df['water_score'] = (
+    0.35 * df['ndwi'] +           # McFeeters water index
+    0.35 * df['mndwi'] +          # Xu modified water index
+    0.15 * df['awei_nsh'] +       # Automated water extraction
+    0.10 * df['ndmi'] +           # Moisture index
+    -0.05 * df['ndvi']            # Less vegetation = more water
+)
+
+# Normalize to 0-1
+df['water_score_norm'] = (df['water_score'] - df['water_score'].min()) / (df['water_score'].max() - df['water_score'].min())
+
+print(f"\n✅ Water Score Range: {df['water_score_norm'].min():.3f} to {df['water_score_norm'].max():.3f}")
+
+# Use K-Means clustering for data-driven labels
+print("\n🎯 Using K-Means clustering (3 classes)...")
+
+# Combine spectral features for clustering
+cluster_features = df[['ndwi', 'mndwi', 'ndvi', 'awei_nsh', 'water_score_norm']].values
+
+kmeans = KMeans(n_clusters=3, random_state=42, n_init=10)
+df['cluster'] = kmeans.fit_predict(cluster_features)
+
+# Map clusters to water potential based on mean water score
+cluster_means = df.groupby('cluster')['water_score_norm'].mean().sort_values()
+cluster_mapping = {
+    cluster_means.index[0]: 0,  # Low
+    cluster_means.index[1]: 1,  # Medium
+    cluster_means.index[2]: 2   # High
+}
+
+df['water_potential_class'] = df['cluster'].map(cluster_mapping)
+
+# Show distribution
+print("\n📊 Class Distribution (Data-Driven):")
+for cls in [0, 1, 2]:
+    count = (df['water_potential_class'] == cls).sum()
+    pct = 100 * count / len(df)
+    label = ['Low', 'Medium', 'High'][cls]
+    mean_score = df[df['water_potential_class'] == cls]['water_score_norm'].mean()
+    print(f"  {label:8s}: {count:5,} ({pct:5.1f}%) | Avg Score: {mean_score:.3f}")
+
+# Visualize
+fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+
+# Plot 1: Spatial distribution
+scatter = axes[0].scatter(df['lon_wgs84'], df['lat_wgs84'],
+                         c=df['water_potential_class'],
+                         cmap='RdYlGn', s=2, alpha=0.5)
+axes[0].set_title('Data-Driven Water Potential Classes')
+axes[0].set_xlabel('Longitude')
+axes[0].set_ylabel('Latitude')
+plt.colorbar(scatter, ax=axes[0], ticks=[0,1,2], label='Class')
+
+# Plot 2: Feature distributions
+for cls, color, label in [(0, 'red', 'Low'), (1, 'orange', 'Medium'), (2, 'green', 'High')]:
+    mask = df['water_potential_class'] == cls
+    axes[1].hist(df[mask]['water_score_norm'], bins=30, alpha=0.5,
+                color=color, label=label, density=True)
+axes[1].set_title('Water Score Distribution by Class')
+axes[1].set_xlabel('Water Score')
+axes[1].set_ylabel('Density')
+axes[1].legend()
+
+plt.tight_layout()
+plt.savefig('data/ml_ready/label_analysis.png', dpi=300)
+print("\n💾 Saved: data/ml_ready/label_analysis.png")
+plt.show()
+
+# Save
+df.to_parquet("data/ml_ready/training_dataset_improved.parquet", index=False)
+print(f"💾 Saved: data/ml_ready/training_dataset_improved.parquet")

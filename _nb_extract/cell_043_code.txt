@@ -1,0 +1,74 @@
+# CELL 3: Generate Improved Predictions
+print("🔮 GENERATING IMPROVED PREDICTIONS")
+print("="*60)
+
+df_full = pd.read_parquet("data/ml_ready/training_dataset_improved.parquet")
+
+# Load best model
+best_model = joblib.load("data/models/XGBoost_improved.joblib")
+
+feature_cols = [
+    'ndwi', 'mndwi', 'awei_nsh', 'awei_sh',
+    'ndvi', 'evi', 'ndmi', 'lswi',
+    'wri', 'moisture_ratio', 'water_score_norm'
+]
+
+X_full = df_full[feature_cols]
+
+predictions = best_model.predict(X_full)
+probabilities = best_model.predict_proba(X_full)
+
+df_full['predicted_class'] = predictions
+df_full['prob_low'] = probabilities[:, 0]
+df_full['prob_medium'] = probabilities[:, 1]
+df_full['prob_high'] = probabilities[:, 2]
+df_full['predicted_label'] = df_full['predicted_class'].map({0: 'Low', 1: 'Medium', 2: 'High'})
+
+# Save
+output_path = Path("data/predictions/improved_predictions.parquet")
+output_path.parent.mkdir(parents=True, exist_ok=True)
+df_full.to_parquet(output_path, index=False)
+
+print(f"✅ Saved: {output_path}")
+
+print("\n📊 Prediction Summary:")
+for label in ['Low', 'Medium', 'High']:
+    count = (df_full['predicted_label'] == label).sum()
+    pct = 100 * count / len(df_full)
+    avg_conf = df_full[df_full['predicted_label'] == label][f'prob_{label.lower()}'].mean()
+    print(f"  {label:8s}: {count:5,} ({pct:5.1f}%) | Avg Confidence: {avg_conf:.3f}")
+
+# Create final map
+fig, axes = plt.subplots(1, 2, figsize=(16, 6))
+
+colors = ['#d62728', '#ff7f0e', '#2ca02c']
+from matplotlib.colors import ListedColormap
+cmap = ListedColormap(colors)
+
+# Map 1: Predictions
+scatter1 = axes[0].scatter(df_full['lon_wgs84'], df_full['lat_wgs84'],
+                          c=df_full['predicted_class'], cmap=cmap,
+                          s=3, alpha=0.6)
+axes[0].set_title('Improved Water Potential Map', fontsize=14, fontweight='bold')
+axes[0].set_xlabel('Longitude (°E)')
+axes[0].set_ylabel('Latitude (°N)')
+axes[0].grid(True, alpha=0.3)
+cbar1 = plt.colorbar(scatter1, ax=axes[0], ticks=[0,1,2])
+cbar1.set_ticklabels(['Low', 'Medium', 'High'])
+
+# Map 2: Confidence
+scatter2 = axes[1].scatter(df_full['lon_wgs84'], df_full['lat_wgs84'],
+                          c=df_full['prob_high'], cmap='YlGnBu',
+                          s=3, alpha=0.6, vmin=0, vmax=1)
+axes[1].set_title('High Potential Probability', fontsize=14, fontweight='bold')
+axes[1].set_xlabel('Longitude (°E)')
+axes[1].set_ylabel('Latitude (°N)')
+axes[1].grid(True, alpha=0.3)
+plt.colorbar(scatter2, ax=axes[1], label='P(High)')
+
+plt.tight_layout()
+plt.savefig('data/predictions/improved_water_map.png', dpi=300)
+print("\n💾 Saved: data/predictions/improved_water_map.png")
+plt.show()
+
+print("\n🎉 IMPROVED ANALYSIS COMPLETE!")

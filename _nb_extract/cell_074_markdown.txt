@@ -1,0 +1,9 @@
+Imports and Evaluation Environment Setup
+
+This section prepares the full analytical environment needed for advanced model evaluation and visualization. It begins by importing essential scientific libraries such as NumPy, Pandas, Matplotlib, and Seaborn, which handle numerical processing, dataset manipulation, and plotting.
+
+Next, it includes the full suite of scikit-learn utilities used for model assessment. These include StratifiedKFold for balanced cross-validation, learning_curve for performance scaling analysis, and multiple evaluation metrics such as accuracy, F1-score, confusion matrices, ROC curves, AUC, and precision–recall curves. These tools allow for comprehensive diagnostic testing of the machine-learning models.
+
+The cell also imports the classification algorithms used in this project—Random Forest, Gradient Boosting, and XGBoost—along with the native XGBoost training interface. This ensures compatibility for both high-level and low-level training approaches.
+
+Finally, an output directory (data/models/figures) is automatically created to store all generated plots, keeping figures organised and ensuring reproducibility. The Seaborn visual theme is set to "whitegrid" for clean, consistent styling across all visual outputs.

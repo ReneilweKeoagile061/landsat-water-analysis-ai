@@ -1,0 +1,30 @@
+### 🌍 CELL — Spatial Cross-Validation (Longitude Block Splitting)
+
+Traditional cross-validation assumes that samples are independent and identically distributed (i.i.d).  
+However, **geospatial datasets violate this assumption** because nearby pixels tend to have similar spectral signatures.  
+This introduces **spatial autocorrelation**, causing models to appear more accurate during validation than they truly are in real-world deployment.
+
+Spatial cross-validation solves this.
+
+
+
+## 1️⃣ Why Spatial Cross-Validation?
+Standard random train-test splits **leak spatial information**:
+
+- A pixel from a wetland might end up in both train and test sets  
+- The model trains on the same hydrological region it later “predicts”  
+- This artificially boosts accuracy and F1 scores  
+
+To evaluate the model realistically, we must test it on **entirely unseen geographic regions**.
+
+Thus, spatial CV provides performance estimates that reflect **generalisation to new locations**, not just new samples.
+
+
+
+## 2️⃣ Method Used: Longitude-Based Spatial Block Splitting
+The study area (Botswana) extends significantly in the East–West direction, which makes **longitude** a suitable variable for spatial separation.
+
+We divide the dataset into **5 spatial blocks** using:
+
+```python
+df['spatial_block'] = pd.qcut(df['lon_wgs84'], q=5, labels=False)

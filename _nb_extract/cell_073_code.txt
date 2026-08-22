@@ -1,0 +1,21 @@
+import os
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.model_selection import StratifiedKFold, learning_curve
+from sklearn.metrics import (
+    accuracy_score, f1_score, confusion_matrix, classification_report,
+    roc_auc_score, roc_curve, precision_recall_curve, auc
+)
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from xgboost import XGBClassifier
+import xgboost as xgb
+import joblib
+
+# create output folder
+out_dir = "data/models/figures"
+os.makedirs(out_dir, exist_ok=True)
+
+sns.set(style="whitegrid")

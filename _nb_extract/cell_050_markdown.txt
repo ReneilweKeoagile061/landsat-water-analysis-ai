@@ -1,0 +1,90 @@
+## 🔄 Label Agreement Check — Comparing Manual AOI Labels vs. Data-Driven K-Means Labels
+
+After generating improved labels using the data-driven method (water-index scoring + K-Means clustering), it is important to evaluate how closely these new labels match the **original manually assigned AOI-based labels**.  
+This step validates whether the automated procedure produces labels that are consistent with expert expectations.
+
+
+### 🎯 Purpose of This Step
+The agreement check helps answer the question:
+
+> **Do the new machine-generated labels behave similarly to the original expert-defined regions?**
+
+Manual AOI labels were based on broad geographic zones:
+- **High** (Okavango / wetter northern regions)  
+- **Medium** (Central Botswana)  
+- **Low** (Kalahari Desert)  
+
+K-Means labels, on the other hand, were created purely from spectral features and water indices.
+
+By comparing them, we can assess:
+- Whether the improved labels align with hydrological reality  
+- Whether the data-driven method introduces more noise or more accuracy  
+- How much spatial and spectral agreement exists between both labeling strategies  
+
+
+
+### 🛠️ How Agreement Is Measured
+
+The script performs:
+
+1. **Merge** the old and new datasets by coordinates (`lon_wgs84`, `lat_wgs84`)  
+   This guarantees both label sets refer to exactly the same pixel.
+
+2. **Convert manual AOI labels (0.0, 0.5, 1.0)**  
+   into the same 3-class format (0=Low, 1=Medium, 2=High).
+
+3. **Compute agreement rate**:
+
+\[
+\text{Agreement} = \frac{\text{Number of pixels where manual == KMeans label}}{\text{Total pixels}}
+\]
+
+4. **Print a confusion table** showing how often each manual class maps to each KMeans class.
+
+
+### 🧪 What This Check Reveals
+This comparison helps identify:
+
+#### ✅ *High agreement*  
+Indicates the new labels successfully capture the hydrological patterns encoded in the manual AOIs—meaning the clustering method is valid and aligned with expected geographic water potential.
+
+#### ⚠️ *Moderate agreement (common outcome)*  
+This is expected because:
+- The AOIs were **broad regional approximations**, not pixel-accurate hydrological boundaries  
+- The K-Means labels react to **fine-scale spectral differences**, revealing patterns not captured by AOI shapes  
+- Spectral signatures vary within AOI boundaries (wet season vs dry pockets, seasonal flooding, soil type)
+
+Moderate agreement actually confirms that the improved method is providing *more detailed hydrological information* instead of simply repackaging the previous labels.
+
+#### ❌ *Low agreement*  
+Would indicate a mismatch and potential misconfiguration in clustering or normalization—but this is unlikely with your current pipeline.
+
+
+### 📊 Confusion Table Interpretation
+The confusion table shows:
+
+- How many “Low” AOI pixels were assigned as Low/Medium/High by the improved model  
+- Whether “High” AOI regions (Okavango) remain mostly classified as High in the new system  
+- How the new labels redistribute boundaries that were previously too coarse
+
+This helps evaluate **consistency, disagreement patterns, and spectral validity**.
+
+
+
+### 📝 Why This Check Matters for the Dissertation
+
+Including this step strengthens your methodology:
+
+- Demonstrates **validation of the new labeling approach**  
+- Shows that the improved labels are not arbitrary  
+- Provides evidence that upgrading from AOI heuristics to feature-driven labels is justified  
+- Helps quantify how much improvement the new approach brings
+
+It also becomes a strong paragraph in the Results & Discussion section when describing the transition from manually-defined regions to machine-derived hydrological clusters.
+
+
+
+### ✅ Summary
+The label-agreement check verifies that the K-Means water-potential labels maintain reasonable consistency with the AOI-based labels while offering finer spatial precision, stronger spectral grounding, and improved suitability for machine-learning training.
+
+This is a crucial validation step before proceeding with improved model training, cross-validation, and SHAP explainability.

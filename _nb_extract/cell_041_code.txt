@@ -1,0 +1,143 @@
+# CELL 2: Train Models with Data-Driven Labels
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from xgboost import XGBClassifier
+from sklearn.metrics import accuracy_score, f1_score, classification_report, confusion_matrix
+import joblib
+import seaborn as sns
+
+print("🤖 TRAINING WITH IMPROVED LABELS")
+print("="*60)
+
+df = pd.read_parquet("data/ml_ready/training_dataset_improved.parquet")
+
+# Enhanced feature set
+feature_cols = [
+    # Water indices (most important)
+    'ndwi', 'mndwi', 'awei_nsh', 'awei_sh',
+    # Vegetation/moisture
+    'ndvi', 'evi', 'ndmi', 'lswi',
+    # Additional features
+    'wri', 'moisture_ratio',
+    # Composite score
+    'water_score_norm'
+]
+
+X = df[feature_cols]
+y = df['water_potential_class']
+
+print(f"Features: {len(feature_cols)}")
+print(f"Samples: {len(X):,}")
+print(f"Classes: {y.nunique()}\n")
+
+# Stratified split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42, stratify=y
+)
+
+print(f"Train: {len(X_train):,} | Test: {len(X_test):,}\n")
+
+# Enhanced models with better hyperparameters
+models = {
+    "Gradient Boosting": GradientBoostingClassifier(
+        n_estimators=200,
+        learning_rate=0.1,
+        max_depth=5,
+        min_samples_split=20,
+        random_state=42
+    ),
+    "Random Forest": RandomForestClassifier(
+        n_estimators=200,
+        max_depth=12,
+        min_samples_split=10,
+        min_samples_leaf=5,
+        random_state=42,
+        n_jobs=-1
+    ),
+    "XGBoost": XGBClassifier(
+        n_estimators=200,
+        max_depth=7,
+        learning_rate=0.1,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        random_state=42,
+        n_jobs=-1,
+        eval_metric='mlogloss'
+    )
+}
+
+results = {}
+
+for name, model in models.items():
+    print(f"Training {name}...")
+
+    # Train
+    model.fit(X_train, y_train)
+
+    # Predictions
+    y_pred = model.predict(X_test)
+
+    # Metrics
+    acc = accuracy_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred, average='weighted')
+
+    # Cross-validation
+    cv_scores = cross_val_score(model, X_train, y_train, cv=5, scoring='accuracy')
+
+    results[name] = {
+        'Accuracy': acc,
+        'F1-Score': f1,
+        'CV Mean': cv_scores.mean(),
+        'CV Std': cv_scores.std()
+    }
+
+    print(f"  Accuracy:     {acc:.4f}")
+    print(f"  F1-Score:     {f1:.4f}")
+    print(f"  CV Score:     {cv_scores.mean():.4f} ± {cv_scores.std():.4f}")
+
+    # Feature importance
+    if hasattr(model, 'feature_importances_'):
+        imp = pd.Series(model.feature_importances_, index=feature_cols).sort_values(ascending=False)
+        print(f"  Top 5 Features:")
+        for feat, score in imp.head(5).items():
+            print(f"    • {feat:18s}: {score:.4f}")
+
+    # Save model
+    joblib.dump(model, f"data/models/{name.replace(' ', '_')}_improved.joblib")
+    print(f"  💾 Saved model\n")
+
+# Summary
+print("="*60)
+print("📊 MODEL COMPARISON")
+print("="*60)
+
+results_df = pd.DataFrame(results).T
+print(results_df.round(4).to_string())
+
+best_model_name = results_df['F1-Score'].idxmax()
+print(f"\n🏆 Best Model: {best_model_name}")
+print(f"   F1-Score: {results_df.loc[best_model_name, 'F1-Score']:.4f}")
+print(f"   Accuracy: {results_df.loc[best_model_name, 'Accuracy']:.4f}")
+
+# Confusion Matrix for best model
+best_model = joblib.load(f"data/models/{best_model_name.replace(' ', '_')}_improved.joblib")
+y_pred_best = best_model.predict(X_test)
+
+plt.figure(figsize=(8, 6))
+cm = confusion_matrix(y_test, y_pred_best)
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+            xticklabels=['Low', 'Medium', 'High'],
+            yticklabels=['Low', 'Medium', 'High'])
+plt.title(f'Confusion Matrix - {best_model_name}', fontsize=14, fontweight='bold')
+plt.ylabel('True Label')
+plt.xlabel('Predicted Label')
+plt.tight_layout()
+plt.savefig('data/models/confusion_matrix_improved.png', dpi=300)
+print("\n💾 Saved: data/models/confusion_matrix_improved.png")
+plt.show()
+
+# Classification Report
+print("\n📋 Detailed Classification Report:")
+print(classification_report(y_test, y_pred_best,
+                          target_names=['Low', 'Medium', 'High'],
+                          digits=4))

@@ -1,0 +1,84 @@
+{
+  "source": "https://planetarycomputer.microsoft.com/api/stac/v1",
+  "collection": "landsat-c2-l2",
+  "scenes": [
+    {
+      "id": "LC08_L2SP_171076_20250427_02_T1",
+      "collection": "landsat",
+      "datetime": "2025-04-27T08:07:07.250042Z",
+      "cloud_cover": 41.06,
+      "assets": [
+        "ang",
+        "atran",
+        "blue",
+        "cdist",
+        "coastal",
+        "drad",
+        "emis",
+        "emsd",
+        "green",
+        "lwir11",
+        "mtl.json",
+        "mtl.txt",
+        "mtl.xml",
+        "nir08",
+        "qa",
+        "qa_aerosol",
+        "qa_pixel",
+        "qa_radsat",
+        "red",
+        "rendered_preview",
+        "swir16",
+        "swir22",
+        "tilejson",
+        "trad",
+        "urad"
+      ],
+      "bbox": [
+        26.531242391839566,
+        -24.171695444725728,
+        28.802405318491253,
+        -22.051434555274273
+      ]
+    },
+    {
+      "id": "LC08_L2SP_171075_20250427_02_T1",
+      "collection": "landsat",
+      "datetime": "2025-04-27T08:06:43.312405Z",
+      "cloud_cover": 46.01,
+      "assets": [
+        "ang",
+        "atran",
+        "blue",
+        "cdist",
+        "coastal",
+        "drad",
+        "emis",
+        "emsd",
+        "green",
+        "lwir11",
+        "mtl.json",
+        "mtl.txt",
+        "mtl.xml",
+        "nir08",
+        "qa",
+        "qa_aerosol",
+        "qa_pixel",
+        "qa_radsat",
+        "red",
+        "rendered_preview",
+        "swir16",
+        "swir22",
+        "tilejson",
+        "trad",
+        "urad"
+      ],
+      "bbox": [
+        26.88688398553964,
+        -22.733425469453344,
+        29.133353904894776,
+        -20.608944530546655
+      ]
+    }
+  ]
+}

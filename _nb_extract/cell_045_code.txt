@@ -1,0 +1,50 @@
+# ===========================================
+# 🗺️ SPATIAL CROSS-VALIDATION (BLOCK SPLIT)
+# ===========================================
+
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import KFold
+from sklearn.metrics import accuracy_score, f1_score
+from xgboost import XGBClassifier
+
+print("🌍 Performing SPATIAL cross-validation...")
+
+df = pd.read_parquet("data/ml_ready/training_dataset_improved.parquet")
+
+# FEATURE SET (same as before)
+feature_cols = [
+    'ndwi','mndwi','awei_nsh','awei_sh','ndvi','evi','ndmi','lswi',
+    'wri','moisture_ratio','water_score_norm'
+]
+
+X = df[feature_cols]
+y = df['water_potential_class']
+
+# Spatial block split (longitude-based)
+df['spatial_block'] = pd.qcut(df['lon_wgs84'], q=5, labels=False)
+
+block_scores = []
+
+for block in sorted(df['spatial_block'].unique()):
+    X_train = df[df['spatial_block'] != block][feature_cols]
+    y_train = df[df['spatial_block'] != block]['water_potential_class']
+
+    X_test = df[df['spatial_block'] == block][feature_cols]
+    y_test = df[df['spatial_block'] == block]['water_potential_class']
+
+    model = XGBClassifier(
+        n_estimators=200, max_depth=7, learning_rate=0.1,
+        subsample=0.8, colsample_bytree=0.8, eval_metric='mlogloss'
+    )
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+
+    acc = accuracy_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred, average='weighted')
+
+    block_scores.append((acc, f1))
+    print(f"Block {block}: ACC={acc:.4f}, F1={f1:.4f}")
+
+print("\n📌 SPATIAL CV RESULTS")
+print(pd.DataFrame(block_scores, columns=["Accuracy","F1"]))

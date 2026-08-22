@@ -1,0 +1,22 @@
+# ===========================================
+# 🔄 LABEL AGREEMENT CHECK
+# ===========================================
+
+df_old = pd.read_parquet("data/ml_ready/training_dataset.parquet")   # manual AOI labels
+df_new = pd.read_parquet("data/ml_ready/training_dataset_improved.parquet")  # KMeans labels
+
+merged = df_new.merge(
+    df_old[['lon_wgs84','lat_wgs84','water_potential']],
+    on=['lon_wgs84','lat_wgs84'],
+    how='left'
+)
+
+merged['manual_class'] = merged['water_potential'].map({0:0, 0.5:1, 1:2})
+
+agreement = (merged['manual_class'] == merged['water_potential_class']).mean()
+
+print(f"🧪 Agreement between manual/AOI labels and KMeans labels: {agreement:.3f}")
+
+ct = pd.crosstab(merged['manual_class'], merged['water_potential_class'])
+print("\nConfusion table:")
+print(ct)
