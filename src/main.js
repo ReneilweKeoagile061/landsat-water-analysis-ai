@@ -27,6 +27,8 @@ function getToggles() {
     slope: document.getElementById("toggleSlope"),
     dtwt: document.getElementById("toggleDtwt"),
     borehole: document.getElementById("toggleBorehole"),
+    bgiBoreholes: document.getElementById("toggleBgiBoreholes"),
+    drillTargets: document.getElementById("toggleDrillTargets"),
     regions: document.getElementById("toggleRegions"),
     classes: document.getElementById("toggleClasses"),
   };

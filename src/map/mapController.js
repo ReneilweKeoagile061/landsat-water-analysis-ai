@@ -198,6 +198,8 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
   let slopeLayer = null;
   let dtwtLayer = null;
   let boreholeLayer = null;
+  let bgiBoreholeLayer = null;
+  let drillTargetLayer = null;
   let activeBaseLayer = "light";
   let lastBoundsKey = "";
   let currentPoints = [];
@@ -221,7 +223,7 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
   };
 
   const clearLayers = () => {
-    [regionLayer, classLayer, ndwiLayer, mndwiLayer, slopeLayer, dtwtLayer, boreholeLayer].forEach((layer) => {
+    [regionLayer, classLayer, ndwiLayer, mndwiLayer, slopeLayer, dtwtLayer, boreholeLayer, bgiBoreholeLayer, drillTargetLayer].forEach((layer) => {
       if (layer) map.removeLayer(layer);
     });
   };
@@ -354,6 +356,110 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
       };
     }
   };
+
+  const loadBGIBoreholes = async () => {
+    try {
+      const res = await fetch("/data/boreholes/bgi_verified_boreholes.csv");
+      const text = await res.text();
+      const lines = text.trim().split("\n");
+      const headers = lines[0].split(",");
+
+      bgiBoreholeLayer = L.markerClusterGroup({
+        maxClusterRadius: 40,
+        spiderfyOnMaxZoom: true,
+      });
+
+      for (let i = 1; i < lines.length; i++) {
+        const row = lines[i].split(",");
+        const data = {};
+        headers.forEach((h, idx) => (data[h] = row[idx]));
+        if (!data.latitude || !data.longitude) continue;
+
+        const isProd = data.is_productive === "1";
+        const color = isProd ? "#10b981" : "#ef4444";
+        const fill = isProd ? "#34d399" : "#f87171";
+
+        const marker = L.circleMarker([Number(data.latitude), Number(data.longitude)], {
+          radius: 6,
+          color: color,
+          fillColor: fill,
+          fillOpacity: 0.8,
+          weight: 2,
+        });
+
+        marker.bindPopup(`
+          <div class="point-popup">
+            <div class="popup-title"><strong>BGI ID: ${data.borehole_id}</strong></div>
+            <div><span>Location:</span> <strong>${data.location}</strong></div>
+            <div><span>Yield:</span> <strong>${data.yield_m3h} m³/h</strong></div>
+            <div><span>Water Strike:</span> <strong>${data.water_strike_m} m</strong></div>
+            <div><span>Productive:</span> <strong>${isProd ? "Yes" : "No"}</strong></div>
+          </div>
+        `, { className: "leaflet-custom-popup", maxWidth: 280 });
+
+        bgiBoreholeLayer.addLayer(marker);
+      }
+      if (toggles.bgiBoreholes?.checked) bgiBoreholeLayer.addTo(map);
+    } catch (e) {
+      console.warn("Could not load BGI boreholes:", e);
+    }
+  };
+
+  const loadRankedDrillTargets = async () => {
+    try {
+      const res = await fetch("/data/exports/ranked_drill_targets.json");
+      const targets = await res.json();
+
+      drillTargetLayer = L.layerGroup();
+      
+      const rankColors = { 1: "#fbbf24", 2: "#94a3b8", 3: "#b45309" }; // Gold, Silver, Bronze
+      const rankIcons = { 1: "⭐", 2: "⭐", 3: "⭐" };
+
+      targets.forEach(t => {
+        const color = rankColors[t.rank] || "#3b82f6";
+        
+        // Marker
+        const htmlIcon = L.divIcon({
+          html: `<div style="font-size: 16px; background: white; border: 2px solid ${color}; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">${rankIcons[t.rank] || "🎯"}</div>`,
+          className: "",
+          iconSize: [24, 24],
+          iconAnchor: [12, 12]
+        });
+
+        const marker = L.marker([t.latitude, t.longitude], { icon: htmlIcon });
+        marker.bindPopup(`
+          <div class="point-popup">
+            <div class="popup-title"><strong>Rank ${t.rank} Target</strong></div>
+            <div><span>ML Score:</span> <strong>${(t.ml_score * 100).toFixed(1)}%</strong></div>
+            <div><span>Priority Score:</span> <strong>${(t.priority_score * 100).toFixed(1)}%</strong></div>
+            <div><span>Recommendation:</span> <strong>${t.ert_recommendation}</strong></div>
+          </div>
+        `, { className: "leaflet-custom-popup", maxWidth: 280 });
+
+        drillTargetLayer.addLayer(marker);
+
+        // ERT radius circle (100m)
+        const circle = L.circle([t.latitude, t.longitude], {
+          radius: 100,
+          color: color,
+          weight: 1,
+          fillColor: color,
+          fillOpacity: 0.1,
+          dashArray: "4 4"
+        });
+        drillTargetLayer.addLayer(circle);
+      });
+
+      if (toggles.drillTargets?.checked) drillTargetLayer.addTo(map);
+    } catch (e) {
+      console.warn("Could not load ranked drill targets:", e);
+    }
+  };
+
+  // Initial load
+  loadBGIBoreholes();
+  loadRankedDrillTargets();
+
 
   const handleMapClick = (event) => {
     if (!isDrawing) return;
@@ -565,6 +671,8 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     if (toggles.slope?.checked) slopeLayer.addTo(map);
     if (toggles.dtwt?.checked) dtwtLayer.addTo(map);
     if (toggles.borehole?.checked) boreholeLayer.addTo(map);
+    if (toggles.bgiBoreholes?.checked && bgiBoreholeLayer) bgiBoreholeLayer.addTo(map);
+    if (toggles.drillTargets?.checked && drillTargetLayer) drillTargetLayer.addTo(map);
     if (toggles.regions?.checked) regionLayer.addTo(map);
     if (toggles.classes?.checked) classLayer.addTo(map);
 
@@ -586,6 +694,8 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     toggles.slope?.addEventListener("change", () => refreshLayer(slopeLayer, toggles.slope.checked));
     toggles.dtwt?.addEventListener("change", () => refreshLayer(dtwtLayer, toggles.dtwt.checked));
     toggles.borehole?.addEventListener("change", () => refreshLayer(boreholeLayer, toggles.borehole.checked));
+    toggles.bgiBoreholes?.addEventListener("change", () => refreshLayer(bgiBoreholeLayer, toggles.bgiBoreholes.checked));
+    toggles.drillTargets?.addEventListener("change", () => refreshLayer(drillTargetLayer, toggles.drillTargets.checked));
     toggles.regions?.addEventListener("change", () => refreshLayer(regionLayer, toggles.regions.checked));
     toggles.classes?.addEventListener("change", () => refreshLayer(classLayer, toggles.classes.checked));
 

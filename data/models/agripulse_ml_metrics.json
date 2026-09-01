@@ -1,0 +1,27 @@
+{
+  "accuracy": 0.6190476190476191,
+  "precision": 0.6875,
+  "recall": 0.7857142857142857,
+  "f1": 0.7333333333333333,
+  "mean_spatial_cv_auc": 0.705994005994006,
+  "n_samples": 84,
+  "class_balance_productive": 56,
+  "class_balance_unsuccessful": 28,
+  "model_engine": "XGBoost",
+  "feature_importances": {
+    "s1_vv": 0.05868605151772499,
+    "s1_vh": 0.09884502738714218,
+    "s1_vv_vh_ratio": 0.06138370931148529,
+    "radar_contrast": 0.08103574067354202,
+    "ndvi": 0.06534615159034729,
+    "ndmi": 0.08823270350694656,
+    "ndwi": 0.05228451266884804,
+    "dem_elevation": 0.06748390942811966,
+    "slope_deg": 0.07791679352521896,
+    "twi": 0.11041045188903809,
+    "flow_accumulation": 0.06607265025377274,
+    "dist_to_structure_m": 0.06011149659752846,
+    "structural_density": 0.05548735707998276,
+    "intersection_index": 0.05670352652668953
+  }
+}

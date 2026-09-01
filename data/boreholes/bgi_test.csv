@@ -1,0 +1,11 @@
+borehole_id,location,latitude,longitude,yield_m3h,is_productive,water_strike_m
+BH001,Khudumelapye,-23.90,24.95,4.54,1,24.38
+BH002,Khudumelapye,-23.91,24.96,0.0,0,35.20
+BH003,Khudumelapye,-23.92,24.97,NA,NA,NA
+BH004,Molepolole,-23.85,25.10,5.80,1,18.50
+BH005,Molepolole,-23.86,25.11,0.0,0,22.0
+BH006,Palapye,-23.40,25.35,3.25,1,31.10
+BH007,Palapye,-23.41,25.36,0.0,0,15.80
+BH008,Palapye,-23.42,25.37,NA,NA,52.30
+BH009,Serowe,-22.75,25.60,2.80,1,39.50
+BH010,Serowe,-22.76,25.61,0.0,0,28.40

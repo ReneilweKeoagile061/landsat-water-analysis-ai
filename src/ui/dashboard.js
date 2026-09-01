@@ -211,6 +211,47 @@ export function bindWaterGainCalculator() {
 
   form.addEventListener("input", render);
   render();
+
+  const renderBoreholeYield = () => {
+    const depth = Number(document.getElementById("boreholeDepthInput").value);
+    const prod = Number(document.getElementById("boreholeProdInput").value);
+    const hours = Number(document.getElementById("boreholeHoursInput").value);
+    const outYield = document.getElementById("boreholeYieldResult");
+
+    if (!outYield) return;
+    clearElement(outYield);
+
+    if (!(depth > 0) || !(prod > 0) || !(hours > 0)) {
+      outYield.appendChild(el("p", "muted", "Enter depth, yield, and pumping hours to estimate capacity."));
+      return;
+    }
+
+    const daily_m3 = (prod * hours * 3600) / 1000;
+    const cattleSupported = Math.floor(daily_m3 / 0.05);
+    const irrigationHa = (daily_m3 / 6).toFixed(1);
+
+    const list = el("ul", "metric-list");
+    const item1 = el("li");
+    item1.append(el("strong", null, "Daily Yield: "), document.createTextNode(`${daily_m3.toLocaleString(undefined, { maximumFractionDigits: 0 })} m³/day`));
+    const item2 = el("li");
+    item2.append(el("strong", null, "Livestock Capacity: "), document.createTextNode(`~${cattleSupported.toLocaleString()} cattle (50L/head/day)`));
+    const item3 = el("li");
+    item3.append(el("strong", null, "Irrigation Capacity: "), document.createTextNode(`~${irrigationHa} ha (60m³/ha/day drip)`));
+
+    list.append(item1, item2, item3);
+    outYield.appendChild(list);
+  };
+
+  const depthInput = document.getElementById("boreholeDepthInput");
+  const prodInput = document.getElementById("boreholeProdInput");
+  const hoursInput = document.getElementById("boreholeHoursInput");
+
+  if (depthInput && prodInput && hoursInput) {
+    depthInput.addEventListener("input", renderBoreholeYield);
+    prodInput.addEventListener("input", renderBoreholeYield);
+    hoursInput.addEventListener("input", renderBoreholeYield);
+    renderBoreholeYield();
+  }
 }
 
 export function renderTable(scenes) {
@@ -323,3 +364,4 @@ export function renderError(message) {
   const retryBtn = document.getElementById("retryBtn");
   if (retryBtn) retryBtn.hidden = false;
 }
+

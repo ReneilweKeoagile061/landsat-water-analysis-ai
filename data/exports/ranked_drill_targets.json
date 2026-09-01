@@ -1,0 +1,38 @@
+[
+  {
+    "target_rank": 1,
+    "longitude": 26.094444444444445,
+    "latitude": -24.4,
+    "ml_prospectivity_score": 0.9690696597099304,
+    "final_priority_score": 0.7893841035795207,
+    "structural_density": 0.755830149370827,
+    "dist_to_structure_m": 780.4059782078456,
+    "slope_deg": 0.7792318681604014,
+    "twi": 5.418997919477578,
+    "recommended_action": "ERT Geophysics Line 100m centered on (-24.40000, 26.09444)"
+  },
+  {
+    "target_rank": 2,
+    "longitude": 26.05,
+    "latitude": -24.405555555555555,
+    "ml_prospectivity_score": 0.8559861779212952,
+    "final_priority_score": 0.7249296384898235,
+    "structural_density": 0.7865483128175191,
+    "dist_to_structure_m": 1140.0955958972609,
+    "slope_deg": 7.833040664100181,
+    "twi": 7.274532534075556,
+    "recommended_action": "ERT Geophysics Line 100m centered on (-24.40556, 26.05000)"
+  },
+  {
+    "target_rank": 3,
+    "longitude": 26.072222222222223,
+    "latitude": -24.41111111111111,
+    "ml_prospectivity_score": 0.6378188133239746,
+    "final_priority_score": 0.7239365138817515,
+    "structural_density": 0.748847724546799,
+    "dist_to_structure_m": 54.407347582678085,
+    "slope_deg": 4.105158147280558,
+    "twi": 10.508868637657017,
+    "recommended_action": "ERT Geophysics Line 100m centered on (-24.41111, 26.07222)"
+  }
+]

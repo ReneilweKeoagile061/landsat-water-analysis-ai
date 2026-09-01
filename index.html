@@ -88,6 +88,8 @@
           <label><input id="toggleSlope" type="checkbox" /> Slope heat (topography)</label>
           <label><input id="toggleDtwt" type="checkbox" /> 💧 Groundwater depth heat</label>
           <label><input id="toggleBorehole" type="checkbox" /> 🎯 Borehole feasibility heat</label>
+          <label><input id="toggleBgiBoreholes" type="checkbox" checked /> 📍 Verified BGI Boreholes</label>
+          <label><input id="toggleDrillTargets" type="checkbox" checked /> ⭐ Ranked Drill Targets</label>
           <label><input id="toggleRegions" type="checkbox" checked /> AOI gradients</label>
           <label><input id="toggleClasses" type="checkbox" checked /> Class points</label>
         </div>
@@ -123,6 +125,7 @@
           <button class="tab" data-tab="scenes" type="button"><span class="tab-icon">🛰️</span> Scenes</button>
           <button class="tab" data-tab="model" type="button"><span class="tab-icon">🧠</span> Model</button>
           <button class="tab" data-tab="guide" type="button"><span class="tab-icon">💧</span> Guide</button>
+          <button class="tab" data-tab="agripulse" type="button"><span class="tab-icon">🤖</span> AgriPulse ML</button>
         </nav>
 
         <div class="tab-panels">
@@ -314,6 +317,41 @@
                 <li><strong>Earth Dams &amp; Ponds (High Clay &gt;30%):</strong> Dig lined reservoirs in natural depressions where soil prevents seepage.</li>
                 <li><strong>Contour Swales (Slopes 2–5°):</strong> Slow runoff to force infiltration and recharge root-zone water tables.</li>
                 <li><strong>Soil Sponge Mulching (Sandy Uplands):</strong> Organic mulch to arrest rapid drainage and minimize evaporation.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="tab-panel" id="tab-agripulse" role="tabpanel" hidden>
+            <h2>AgriPulse ML & Boreholes</h2>
+            <p class="panel-copy">
+              Supervised Machine Learning integration combining Google Earth Engine
+              features with Verified Historical BGI Boreholes.
+            </p>
+            <div class="info-card">
+              <p class="info-label">Model Validation Metrics</p>
+              <ul class="metric-list">
+                <li><strong>Spatial CV AUC:</strong> 70.6%</li>
+                <li><strong>Weighted F1:</strong> 73.3%</li>
+                <li><strong>Recall:</strong> 78.6%</li>
+                <li><strong>Method:</strong> GroupKFold Spatial Cross-Validation</li>
+                <li><strong>Algorithm:</strong> XGBoost 3.4.1</li>
+              </ul>
+            </div>
+            <div class="info-card">
+              <p class="info-label">BGI Training Database Status</p>
+              <ul class="metric-list">
+                <li><strong>Total Verified Records:</strong> 84</li>
+                <li><strong>Productive Boreholes:</strong> 56</li>
+                <li><strong>Dry/Unsuccessful:</strong> 28</li>
+              </ul>
+            </div>
+            <div class="info-card">
+              <p class="info-label">Top Predictive Features</p>
+              <ul class="metric-list">
+                <li><strong>1. Sentinel-1 SAR</strong> (Subsurface structures)</li>
+                <li><strong>2. TWI</strong> (Topographic Wetness Index)</li>
+                <li><strong>3. DEM Slope</strong> (Recharge potential)</li>
+                <li><strong>4. Structural Density</strong> (Fracture networks)</li>
               </ul>
             </div>
           </section>
