@@ -1,7 +1,5 @@
 import argparse
 import json
-import argparse
-import json
 import sys
 from pathlib import Path
 
@@ -59,9 +57,24 @@ def export_files(df: pd.DataFrame, out_dir: Path, metrics_override: dict | None 
         season = infer_season(row)
         subsurface = enrich_subsurface({**row.to_dict(), "season": season})
         subsurface = {key: value for key, value in subsurface.items() if value is not None}
-        for key in ("aquifer_type", "aquifer_productivity_ls", "clay_fraction_pct", "borehole_feasibility_score", "recommended_action"):
+        for key in (
+            "aquifer_type",
+            "aquifer_productivity_ls",
+            "clay_fraction_pct",
+            "borehole_feasibility_score",
+            "recommended_action",
+            "bgs_aquifer_productivity",
+            "fan_dtwt_m",
+            "glhymps_logk",
+            "gldas_gws_mm",
+            "data_trust_level",
+            "clay_shielding_hazard",
+            "ves_ab_min_m",
+        ):
             if key in row and pd.notna(row[key]):
                 subsurface[key] = row[key]
+        if "data_trust_level" not in subsurface:
+            subsurface["data_trust_level"] = subsurface.get("subsurface_data_quality", "screening")
         points_features.append(
             {
                 "type": "Feature",

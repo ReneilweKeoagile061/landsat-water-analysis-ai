@@ -47,7 +47,9 @@ python scripts/bgi_borehole_client.py
 - `borehole_id` — unique identifier (from BGI)
 - `location` — town/district name
 - `latitude`, `longitude` — WGS84 coordinates
-- `yield_m3h` — measured yield (m³/hr)
+- `yield_m3h` — measured yield (m³/hr); blank if unknown, `0` only if verified dry
+- `is_productive` — `1` productive, `0` verified dry, blank unknown (excluded from training)
+- `yield_status` — `measured`, `verified_zero`, or `unknown`
 - `water_strike_m` — depth to water (meters)
 - `static_water_level_m` — static water level
 - `total_depth_m` — total borehole depth
@@ -230,14 +232,15 @@ The final `agripulse_gee_features.csv` must have this exact structure:
 | `investigation_id` | string | ✓ | Join script | Farm/investigation ID for spatial CV |
 | `longitude` | float | ✓ | BGI | WGS84 |
 | `latitude` | float | ✓ | BGI | WGS84 |
-| `yield_m3h` | float or blank | ✓ | BGI | Leave **blank** (not 0) if unknown |
-| `is_productive` | 1, 0, or blank | ✓ | BGI | 1=productive, 0=dry, blank=unknown |
+| `yield_m3h` | float or blank | ✓ | BGI | Blank if unknown; `0` only for verified dry |
+| `is_productive` | 1, 0, or blank | ✓ | BGI | 1=productive, 0=verified dry, blank=unknown/excluded |
+| `yield_status` | string |  | BGI | `measured` / `verified_zero` / `unknown` |
 | `water_strike_m` | float or blank |  | BGI | Optional |
 | `s1_vv` to `intersection_index` | float | ✓ | GEE | 14 features; NO blanks or synthetic |
 
 ### ⚠️ Important Rules
-- **Yield:** Leave truly blank (empty cell), NOT zero
-- **is_productive:** Only use 1, 0, or blank — boreholes with blank labels are excluded from training
+- **Yield:** Leave unknown yields blank. Use `0` only when BGI recorded a verified zero yield. Never coerce missing yield to dry.
+- **is_productive:** `1` productive, `0` verified dry, blank unknown — blank rows are excluded from training
 - **14 features:** ALL must be present and real (GEE-derived) — pipeline raises error if missing
 - **investigation_id:** Use to group geographically close boreholes for proper spatial cross-validation
 

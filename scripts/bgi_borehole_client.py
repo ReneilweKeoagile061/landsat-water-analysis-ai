@@ -22,7 +22,7 @@ import re
 import time
 import urllib.parse
 import urllib.request
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple, Union
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("bgi_client")
@@ -35,6 +35,50 @@ VIEW_URL = f"{BASE_URL}/borehole/viewBorehole"
 def extract_regex(pattern: str, text: str, group: int = 1) -> Optional[str]:
     m = re.search(pattern, text, re.IGNORECASE)
     return m.group(group).strip() if m else None
+
+
+UNKNOWN_YIELD_TOKENS = {"", "n/a", "na", "none", "null", "-", "nan"}
+
+
+def parse_optional_yield(yield_val: Union[str, float, int, None]) -> Optional[float]:
+    """Return a numeric yield only when a value was actually recorded.
+
+    Missing / unparseable values must stay unknown. Do not coerce them to 0.0.
+    """
+    if yield_val is None:
+        return None
+    if isinstance(yield_val, str):
+        token = yield_val.strip()
+        if token.lower() in UNKNOWN_YIELD_TOKENS:
+            return None
+        try:
+            return float(token)
+        except ValueError:
+            return None
+    try:
+        parsed = float(yield_val)
+    except (TypeError, ValueError):
+        return None
+    if parsed != parsed:  # NaN
+        return None
+    return parsed
+
+
+def classify_productivity(yield_val: Union[str, float, int, None]) -> Tuple[Optional[float], Optional[int], str]:
+    """Map a raw yield into three ground-truth states.
+
+    yield > 0          → is_productive = 1, status measured
+    verified zero      → is_productive = 0, status verified_zero
+    missing / unknown  → is_productive = None, status unknown
+    """
+    parsed_yield = parse_optional_yield(yield_val)
+    if parsed_yield is None:
+        return None, None, "unknown"
+    if parsed_yield > 0.0:
+        return parsed_yield, 1, "measured"
+    if parsed_yield == 0.0:
+        return 0.0, 0, "verified_zero"
+    return None, None, "unknown"
 
 
 def parse_borehole_record(view_id: str, max_retries: int = 3) -> Optional[Dict]:
@@ -85,7 +129,7 @@ def parse_borehole_record(view_id: str, max_retries: int = 3) -> Optional[Dict]:
         if -27.5 <= lat <= -17.0 and 19.0 <= lon <= 30.0:
             valid_coords = True
 
-    parsed_yield = float(yield_val) if yield_val else 0.0
+    parsed_yield, is_productive, yield_status = classify_productivity(yield_val)
 
     return {
         "view_id": view_id,
@@ -99,7 +143,8 @@ def parse_borehole_record(view_id: str, max_retries: int = 3) -> Optional[Dict]:
         "static_water_level_m": float(swl) if swl else None,
         "total_depth_m": float(depth) if depth else None,
         "drill_date": drill_date if (drill_date and drill_date != "N/A") else None,
-        "is_productive": 1 if parsed_yield > 0.0 else 0,
+        "is_productive": is_productive,
+        "yield_status": yield_status,
     }
 
 
@@ -161,15 +206,23 @@ def export_boreholes_to_csv(boreholes: List[Dict], output_path: str):
         "static_water_level_m",
         "total_depth_m",
         "is_productive",
+        "yield_status",
         "drill_date",
         "view_id",
     ]
 
     with open(output_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
+        writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore", restval="")
         writer.writeheader()
         for bh in boreholes:
-            writer.writerow(bh)
+            row = {}
+            for key in fields:
+                value = bh.get(key)
+                if value is None:
+                    row[key] = ""
+                else:
+                    row[key] = value
+            writer.writerow(row)
 
     logger.info(f"Saved {len(boreholes)} borehole records to {output_path}")
 

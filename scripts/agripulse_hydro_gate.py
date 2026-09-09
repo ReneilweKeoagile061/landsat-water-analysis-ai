@@ -3,7 +3,7 @@ import json
 import logging
 import os
 import sys
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 import numpy as np
 import pandas as pd
@@ -21,54 +21,58 @@ def apply_hydrogeological_gate(
     min_structural_density: float = 0.25,
     max_slope_deg: float = 8.0,
     min_twi: float = 5.0,
-) -> pd.DataFrame:
+) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
-    Applies AgriPulse domain hard constraints:
-    1. Structural Proximity Gate: Must be within fracture influence zone.
-    2. Structural Density Gate: Must exhibit persistent lineament/fracture networks.
-    3. Runoff/Slope Gate: Exclude excessive shedding slopes.
-    4. Topographic Wetness Index Gate: Exclude hyper-arid uncollecting ridges.
-    """
-    df = df_farm_candidates.copy()
+    Applies AgriPulse domain hard constraints and returns (accepted, rejected).
 
-    # Rule 1: Structural Proximity Gate
+    Structural condition (OR is intentional): a candidate passes structure if it is
+    close to a mapped structure OR has sufficient structural density.
+    The overall hard gate is AND across structure, slope, and TWI.
+    """
+    df = df_farm_candidates.copy().reset_index(drop=True)
+
     struct_pass = (df["dist_to_structure_m"] <= max_dist_to_structure_m) | (
         df["structural_density"] >= min_structural_density
     )
-
-    # Rule 2: Slope / Drainage Gate
     slope_pass = df["slope_deg"] <= max_slope_deg
-
-    # Rule 3: Topographic Wetness Gate
     twi_pass = df["twi"] >= min_twi
 
-    # Hard gate decision
     df["hydro_gate_passed"] = struct_pass & slope_pass & twi_pass
     df["gate_reasons"] = ""
 
-    # Record rejection flags
-    rejections = []
-    for idx, row in df.iterrows():
+    for idx in df.index:
         reasons = []
-        if not struct_pass.iloc[idx]:
+        if not bool(struct_pass.loc[idx]):
             reasons.append("No Fracture/Structure in Proximity (>1.2km)")
-        if not slope_pass.iloc[idx]:
+        if not bool(slope_pass.loc[idx]):
             reasons.append("High Slope (>8° Runoff Shedding)")
-        if not twi_pass.iloc[idx]:
+        if not bool(twi_pass.loc[idx]):
             reasons.append("Low Topographic Wetness (<5.0 TWI)")
-        df.at[idx, "gate_reasons"] = "; ".join(reasons) if reasons else "Approved by Hydrogeological Gate"
+        df.at[idx, "gate_reasons"] = (
+            "; ".join(reasons) if reasons else "Approved by Hydrogeological Gate"
+        )
 
-    # Filter & rank passed candidates
-    passed_df = df[df["hydro_gate_passed"]].copy()
-    passed_df["final_priority_score"] = (
-        passed_df["ml_prospectivity_score"] * 0.50
-        + passed_df["structural_density"] * 0.30
-        + (1.0 / (1.0 + passed_df["dist_to_structure_m"] / 500.0)) * 0.20
+    accepted_df = df[df["hydro_gate_passed"]].copy()
+    rejected_df = df[~df["hydro_gate_passed"]].copy().reset_index(drop=True)
+
+    if accepted_df.empty:
+        logger.info("Hydro gate: 0 accepted, %s rejected", len(rejected_df))
+        return accepted_df.reset_index(drop=True), rejected_df
+
+    accepted_df["final_priority_score"] = (
+        accepted_df["ml_prospectivity_score"] * 0.50
+        + accepted_df["structural_density"] * 0.30
+        + (1.0 / (1.0 + accepted_df["dist_to_structure_m"] / 500.0)) * 0.20
     )
-    passed_df = passed_df.sort_values(by="final_priority_score", ascending=False).reset_index(drop=True)
-    passed_df["target_rank"] = np.arange(1, len(passed_df) + 1)
+    accepted_df = accepted_df.sort_values(
+        by="final_priority_score", ascending=False
+    ).reset_index(drop=True)
+    accepted_df["target_rank"] = np.arange(1, len(accepted_df) + 1)
 
-    return passed_df
+    logger.info(
+        "Hydro gate: %s accepted, %s rejected", len(accepted_df), len(rejected_df)
+    )
+    return accepted_df, rejected_df
 
 
 def rank_and_export_drill_targets(
@@ -76,11 +80,11 @@ def rank_and_export_drill_targets(
 ) -> List[Dict]:
     """Scores candidate pixels with ML model, gates with domain rules, and outputs top drill sites."""
     import pickle
-    from scripts.agripulse_ml_pipeline import FEATURE_COLUMNS, generate_synthetic_features_if_missing
+    from scripts.agripulse_ml_pipeline import FEATURE_COLUMNS, require_ml_features_present
 
     df = pd.read_csv(farm_csv)
-    
-    # Load model
+    require_ml_features_present(df, FEATURE_COLUMNS, context="Prediction")
+
     if model_path.endswith(".pkl"):
         with open(model_path, "rb") as f:
             clf = pickle.load(f)
@@ -89,12 +93,16 @@ def rank_and_export_drill_targets(
         clf = xgb.XGBClassifier()
         clf.load_model(model_path)
 
-    df = generate_synthetic_features_if_missing(df)
     probs = clf.predict_proba(df[FEATURE_COLUMNS].values)[:, 1]
     df["ml_prospectivity_score"] = probs
 
-    ranked_df = apply_hydrogeological_gate(df)
-    top_targets = ranked_df.head(top_k)
+    accepted_df, rejected_df = apply_hydrogeological_gate(df)
+    logger.info(
+        "Rejected %s candidates (see gate_reasons). Ranking %s accepted sites.",
+        len(rejected_df),
+        len(accepted_df),
+    )
+    top_targets = accepted_df.head(top_k)
 
     results = []
     for _, row in top_targets.iterrows():

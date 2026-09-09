@@ -1,1 +1,1 @@
-"""Empty package marker so tests can `import scripts.labeling`."""
+"""Package marker so tests can import scripts.* modules."""

@@ -1,4 +1,29 @@
-# Landsat Water Analysis AI
+# AgriPulse Groundwater Prospectivity + Landsat Dashboard
+
+This repository currently contains **two related systems**. They must not be evaluated as one.
+
+| System | What it is | Status |
+|--------|------------|--------|
+| **AgriPulse Milestone 1** | Supervised groundwater prospectivity: BGI borehole labels → GEE features → spatial-CV XGBoost → hydrogeological gate → ranked drill targets | **Active commercial path.** Code is in `scripts/agripulse_*.py` and `scripts/bgi_borehole_client.py`. |
+| **Landsat water-potential dashboard** | Coursework / demo UI trained against **K-Means-generated** labels (the 99.6% accuracy figure) | **Legacy frontend.** Still the Vite dashboard. Those scores are not borehole-calibrated groundwater skill. |
+
+`run_84_borehole_pipeline.py` is **not** part of this branch. Do not treat it as delivered.
+
+The 84-sample / 0.706 AUC figures in `data/models/agripulse_ml_metrics.json` are **not independently reproducible from this repository** until the exact training CSV (or a signed dataset manifest) is committed. See `MILESTONE_1_VERIFICATION/reproducibility.md`.
+
+**Milestone 1 acceptance pipeline (intended, not yet fully re-run after label fixes):**
+
+```
+BGI (three-state labels) → GEE feature export → spatial join → training CSV
+  → quality checks → spatial CV → XGBoost → metrics → model reload
+  → new-farm pixel scores → hydro gate → ranked targets
+```
+
+ERT / resistivity / drilling feedback is **Phase 2**. It is not claimed here.
+
+---
+
+# Landsat Water Analysis AI (legacy dashboard)
 
 **AI-driven satellite imagery analysis for discovering, filtering, and visualizing high-quality Landsat scenes and surface water potential across Botswana.**
 
@@ -100,7 +125,7 @@ Headline XGBoost scores (against **K-Means labels**, 2,500 test samples):
 
 Per-class F1: Low 0.9957 · Medium 0.9968 · High 0.9286.
 
-Those figures measure how faithfully the classifier copies internally generated labels. Independent NDWI/AOI rules agree with K-Means only **26.7%** of the time (chance baseline **33.3%**). The Model tab on the dashboard surfaces this directly.
+Those figures measure how faithfully the classifier copies internally generated K-Means labels. They are **not** AgriPulse borehole-calibrated results. Independent NDWI/AOI rules agree with K-Means only **26.7%** of the time (chance baseline **33.3%**). The Model tab on the dashboard surfaces this directly.
 
 K-Means is fitted with an optional `holdout_region` so spatial CV no longer labels the held-out longitude block during `.fit()`.
 
@@ -200,7 +225,12 @@ landsat-water-analysis-ai/
 │       ├── scenes.json                                   # Filtered Landsat scenes
 │       └── metrics.json                                  # Model KPIs
 ├── scripts/
-│   ├── export_frontend_data.py                           # Notebook CSV → frontend exports
+│   ├── agripulse_ml_pipeline.py                         # Supervised XGBoost + spatial CV
+│   ├── agripulse_hydro_gate.py                          # Hard hydro gate → accepted/rejected
+│   ├── agripulse_gee_join.py                            # BGI ↔ GEE spatial join
+│   ├── agripulse_gee_feature_stack.js                   # GEE feature export
+│   ├── bgi_borehole_client.py                           # BGI scrape + three-state labels
+│   ├── export_frontend_data.py                          # Notebook CSV → frontend exports
 │   ├── fetch_soilgrids.py                                # Real ISRIC clay enrichment
 │   ├── fetch_stac_catalog.py                             # Planetary Computer STAC query
 │   ├── generate_catalog_data.py                          # Deterministic demo catalog

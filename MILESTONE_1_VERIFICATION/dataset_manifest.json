@@ -1,0 +1,77 @@
+{
+  "generated_at_utc": "2026-09-01T09:09:34Z",
+  "milestone": "1",
+  "training_dataset": {
+    "present": false,
+    "expected_paths": [
+      "data/boreholes/agripulse_gee_features.csv",
+      "data/boreholes/agripulse_training_84.csv"
+    ],
+    "row_count_claimed_in_metrics": 84,
+    "note": "Exact 84-row feature CSV is not in this repository; AUC 0.706 is unverified here."
+  },
+  "schema": {
+    "path": "MILESTONE_1_VERIFICATION/dataset_schema.json",
+    "present": true,
+    "bytes": 1277,
+    "sha256": "66a84b19122ae421e3a976176b349952fab4d1c032c102a0b8f225539f05b7f1"
+  },
+  "sample_schema_fixture": {
+    "path": "data/boreholes/agripulse_gee_features_sample.csv",
+    "present": true,
+    "bytes": 1490,
+    "sha256": "ac28742394770f99bf150e5cd6857badbef54a375589d1bbae1da28dc76f19e5"
+  },
+  "legacy_bgi_csv_warning": {
+    "path": "data/boreholes/bgi_verified_boreholes.csv",
+    "present": true,
+    "bytes": 6305,
+    "sha256": "2ad8343a33a9da9b6e6a1fb5c68657667962b7534cc5899cfe959dca549e5bf5"
+  },
+  "metrics_artifact": {
+    "path": "data/models/agripulse_ml_metrics.json",
+    "present": true,
+    "bytes": 891,
+    "sha256": "5ec7e8dd8734b12d0e346ba7356ced2a55c39ff783af7dc10d371256f9b29e47"
+  },
+  "model_json": {
+    "path": "data/models/agripulse_xgb_classifier.json",
+    "present": true,
+    "bytes": 103180,
+    "sha256": "7ec394d84d8b3fb5a0bd8a1d9f1d6a90268c40c2f86bf97335f768d9c8bc8ba4"
+  },
+  "generation_scripts": [
+    "scripts/bgi_borehole_client.py",
+    "scripts/agripulse_gee_join.py",
+    "gee/agripulse_gee_feature_stack.js",
+    "scripts/agripulse_ml_pipeline.py",
+    "scripts/agripulse_hydro_gate.py"
+  ],
+  "claimed_metrics_unverified": {
+    "accuracy": 0.6190476190476191,
+    "precision": 0.6875,
+    "recall": 0.7857142857142857,
+    "f1": 0.7333333333333333,
+    "mean_spatial_cv_auc": 0.705994005994006,
+    "n_samples": 84,
+    "class_balance_productive": 56,
+    "class_balance_unsuccessful": 28,
+    "model_engine": "XGBoost",
+    "feature_importances": {
+      "s1_vv": 0.05868605151772499,
+      "s1_vh": 0.09884502738714218,
+      "s1_vv_vh_ratio": 0.06138370931148529,
+      "radar_contrast": 0.08103574067354202,
+      "ndvi": 0.06534615159034729,
+      "ndmi": 0.08823270350694656,
+      "ndwi": 0.05228451266884804,
+      "dem_elevation": 0.06748390942811966,
+      "slope_deg": 0.07791679352521896,
+      "twi": 0.11041045188903809,
+      "flow_accumulation": 0.06607265025377274,
+      "dist_to_structure_m": 0.06011149659752846,
+      "structural_density": 0.05548735707998276,
+      "intersection_index": 0.05670352652668953
+    }
+  }
+}

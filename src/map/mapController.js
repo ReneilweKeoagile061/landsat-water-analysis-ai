@@ -21,10 +21,17 @@ import {
 import { appendTooltipContent, clearElement, el } from "../utils/dom.js";
 
 const BASE_LAYERS = {
-  light: L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-    maxZoom: 20,
-    maxNativeZoom: 19,
-    attribution: "&copy; OpenStreetMap &copy; CARTO",
+  light: L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+    {
+      maxZoom: 19,
+      maxNativeZoom: 16,
+      attribution: "&copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors",
+    }
+  ),
+  osm: L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: "&copy; OpenStreetMap contributors",
   }),
   satellite: L.tileLayer("https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}", {
     maxZoom: 20,
@@ -150,6 +157,10 @@ function buildPointPopupHtml(feature, reportId) {
   const mapsUrl = `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat.toFixed(5)},${lon.toFixed(5)}`;
   const searchUrl = `https://www.google.com/maps/search/?api=1&query=${lat.toFixed(5)},${lon.toFixed(5)}`;
 
+  const isClayHazard = (props.clay_fraction_pct != null && Number(props.clay_fraction_pct) > 35) || props.clay_shielding_hazard;
+  const targetDepth = Number(props.depth_to_water_table_m || 45);
+  const vesAbMin = Math.max(3 * targetDepth, Math.round(targetDepth / 0.19));
+
   return `
     <div class="point-popup">
       <div class="popup-title">
@@ -159,29 +170,36 @@ function buildPointPopupHtml(feature, reportId) {
       <div class="popup-action-highlight">
         🔎 <strong>${props.recommended_action || "Priority Investigation Site"}</strong>
       </div>
+      ${
+        isClayHazard
+          ? `<div class="clay-hazard-badge" style="background:#fef2f2; color:#b91c1c; border:1px solid #f87171; border-radius:4px; padding:4px 6px; font-size:0.75rem; margin-bottom:6px;">
+              ⚠️ <strong>Conductive Clay Shielding Hazard (&lt;10 Ω·m)</strong><br>Heavy clay seals recharge. Lined earth dams/ponds recommended over deep drilling.
+            </div>`
+          : ""
+      }
       <div class="popup-grid">
         <div><span>Depth to Water:</span> <strong>~${Number(props.depth_to_water_table_m || 45).toFixed(0)} m</strong></div>
         <div><span>Aquifer Yield:</span> <strong>${Number(props.aquifer_productivity_ls || 2.5).toFixed(1)} L/s</strong></div>
         <div><span>Borehole Score:</span> <strong>${(Number(props.borehole_feasibility_score || 0.65) * 100).toFixed(0)}%</strong></div>
         <div><span>Root-Zone Clay:</span> <strong>${Number(props.clay_fraction_pct || 20)}%</strong></div>
         <div><span>DTWT Class:</span> <strong>${props.dtwt_class || "N/A"}</strong></div>
-        <div><span>Phreatophyte Index:</span> <strong>${props.phreatophyte_index != null ? `${(Number(props.phreatophyte_index) * 100).toFixed(0)}%` : "N/A"}</strong></div>
+        <div><span>Phreatophyte:</span> <strong>${props.phreatophyte_index != null ? `${(Number(props.phreatophyte_index) * 100).toFixed(0)}%` : "N/A"}</strong></div>
         <div><span>Infiltration:</span> <strong>${props.infiltration_score != null ? `${Number(props.infiltration_score).toFixed(0)}%` : "N/A"}</strong></div>
-        <div><span>Evidence Confidence:</span> <strong>${props.evidence_confidence != null ? `${(Number(props.evidence_confidence) * 100).toFixed(0)}%` : "N/A"}</strong></div>
-        <div><span>Slope / Elev:</span> <strong>${Number(props.slope || 1).toFixed(1)}° / ${Number(props.elevation || 1000).toFixed(0)}m</strong></div>
+        <div><span>Evidence Trust:</span> <strong>${props.evidence_confidence != null ? `${(Number(props.evidence_confidence) * 100).toFixed(0)}%` : "N/A"}</strong></div>
+        <div><span>VES Cable AB:</span> <strong>≥ ${vesAbMin} m</strong></div>
       </div>
       <div class="popup-aquifer">
         <span>Aquifer:</span> <em>${props.aquifer_type || "Karoo / Alluvial Sedimentary"}</em>
       </div>
       <div class="popup-aquifer">
-        <span>Evidence:</span> <em>${props.subsurface_data_source || "Unverified"} (${props.subsurface_data_quality || "unknown quality"})</em>
+        <span>Evidence:</span> <em>${props.subsurface_data_source || "Unverified"} (${props.subsurface_data_quality || "screening"})</em>
       </div>
       <div class="popup-aquifer">
-        <span>Next step:</span> <em>${props.validation_next_step || "Collect field measurements before drilling"}</em>
+        <span>Next step:</span> <em>${props.validation_next_step || `Schlumberger VES survey (AB ≥ ${vesAbMin} m)`}</em>
       </div>
       <div class="popup-coords">${lat.toFixed(4)}°, ${lon.toFixed(4)}°</div>
       <div class="popup-actions">
-        <button type="button" class="popup-link report" data-report-id="${reportId}">📄 Download Site Report</button>
+        <button type="button" class="popup-link report" data-report-id="${reportId}">📄 Download Site Dossier</button>
         <a href="${earthUrl}" target="_blank" rel="noopener noreferrer" class="popup-link earth">🌍 3D Google Earth Flyover</a>
         <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="popup-link street">🛰️ Google Street View</a>
         <a href="${searchUrl}" target="_blank" rel="noopener noreferrer" class="popup-link maps">🗺️ Google Maps Location</a>
@@ -416,11 +434,15 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
       const rankIcons = { 1: "⭐", 2: "⭐", 3: "⭐" };
 
       targets.forEach(t => {
-        const color = rankColors[t.rank] || "#3b82f6";
+        const rank = t.target_rank ?? t.rank ?? 1;
+        const color = rankColors[rank] || "#3b82f6";
+        const mlScore = t.ml_prospectivity_score ?? t.ml_score ?? 0;
+        const prioScore = t.final_priority_score ?? t.priority_score ?? 0;
+        const action = t.recommended_action ?? t.ert_recommendation ?? "ERT Geophysics survey line recommended";
         
         // Marker
         const htmlIcon = L.divIcon({
-          html: `<div style="font-size: 16px; background: white; border: 2px solid ${color}; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">${rankIcons[t.rank] || "🎯"}</div>`,
+          html: `<div style="font-size: 16px; background: white; border: 2px solid ${color}; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">${rankIcons[rank] || "🎯"}</div>`,
           className: "",
           iconSize: [24, 24],
           iconAnchor: [12, 12]
@@ -429,10 +451,10 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
         const marker = L.marker([t.latitude, t.longitude], { icon: htmlIcon });
         marker.bindPopup(`
           <div class="point-popup">
-            <div class="popup-title"><strong>Rank ${t.rank} Target</strong></div>
-            <div><span>ML Score:</span> <strong>${(t.ml_score * 100).toFixed(1)}%</strong></div>
-            <div><span>Priority Score:</span> <strong>${(t.priority_score * 100).toFixed(1)}%</strong></div>
-            <div><span>Recommendation:</span> <strong>${t.ert_recommendation}</strong></div>
+            <div class="popup-title"><strong>Rank ${rank} Target</strong></div>
+            <div><span>ML Score:</span> <strong>${(mlScore * 100).toFixed(1)}%</strong></div>
+            <div><span>Priority Score:</span> <strong>${(prioScore * 100).toFixed(1)}%</strong></div>
+            <div><span>Recommendation:</span> <strong>${action}</strong></div>
           </div>
         `, { className: "leaflet-custom-popup", maxWidth: 280 });
 
@@ -545,72 +567,77 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     });
 
     ndwiLayer = L.heatLayer(buildHeatPayload(points, "ndwi"), {
-      radius: 42,
-      blur: 28,
-      minOpacity: 0.28,
-      maxZoom: 12,
+      radius: 46,
+      blur: 30,
+      minOpacity: 0.32,
+      maxZoom: 14,
       gradient: {
-        0.1: "#b8ecff",
-        0.35: "#6ecfff",
-        0.6: "#3a9ef5",
-        0.82: "#2a6df0",
-        1.0: "#f5c84c",
+        0.05: "#0a192f",
+        0.2: "#0284c7",
+        0.4: "#06b6d4",
+        0.6: "#10b981",
+        0.8: "#84cc16",
+        1.0: "#facc15",
       },
     });
 
     mndwiLayer = L.heatLayer(buildHeatPayload(points, "mndwi"), {
-      radius: 40,
-      blur: 26,
-      minOpacity: 0.22,
-      maxZoom: 12,
+      radius: 44,
+      blur: 28,
+      minOpacity: 0.28,
+      maxZoom: 14,
       gradient: {
-        0.1: "#b8f5e8",
-        0.4: "#5eddb8",
-        0.65: "#1fa89a",
-        0.85: "#2a7fd4",
-        1.0: "#f0e878",
+        0.1: "#082f49",
+        0.3: "#0369a1",
+        0.55: "#0284c7",
+        0.8: "#38bdf8",
+        1.0: "#e0f2fe",
       },
     });
 
     const slopePoints = points.filter((feature) => Number.isFinite(Number(feature.properties.slope)));
     slopeLayer = L.heatLayer(buildHeatPayload(slopePoints.length ? slopePoints : points, "slope"), {
-      radius: 38,
-      blur: 24,
-      minOpacity: 0.2,
-      maxZoom: 12,
+      radius: 42,
+      blur: 26,
+      minOpacity: 0.25,
+      maxZoom: 14,
       gradient: {
-        0.1: "#efe4c6",
-        0.4: "#d4a056",
-        0.7: "#b15a2a",
-        1.0: "#6b2d12",
+        0.05: "#1e1b4b",
+        0.25: "#312e81",
+        0.45: "#0284c7",
+        0.65: "#f59e0b",
+        0.85: "#ea580c",
+        1.0: "#dc2626",
       },
     });
 
     const dtwtPoints = points.filter((f) => Number.isFinite(Number(f.properties.depth_to_water_table_m)));
     dtwtLayer = L.heatLayer(buildHeatPayload(dtwtPoints.length ? dtwtPoints : points, "depth_to_water_table_m"), {
-      radius: 44,
-      blur: 28,
-      minOpacity: 0.24,
-      maxZoom: 12,
+      radius: 48,
+      blur: 32,
+      minOpacity: 0.3,
+      maxZoom: 14,
       gradient: {
-        0.1: "#c2e9fb",
-        0.4: "#70c8f5",
-        0.7: "#3b82f6",
-        1.0: "#1e3a8a",
+        0.05: "#030712",
+        0.25: "#1e3a8a",
+        0.5: "#2563eb",
+        0.75: "#38bdf8",
+        1.0: "#a5f3fc",
       },
     });
 
     const bPoints = points.filter((f) => Number.isFinite(Number(f.properties.borehole_feasibility_score)));
     boreholeLayer = L.heatLayer(buildHeatPayload(bPoints.length ? bPoints : points, "borehole_feasibility_score"), {
-      radius: 42,
-      blur: 26,
-      minOpacity: 0.28,
-      maxZoom: 12,
+      radius: 46,
+      blur: 28,
+      minOpacity: 0.3,
+      maxZoom: 14,
       gradient: {
-        0.1: "#dcfce7",
-        0.4: "#4ade80",
-        0.7: "#16a34a",
-        1.0: "#eab308",
+        0.05: "#022c22",
+        0.3: "#047857",
+        0.55: "#10b981",
+        0.8: "#4ade80",
+        1.0: "#fde047",
       },
     });
 

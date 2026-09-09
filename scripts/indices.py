@@ -52,3 +52,12 @@ def awei_nsh(green, swir1, nir, swir2):
 
 def clip_index(values, lo=-1.0, hi=1.0):
     return np.clip(np.asarray(values, dtype=np.float64), lo, hi)
+
+
+def rule_based_labels(ndwi_values, low_max: float = 0.0, high_min: float = 0.3) -> np.ndarray:
+    """Independent NDWI thresholds (physical screening, not cluster labels)."""
+    values = np.asarray(ndwi_values, dtype=np.float64)
+    labels = np.ones(values.shape, dtype=int)
+    labels[values < low_max] = 0
+    labels[values > high_min] = 2
+    return labels

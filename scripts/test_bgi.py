@@ -5,6 +5,8 @@ import csv
 import json
 import time
 
+from bgi_borehole_client import classify_productivity
+
 def parse_borehole_detail(view_id):
     url = f"https://bh.bgi.org.bw/borehole/viewBorehole/{view_id}"
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
@@ -37,18 +39,21 @@ def parse_borehole_detail(view_id):
             except ValueError:
                 pass
 
+    parsed_yield, is_productive, yield_status = classify_productivity(yield_val)
+
     return {
         "view_id": view_id,
         "borehole_id": bh_id,
         "location": loc,
         "latitude": lat,
         "longitude": lon,
-        "yield_m3h": float(yield_val) if yield_val else 0.0,
+        "yield_m3h": parsed_yield,
         "water_strike_m": float(strike) if strike else None,
         "static_water_level_m": float(swl) if swl else None,
         "total_depth_m": float(depth) if depth else None,
         "drill_date": drill_date,
-        "is_productive": 1 if (yield_val and float(yield_val) > 0) else 0
+        "is_productive": is_productive,
+        "yield_status": yield_status,
     }
 
 def search_boreholes(location_name="Khudumelapye", max_results=500):

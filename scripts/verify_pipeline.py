@@ -77,10 +77,16 @@ def main():
         unique_inv = df["investigation_id"].unique()
         print(f"✅ Investigation IDs: {list(unique_inv)}")
         
-        # Check for 0.0 yield (should be blank)
+        # Verified dry holes may have yield=0.0. Missing yield must not be stored as 0.
+        missing_yield_marked_dry = df["yield_m3h"].isna() & (df["is_productive"] == 0)
+        if missing_yield_marked_dry.any():
+            print(
+                f"❌ FATAL: {int(missing_yield_marked_dry.sum())} rows have missing yield labeled dry"
+            )
+            return False
         zero_yield = (df["yield_m3h"] == 0.0).sum()
         if zero_yield > 0:
-            print(f"⚠️  WARNING: {zero_yield} rows have yield=0.0 (should be blank)")
+            print(f"ℹ️  {zero_yield} rows have yield=0.0 (allowed only as verified dry)")
         
         # Check that investigation_id is not identical to location
         has_location = "location" in df.columns

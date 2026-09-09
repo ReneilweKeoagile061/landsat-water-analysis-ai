@@ -21,7 +21,7 @@ import argparse
 import json
 import logging
 import os
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
@@ -50,19 +50,27 @@ except ImportError:
     logger.info("Using scikit-learn Gradient Boosting engine (XGBoost compatible).")
 
 
-def validate_required_features(df: pd.DataFrame, feature_cols: List[str]) -> None:
-    """
-    Strictly validate that all 14 required GEE features are present in the CSV.
-    If any feature is missing, raise an error—no synthetic fallback.
-    """
-    missing = [col for col in feature_cols if col not in df.columns]
-    if missing:
+def require_ml_features_present(
+    df: pd.DataFrame,
+    feature_cols: Optional[List[str]] = None,
+    context: str = "Training",
+) -> None:
+    """Fail loudly when required ML features are absent. Never invent values."""
+    cols = feature_cols or FEATURE_COLUMNS
+    missing = [col for col in cols if col not in df.columns]
+    incomplete = [col for col in cols if col in df.columns and df[col].isna().any()]
+    problems = list(dict.fromkeys(missing + incomplete))
+    if problems:
+        listed = "\n".join(problems)
         raise ValueError(
-            f"Missing {len(missing)} required GEE feature columns: {missing}\n"
-            f"Expected CSV from agripulse_gee_feature_stack.js export + BGI join.\n"
-            f"Check that GEE sampleRegions has been run and joined to BGI borehole coordinates."
+            f"Missing required ML features:\n{listed}\n{context} aborted."
         )
-    logger.info(f"✓ All {len(feature_cols)} required GEE features present.")
+    logger.info(f"✓ All {len(cols)} required GEE features present.")
+
+
+def validate_required_features(df: pd.DataFrame, feature_cols: List[str]) -> None:
+    """Strict column + completeness check. No synthetic fallback."""
+    require_ml_features_present(df, feature_cols, context="Training")
 
 
 def validate_required_columns(df: pd.DataFrame) -> None:
@@ -188,12 +196,17 @@ def run_pipeline(csv_path: str, output_model_dir: str):
     df = df.dropna(subset=["longitude", "latitude"]).reset_index(drop=True)
     logger.info(f"After coordinate QC: {len(df)} boreholes remain")
 
-    # Drop rows with missing is_productive (can't be used in training)
+    # Unknown outcomes (blank / NaN is_productive) are excluded from classifier training.
+    df["is_productive"] = pd.to_numeric(df["is_productive"], errors="coerce")
     n_before = len(df)
     df = df.dropna(subset=["is_productive"]).reset_index(drop=True)
     n_dropped = n_before - len(df)
     if n_dropped > 0:
         logger.info(f"Dropped {n_dropped} boreholes with unknown productivity (blank is_productive)")
+    if len(df) == 0:
+        logger.error("FATAL: No trainable rows (all is_productive values are missing/blank)")
+        return
+    df["is_productive"] = df["is_productive"].astype(int)
 
     # Spatial grouping: prefer investigation_id (farm-specific), fallback to location, then default
     if "investigation_id" in df.columns and df["investigation_id"].notna().any():

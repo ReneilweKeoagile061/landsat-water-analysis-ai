@@ -18,6 +18,8 @@ const metricsSchema = z.object({
   water_area_dry_km2: z.number(),
   model: z.object({
     accuracy: z.number(),
+    accuracy_name: z.string().optional(),
+    metric_interpretation: z.string().optional(),
     weighted_f1: z.number(),
     macro_f1: z.number(),
     test_samples: z.number(),
@@ -33,11 +35,12 @@ const metricsSchema = z.object({
         chance_baseline: z.number(),
       })
       .optional(),
-    per_class: z
+    nasa_arset: z
       .object({
-        low: z.object({ f1: z.number() }),
-        medium: z.object({ f1: z.number() }),
-        high: z.object({ f1: z.number() }),
+        citation: z.string().optional(),
+        basin_scale_improvement: z.number().optional(),
+        well_scale_improvement: z.number().optional(),
+        satellite_screening_confidence: z.number().optional(),
       })
       .optional(),
   }),
@@ -88,6 +91,18 @@ const waterPointPropsSchema = z.object({
   soilgrids_query_date: z.string().optional(),
   borehole_feasibility_score: z.number().optional(),
   recommended_action: z.string().optional(),
+  data_trust_level: z.string().optional(),
+  clay_shielding_hazard: z.boolean().optional(),
+  apparent_resistivity_note: z.string().optional(),
+  ves_ab_min_m: z.number().optional(),
+  ves_mn_max_m: z.number().optional(),
+  ves_investigation_depth_m: z.number().optional(),
+  bgs_aquifer_productivity: z.union([z.string(), z.number()]).optional(),
+  fan_dtwt_m: z.number().optional(),
+  glhymps_logk: z.number().optional(),
+  gldas_gws_mm: z.number().optional(),
+  aquifer_class: z.string().optional(),
+  delta_gw_mm: z.number().optional(),
 });
 
 const aoiPropsSchema = z.object({

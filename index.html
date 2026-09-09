@@ -77,21 +77,21 @@
         <div class="map-float map-layers">
           <p class="float-title">Base Map</p>
           <div class="basemap-options">
-            <label><input type="radio" name="baseMapRadio" value="light" checked /> Carto Light</label>
+            <label><input type="radio" name="baseMapRadio" value="light" checked /> 🗺️ Light Canvas</label>
             <label><input type="radio" name="baseMapRadio" value="satellite" /> 🛰️ Satellite Hybrid</label>
             <label><input type="radio" name="baseMapRadio" value="esri" /> 🌍 Esri Imagery</label>
             <label><input type="radio" name="baseMapRadio" value="topo" /> ⛰️ Topo / Terrain</label>
           </div>
           <p class="float-title" style="margin-top: 6px;">Overlay Layers</p>
-          <label><input id="toggleNdwi" type="checkbox" checked /> NDWI heat (surface moisture)</label>
-          <label><input id="toggleMndwi" type="checkbox" /> MNDWI heat</label>
-          <label><input id="toggleSlope" type="checkbox" /> Slope heat (topography)</label>
-          <label><input id="toggleDtwt" type="checkbox" /> 💧 Groundwater depth heat</label>
-          <label><input id="toggleBorehole" type="checkbox" /> 🎯 Borehole feasibility heat</label>
           <label><input id="toggleBgiBoreholes" type="checkbox" checked /> 📍 Verified BGI Boreholes</label>
           <label><input id="toggleDrillTargets" type="checkbox" checked /> ⭐ Ranked Drill Targets</label>
-          <label><input id="toggleRegions" type="checkbox" checked /> AOI gradients</label>
-          <label><input id="toggleClasses" type="checkbox" checked /> Class points</label>
+          <label><input id="toggleNdwi" type="checkbox" /> 🛰️ Surface Moisture (NDWI)</label>
+          <label><input id="toggleMndwi" type="checkbox" /> 💧 Open Water (MNDWI)</label>
+          <label><input id="toggleDtwt" type="checkbox" /> 🌊 Groundwater Depth Heat</label>
+          <label><input id="toggleBorehole" type="checkbox" /> 🎯 Borehole Feasibility Heat</label>
+          <label><input id="toggleSlope" type="checkbox" /> ⛰️ Slope / Fault Heat</label>
+          <label><input id="toggleRegions" type="checkbox" /> 🗺️ Regional AOI Bounds</label>
+          <label><input id="toggleClasses" type="checkbox" /> 🔍 All Satellite Sample Points</label>
         </div>
 
         <div class="map-float map-draw-control">
@@ -249,6 +249,17 @@
               <ul id="perClassMetrics" class="metric-list"></ul>
             </div>
 
+            <div id="nasaArsetCard" class="info-card finding-card">
+              <p class="info-label">🛰️ NASA ARSET Empirical Benchmark (Lee et al.)</p>
+              <p class="finding-stat">36% Basin Skill ➔ 10% Well-Point Skill</p>
+              <p class="muted">
+                Satellite data assimilation improves groundwater storage tracking by <strong>36%</strong> at a regional basin scale, but empirical correlation drops to <strong>10%</strong> at individual borehole points.
+              </p>
+              <p style="margin-top: 6px; font-size: 0.85rem;">
+                <strong>Hydrogeological Rule:</strong> Satellite spectral indices serve strictly as preliminary <em>screening evidence</em> (confidence capped at 0.45). Ground geophysics (Schlumberger VES / ERT) and test drilling are mandatory prior to siting production boreholes.
+              </p>
+            </div>
+
             <div class="class-legend" aria-label="Classification legend">
               <span class="class-chip low">Low</span>
               <span class="class-chip medium">Medium</span>
@@ -262,7 +273,7 @@
               <button id="printGuideBtn" class="ghost-btn print-action-btn" type="button">📄 Print Dossier</button>
             </div>
             <p class="panel-copy">
-              Evaluate surface runoff harvesting ($1\text{ mm} \times 1\text{ m}^2 = 1\text{ L}$) and estimate continuous groundwater borehole yield for livestock and irrigation planning.
+              Evaluate surface runoff harvesting (1 mm × 1 m² = 1 L) and estimate continuous groundwater borehole yield for livestock and irrigation planning.
             </p>
             <div id="drawSyncNotice" class="info-card sync-notice" hidden></div>
 
@@ -357,6 +368,20 @@
           </section>
         </div>
       </aside>
+    </div>
+
+    <!-- Professional Print / PDF Dossier Modal -->
+    <div id="dossierModal" class="dossier-modal-overlay" hidden>
+      <div class="dossier-modal-card">
+        <div class="dossier-modal-header no-print">
+          <h3>📄 Landsat &amp; AgriPulse Groundwater Dossier</h3>
+          <div class="dossier-header-actions">
+            <button id="printDossierModalBtn" class="primary-btn" type="button">🖨️ Print / Save as PDF</button>
+            <button id="closeDossierModalBtn" class="ghost-btn" type="button">✕ Close</button>
+          </div>
+        </div>
+        <div id="dossierPrintArea" class="dossier-print-container"></div>
+      </div>
     </div>
 
     <script type="module" src="/src/main.js"></script>

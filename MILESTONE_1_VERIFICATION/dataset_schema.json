@@ -1,0 +1,45 @@
+{
+  "dataset_name": "agripulse_gee_features",
+  "label_contract": {
+    "is_productive": {
+      "1": "productive (yield_m3h > 0)",
+      "0": "verified dry (yield_m3h recorded as 0)",
+      "null": "unknown / missing yield — excluded from classifier training"
+    },
+    "yield_status": ["measured", "verified_zero", "unknown"]
+  },
+  "required_id_columns": [
+    "borehole_id",
+    "investigation_id",
+    "latitude",
+    "longitude",
+    "yield_m3h",
+    "is_productive"
+  ],
+  "required_feature_columns": [
+    "s1_vv",
+    "s1_vh",
+    "s1_vv_vh_ratio",
+    "radar_contrast",
+    "ndvi",
+    "ndmi",
+    "ndwi",
+    "dem_elevation",
+    "slope_deg",
+    "twi",
+    "flow_accumulation",
+    "dist_to_structure_m",
+    "structural_density",
+    "intersection_index"
+  ],
+  "sources": {
+    "labels": "BGI borehole portal https://bh.bgi.org.bw via scripts/bgi_borehole_client.py",
+    "features": "Google Earth Engine sampleRegions via gee/agripulse_gee_feature_stack.js",
+    "join": "scripts/agripulse_gee_join.py (borehole_id + 2D coordinate tolerance)"
+  },
+  "training_exclusions": [
+    "rows missing latitude or longitude",
+    "rows with is_productive null/blank",
+    "rows missing any of the 14 feature columns"
+  ]
+}
