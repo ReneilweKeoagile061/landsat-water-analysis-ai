@@ -3,7 +3,7 @@ import { clearElement, el, setMetricValue } from "../utils/dom.js";
 
 export function renderMetrics(metrics, points, scenes, season) {
   const cloudAvg =
-    scenes.length > 0 ? scenes.reduce((sum, scene) => sum + scene.cloud, 0) / scenes.length : 0;
+    scenes.length > 0  scenes.reduce((sum, scene) => sum + scene.cloud, 0) / scenes.length : 0;
 
   setMetricValue("scenesDiscovered", String(metrics.scenes_discovered));
   setMetricValue("scenesRetained", String(scenes.length));
@@ -11,7 +11,7 @@ export function renderMetrics(metrics, points, scenes, season) {
   setMetricValue(
     "waterArea",
     season === "Wet Season"
-      ? `${metrics.water_area_wet_km2} km²`
+       `${metrics.water_area_wet_km2} km²`
       : `${metrics.water_area_dry_km2} km²`
   );
 
@@ -54,7 +54,7 @@ function renderModelValidation(model) {
     spatialMean.textContent = `Mean spatial-block accuracy ${pct(model.spatial_cv.mean)} (labels regenerated without each holdout block).`;
   }
 
-  if (chart && model.spatial_cv?.blocks) {
+  if (chart && model.spatial_cv.blocks) {
     clearElement(chart);
     const max = Math.max(...model.spatial_cv.blocks, 0.01);
     model.spatial_cv.blocks.forEach((score, index) => {
@@ -92,9 +92,9 @@ function renderModelValidation(model) {
   if (classList && model.per_class) {
     clearElement(classList);
     [
-      ["Low", model.per_class.low?.f1],
-      ["Medium", model.per_class.medium?.f1],
-      ["High", model.per_class.high?.f1],
+      ["Low", model.per_class.low.f1],
+      ["Medium", model.per_class.medium.f1],
+      ["High", model.per_class.high.f1],
     ].forEach(([name, f1]) => {
       if (f1 == null) return;
       const item = el("li");
@@ -146,7 +146,7 @@ export function applyPropertyAnalysisToCalculator(analysis) {
   if (notice) {
     clearElement(notice);
     notice.append(
-      el("p", "info-label", "⚡ Farm Boundary Synchronized"),
+      el("p", "info-label", " Farm Boundary Synchronized"),
       el(
         "p",
         null,
@@ -158,11 +158,11 @@ export function applyPropertyAnalysisToCalculator(analysis) {
 
   // Switch to guide tab
   const guideTabBtn = document.getElementById("tab-button-guide") || document.querySelector("[data-tab='guide']");
-  guideTabBtn?.click();
+  guideTabBtn.click();
 
   // Trigger form input event to recalculate
   const form = document.getElementById("waterGainForm");
-  form?.dispatchEvent(new Event("input", { bubbles: true }));
+  form.dispatchEvent(new Event("input", { bubbles: true }));
 }
 
 export function bindWaterGainCalculator() {
@@ -296,7 +296,7 @@ export function renderTable(scenes) {
   });
 
   const count = document.getElementById("sceneCount");
-  if (count) count.textContent = `${scenes.length} scene${scenes.length === 1 ? "" : "s"}`;
+  if (count) count.textContent = `${scenes.length} scene${scenes.length === 1  "" : "s"}`;
 }
 
 export function renderAoiStats(points) {
@@ -335,12 +335,12 @@ export function renderSubsurfaceSummary(points) {
   }, {});
   const labels = Object.entries(qualities).map(([quality, count]) => `${quality}: ${count}`);
   target.textContent = points.length
-    ? `${points.length} points | ${labels.join(" · ")}. Scores are screening evidence, not drilling guarantees.`
+     `${points.length} points | ${labels.join(" · ")}. Scores are screening evidence, not drilling guarantees.`
     : "No filtered points contain subsurface evidence.";
 }
 
 export function computeVesCableTable(targetDepthM) {
-  const depth = targetDepthM && targetDepthM > 0 ? targetDepthM : 50;
+  const depth = targetDepthM && targetDepthM > 0  targetDepthM : 50;
   const abMin = Math.max(3.0 * depth, depth / 0.19);
   const steps = [];
   for (let i = 1; i <= 8; i++) {
@@ -420,10 +420,10 @@ export function openPdfDossierModal(feature) {
 
       <div class="pdf-section">
         <h4 class="pdf-section-title">2. Soil &amp; Recharge Risk Assessment</h4>
-        <div class="pdf-risk-card ${isClayHazard ? 'hazard' : 'safe'}">
+        <div class="pdf-risk-card ${isClayHazard  'hazard' : 'safe'}">
           ${isClayHazard 
-            ? '<strong>⚠️ Conductive Clay Shielding Hazard (&lt;10 Ω·m):</strong> SoilGrids clay &gt;35% detected. Heavy clay seals inhibit deep aquifer recharge. <em>Recommended Action: Lined surface rainwater harvesting (earth dams or ponds) over deep borehole drilling.</em>'
-            : '<strong>✅ Low Clay Shielding Risk:</strong> Soil clay fraction (' + (Number(props.clay_fraction_pct || 22).toFixed(0)) + '%) allows permeable rainwater infiltration and fracture recharge.'
+             '<strong>️ Conductive Clay Shielding Hazard (&lt;10 Ω·m):</strong> SoilGrids clay &gt;35% detected. Heavy clay seals inhibit deep aquifer recharge. <em>Recommended Action: Lined surface rainwater harvesting (earth dams or ponds) over deep borehole drilling.</em>'
+            : '<strong> Low Clay Shielding Risk:</strong> Soil clay fraction (' + (Number(props.clay_fraction_pct || 22).toFixed(0)) + '%) allows permeable rainwater infiltration and fracture recharge.'
           }
         </div>
       </div>

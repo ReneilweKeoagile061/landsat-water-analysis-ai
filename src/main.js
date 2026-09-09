@@ -35,7 +35,7 @@ function getToggles() {
 }
 
 function refreshDashboard() {
-  if (!appData?.isReady) return;
+  if (!appData.isReady) return;
 
   const filters = readFiltersFromDom();
   const filteredPoints = filterPoints(appData.waterPoints.features, filters);
@@ -66,7 +66,7 @@ async function bootstrap() {
   bindPanelToggle();
   bindWaterGainCalculator();
 
-  cloudInput?.addEventListener("input", () => {
+  cloudInput.addEventListener("input", () => {
     if (cloudValue) cloudValue.textContent = `${cloudInput.value}%`;
   });
   if (cloudValue && cloudInput) cloudValue.textContent = `${cloudInput.value}%`;
@@ -79,18 +79,18 @@ async function bootstrap() {
     const num = Number(val);
     if (potentialInput) potentialInput.value = String(num);
     if (potentialValue) {
-      potentialValue.textContent = num === 0 ? "0% (All Points)" : `≥${num}% Confidence`;
+      potentialValue.textContent = num === 0 ? "0% (All Points)" : `>=${num}% Confidence`;
     }
     document.querySelectorAll(".preset-pill").forEach((pill) => {
       pill.classList.toggle("active", Number(pill.dataset.potential) === num);
     });
     if (primeToggleBtn) {
       primeToggleBtn.classList.toggle("active", num >= 90);
-      primeToggleBtn.textContent = num >= 90 ? "✓ Prime Active (≥90%)" : "🎯 Prime Siting (≥90%)";
+      primeToggleBtn.textContent = num >= 90 ? "Prime Active (>=90%)" : "Prime Siting (>=90%)";
     }
   };
 
-  potentialInput?.addEventListener("input", () => {
+  potentialInput.addEventListener("input", () => {
     syncPotentialUi(potentialInput.value);
   });
   if (potentialInput) syncPotentialUi(potentialInput.value);
@@ -103,16 +103,16 @@ async function bootstrap() {
     });
   });
 
-  primeToggleBtn?.addEventListener("click", () => {
-    const current = Number(potentialInput?.value || 0);
-    const next = current >= 90 ? 0 : 90;
+  primeToggleBtn.addEventListener("click", () => {
+    const current = Number(potentialInput.value || 0);
+    const next = current >= 90  0 : 90;
     syncPotentialUi(next);
     refreshDashboard();
   });
 
   const debouncedRefresh = debounce(refreshDashboard, 300);
-  cloudInput?.addEventListener("input", debouncedRefresh);
-  potentialInput?.addEventListener("input", debouncedRefresh);
+  cloudInput.addEventListener("input", debouncedRefresh);
+  potentialInput.addEventListener("input", debouncedRefresh);
 
   setLoadingState(true);
   appData = await loadData();
@@ -121,20 +121,20 @@ async function bootstrap() {
 
   if (!appData.isReady) {
     renderError("Unable to load required dashboard data. Check data exports and try again.");
-    retryBtn?.addEventListener("click", () => window.location.reload());
+    retryBtn.addEventListener("click", () => window.location.reload());
     return;
   }
 
   mapController = createMapController(map, tooltipEl, getToggles(), applyPropertyAnalysisToCalculator, downloadSiteReport);
   mapController.bindToggles();
 
-  runBtn?.addEventListener("click", () => {
+  runBtn.addEventListener("click", () => {
     shouldFitBounds = true;
     refreshDashboard();
   });
 
   ["aoiInput", "seasonInput", "tierInput"].forEach((id) => {
-    document.getElementById(id)?.addEventListener("change", () => {
+    document.getElementById(id).addEventListener("change", () => {
       shouldFitBounds = true;
       refreshDashboard();
     });
