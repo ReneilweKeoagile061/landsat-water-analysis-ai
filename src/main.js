@@ -104,8 +104,8 @@ async function bootstrap() {
   });
 
   primeToggleBtn.addEventListener("click", () => {
-    const current = Number(potentialInput.value || 0);
-    const next = current >= 90  0 : 90;
+    const current = Number(potentialInput?.value || 0);
+    const next = current >= 90 ? 0 : 90;
     syncPotentialUi(next);
     refreshDashboard();
   });
