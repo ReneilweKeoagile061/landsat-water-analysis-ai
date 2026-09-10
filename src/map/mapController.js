@@ -120,7 +120,7 @@ function buildSoftRegions(aoiFeatures, points) {
 function regionTooltipContent(feature) {
   const { aoi, score, pointCount } = feature.properties;
   const label = AOI_LABELS[aoi] || aoi;
-  const badge = score >= 0.7  "high" : score >= 0.45  "medium" : "low";
+  const badge = score >= 0.7 ? "high" : score >= 0.45 ? "medium" : "low";
   const potential = badge.charAt(0).toUpperCase() + badge.slice(1);
   return {
     title: label,
@@ -137,9 +137,9 @@ function pointTooltipContent(props) {
   const badge = props.predicted_label.toLowerCase();
   const lines = [
     { label: "Target Siting", value: props.recommended_action || `${props.predicted_label} potential` },
-    { label: "Water Table Depth", value: props.depth_to_water_table_m  `~${Number(props.depth_to_water_table_m).toFixed(0)} m` : "N/A" },
-    { label: "Borehole Feasibility", value: props.borehole_feasibility_score  `${(Number(props.borehole_feasibility_score) * 100).toFixed(0)}%` : "N/A" },
-    { label: "Aquifer Yield", value: props.aquifer_productivity_ls  `${Number(props.aquifer_productivity_ls).toFixed(1)} L/s` : "N/A" },
+    { label: "Water Table Depth", value: props.depth_to_water_table_m ? `~${Number(props.depth_to_water_table_m).toFixed(0)} m` : "N/A" },
+    { label: "Borehole Feasibility", value: props.borehole_feasibility_score ? `${(Number(props.borehole_feasibility_score) * 100).toFixed(0)}%` : "N/A" },
+    { label: "Aquifer Yield", value: props.aquifer_productivity_ls ? `${Number(props.aquifer_productivity_ls).toFixed(1)} L/s` : "N/A" },
   ];
   return {
     title: AOI_LABELS[props.aoi] || props.aoi,
@@ -172,8 +172,8 @@ function buildPointPopupHtml(feature, reportId) {
       </div>
       ${
         isClayHazard
-           `<div class="clay-hazard-badge" style="background:#fef2f2; color:#b91c1c; border:1px solid #f87171; border-radius:4px; padding:4px 6px; font-size:0.75rem; margin-bottom:6px;">
-              ️ <strong>Conductive Clay Shielding Hazard (&lt;10 Ω·m)</strong><br>Heavy clay seals recharge. Lined earth dams/ponds recommended over deep drilling.
+          ? `<div class="clay-hazard-badge" style="background:#fef2f2; color:#b91c1c; border:1px solid #f87171; border-radius:4px; padding:4px 6px; font-size:0.75rem; margin-bottom:6px;">
+              <strong>Conductive Clay Shielding Hazard (&lt;10 Ω·m)</strong><br>Heavy clay seals recharge. Lined earth dams/ponds recommended over deep drilling.
             </div>`
           : ""
       }
@@ -183,9 +183,9 @@ function buildPointPopupHtml(feature, reportId) {
         <div><span>Borehole Score:</span> <strong>${(Number(props.borehole_feasibility_score || 0.65) * 100).toFixed(0)}%</strong></div>
         <div><span>Root-Zone Clay:</span> <strong>${Number(props.clay_fraction_pct || 20)}%</strong></div>
         <div><span>DTWT Class:</span> <strong>${props.dtwt_class || "N/A"}</strong></div>
-        <div><span>Phreatophyte:</span> <strong>${props.phreatophyte_index != null  `${(Number(props.phreatophyte_index) * 100).toFixed(0)}%` : "N/A"}</strong></div>
-        <div><span>Infiltration:</span> <strong>${props.infiltration_score != null  `${Number(props.infiltration_score).toFixed(0)}%` : "N/A"}</strong></div>
-        <div><span>Evidence Trust:</span> <strong>${props.evidence_confidence != null  `${(Number(props.evidence_confidence) * 100).toFixed(0)}%` : "N/A"}</strong></div>
+        <div><span>Phreatophyte:</span> <strong>${props.phreatophyte_index != null ? `${(Number(props.phreatophyte_index) * 100).toFixed(0)}%` : "N/A"}</strong></div>
+        <div><span>Infiltration:</span> <strong>${props.infiltration_score != null ? `${Number(props.infiltration_score).toFixed(0)}%` : "N/A"}</strong></div>
+        <div><span>Evidence Trust:</span> <strong>${props.evidence_confidence != null ? `${(Number(props.evidence_confidence) * 100).toFixed(0)}%` : "N/A"}</strong></div>
         <div><span>VES Cable AB:</span> <strong>≥ ${vesAbMin} m</strong></div>
       </div>
       <div class="popup-aquifer">
@@ -370,7 +370,7 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
 
     if (applyBtn) {
       applyBtn.onclick = () => {
-        onApplyPropertyData.(analysis);
+        onApplyPropertyData(analysis);
       };
     }
   };
@@ -394,8 +394,8 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
         if (!data.latitude || !data.longitude) continue;
 
         const isProd = data.is_productive === "1";
-        const color = isProd  "#10b981" : "#ef4444";
-        const fill = isProd  "#34d399" : "#f87171";
+        const color = isProd ? "#10b981" : "#ef4444";
+        const fill = isProd ? "#34d399" : "#f87171";
 
         const marker = L.circleMarker([Number(data.latitude), Number(data.longitude)], {
           radius: 6,
@@ -411,7 +411,7 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
             <div><span>Location:</span> <strong>${data.location}</strong></div>
             <div><span>Yield:</span> <strong>${data.yield_m3h} m³/h</strong></div>
             <div><span>Water Strike:</span> <strong>${data.water_strike_m} m</strong></div>
-            <div><span>Productive:</span> <strong>${isProd  "Yes" : "No"}</strong></div>
+            <div><span>Productive:</span> <strong>${isProd ? "Yes" : "No"}</strong></div>
           </div>
         `, { className: "leaflet-custom-popup", maxWidth: 280 });
 
@@ -434,11 +434,11 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
       const rankIcons = { 1: "", 2: "", 3: "" };
 
       targets.forEach(t => {
-        const rank = t.target_rank  t.rank  1;
+        const rank = t.target_rank || t.rank || 1;
         const color = rankColors[rank] || "#3b82f6";
-        const mlScore = t.ml_prospectivity_score  t.ml_score  0;
-        const prioScore = t.final_priority_score  t.priority_score  0;
-        const action = t.recommended_action  t.ert_recommendation  "ERT Geophysics survey line recommended";
+        const mlScore = t.ml_prospectivity_score || t.ml_score || 0;
+        const prioScore = t.final_priority_score || t.priority_score || 0;
+        const action = t.recommended_action || t.ert_recommendation || "ERT Geophysics survey line recommended";
         
         // Marker
         const htmlIcon = L.divIcon({
@@ -596,7 +596,7 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     });
 
     const slopePoints = points.filter((feature) => Number.isFinite(Number(feature.properties.slope)));
-    slopeLayer = L.heatLayer(buildHeatPayload(slopePoints.length  slopePoints : points, "slope"), {
+    slopeLayer = L.heatLayer(buildHeatPayload(slopePoints.length ? slopePoints : points, "slope"), {
       radius: 42,
       blur: 26,
       minOpacity: 0.25,
@@ -612,7 +612,7 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     });
 
     const dtwtPoints = points.filter((f) => Number.isFinite(Number(f.properties.depth_to_water_table_m)));
-    dtwtLayer = L.heatLayer(buildHeatPayload(dtwtPoints.length  dtwtPoints : points, "depth_to_water_table_m"), {
+    dtwtLayer = L.heatLayer(buildHeatPayload(dtwtPoints.length ? dtwtPoints : points, "depth_to_water_table_m"), {
       radius: 48,
       blur: 32,
       minOpacity: 0.3,
@@ -627,7 +627,7 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     });
 
     const bPoints = points.filter((f) => Number.isFinite(Number(f.properties.borehole_feasibility_score)));
-    boreholeLayer = L.heatLayer(buildHeatPayload(bPoints.length  bPoints : points, "borehole_feasibility_score"), {
+    boreholeLayer = L.heatLayer(buildHeatPayload(bPoints.length ? bPoints : points, "borehole_feasibility_score"), {
       radius: 46,
       blur: 28,
       minOpacity: 0.3,
@@ -651,7 +651,7 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
       const [lon, lat] = feature.geometry.coordinates;
       const reportId = `site-report-${index}`;
       const label = feature.properties.predicted_label;
-      const color = label === "High"  "#f5c84c" : label === "Medium"  "#4db4ff" : "#8ea8ff";
+      const color = label === "High" ? "#f5c84c" : label === "Medium" ? "#4db4ff" : "#8ea8ff";
       const marker = L.circleMarker([lat, lon], {
         radius: 6,
         color: "#fff",
@@ -668,7 +668,7 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
 
       marker.on("popupopen", () => {
         const reportButton = document.querySelector(`[data-report-id="${reportId}"]`);
-        reportButton.addEventListener("click", () => onDownloadReport.(feature), { once: true });
+        reportButton.addEventListener("click", () => onDownloadReport(feature), { once: true });
       });
 
       marker.on("mouseover", (event) => {
@@ -706,7 +706,7 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     const boundsKey = `${filters.aoi}-${filters.season}-${filters.tier}-${points.length}`;
     if (fitBounds || boundsKey !== lastBoundsKey) {
       const boundsSource = regionLayer.getBounds().isValid()
-         regionLayer
+        ? regionLayer
         : L.geoJSON({ type: "FeatureCollection", features: points });
       if (boundsSource.getBounds().isValid()) {
         map.fitBounds(boundsSource.getBounds(), { padding: [36, 36], animate: true, duration: 0.6 });
