@@ -66,6 +66,14 @@ async function bootstrap() {
   bindPanelToggle();
   bindWaterGainCalculator();
 
+  // Reset overlay toggles to false for a clean initial map
+  const initialToggles = getToggles();
+  Object.values(initialToggles).forEach((input) => {
+    if (input && input.type === "checkbox") {
+      input.checked = false;
+    }
+  });
+
   cloudInput.addEventListener("input", () => {
     if (cloudValue) cloudValue.textContent = `${cloudInput.value}%`;
   });
