@@ -8,6 +8,14 @@ export default defineConfig({
     outDir: "dist",
     sourcemap: true,
   },
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://127.0.0.1:8000",
+        changeOrigin: true,
+      },
+    },
+  },
   test: {
     environment: "node",
   },

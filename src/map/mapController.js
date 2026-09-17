@@ -324,14 +324,15 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     }
 
     try {
-      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
-      const response = await fetch(`${API_URL}/api/analyze-polygon`, {
+      // Always use relative path — Vite proxies /api → 127.0.0.1:8000 locally.
+      // In Vercel production, vercel.json rewrites handle the routing to the cloud backend.
+      const response = await fetch("/api/analyze-polygon", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ coordinates: [ring] })
       });
       
-      if (!response.ok) throw new Error("API request failed");
+      if (!response.ok) throw new Error(`API request failed with status: ${response.status}`);
       const data = await response.json();
       
       // Use real EE points if the backend found any
@@ -340,18 +341,16 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
       showAnalysisResult(analysis);
       
     } catch (err) {
-      console.warn("Live API connection failed. Falling back to local offline simulation.", err);
+      console.error("Live API connection FATAL error:", err);
       // Graceful Fallback: DevOps Resilience Principle
-      // If the backend is down (e.g., Vercel deployment without a live API), fall back to offline data
       const analysis = analyzePolygonWaterPotential(ring, currentPoints);
       showAnalysisResult(analysis);
       
-      // Add a small warning note to the UI
       const content = document.getElementById("drawAnalysisContent");
       if (content) {
         const warning = document.createElement("p");
         warning.style = "color: #b8623a; font-size: 0.75rem; margin-top: 8px; text-align: center;";
-        warning.innerText = "⚠️ Live API unreachable. Showing simulated offline data.";
+        warning.innerText = `⚠️ Live API unreachable (${err.message}). Showing simulated offline data.`;
         content.appendChild(warning);
       }
     }
