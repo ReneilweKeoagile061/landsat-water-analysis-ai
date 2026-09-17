@@ -324,7 +324,8 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     }
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/analyze-polygon", {
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+      const response = await fetch(`${API_URL}/api/analyze-polygon`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ coordinates: [ring] })
@@ -333,13 +334,25 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
       if (!response.ok) throw new Error("API request failed");
       const data = await response.json();
       
-      // The backend returns real EE points in data.features. Pass them to geo.js
-      const analysis = analyzePolygonWaterPotential(ring, data.features);
+      // Use real EE points if the backend found any
+      const pointsToUse = (data.features && data.features.length > 0) ? data.features : currentPoints;
+      const analysis = analyzePolygonWaterPotential(ring, pointsToUse);
       showAnalysisResult(analysis);
+      
     } catch (err) {
-      console.error(err);
+      console.warn("Live API connection failed. Falling back to local offline simulation.", err);
+      // Graceful Fallback: DevOps Resilience Principle
+      // If the backend is down (e.g., Vercel deployment without a live API), fall back to offline data
+      const analysis = analyzePolygonWaterPotential(ring, currentPoints);
+      showAnalysisResult(analysis);
+      
+      // Add a small warning note to the UI
+      const content = document.getElementById("drawAnalysisContent");
       if (content) {
-        content.innerHTML = '<p style="color: red; text-align: center; padding: 20px;">❌ Live API connection failed. Ensure backend is running.</p>';
+        const warning = document.createElement("p");
+        warning.style = "color: #b8623a; font-size: 0.75rem; margin-top: 8px; text-align: center;";
+        warning.innerText = "⚠️ Live API unreachable. Showing simulated offline data.";
+        content.appendChild(warning);
       }
     }
   };
