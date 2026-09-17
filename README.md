@@ -35,16 +35,18 @@ graph TD
         EE["🌍 Google Earth Engine (Python API)"]:::cloud
         DEM["⛰️ Copernicus DEM 30m"]:::cloud
         SAR["📡 Sentinel-1 (Radar)"]:::cloud
-        Multi["🛰️ Sentinel-2 (Multispectral)"]:::cloud
+        Multi["🛰️ Sentinel-2 (Multispectral & Variance)"]:::cloud
+        GRACE["🌊 GRACE-FO (Regional Trends)"]:::cloud
     end
 
     User -- "Draws Farm Boundary" --> Draw
-    Draw -- "GeoJSON Polygon" --> API
+    Draw -- "GeoJSON Polygon (Proxy routed)" --> API
     API -- "Request Pixel Grid" --> EE
     EE --> DEM
     EE --> SAR
     EE --> Multi
-    EE -- "11 Live Feature Layers" --> API
+    EE --> GRACE
+    EE -- "14 Live Feature Layers" --> API
     API -- "Feature Stack" --> XGB
     XGB -- "Drill Targets & Feasibility" --> UI
     UI -- "Actionable Dashboard" --> User
@@ -52,7 +54,7 @@ graph TD
 
 | Component | Technology |
 |---|---|
-| **Frontend App** | Vite, Vanilla JS, Leaflet.js |
+| **Frontend App** | Vite, Vanilla JS, Leaflet.js (Proxied) |
 | **Map Tiles** | Microsoft Planetary Computer, Esri |
 | **Backend API** | Python 3, FastAPI, Uvicorn |
 | **Cloud Telemetry** | Google Earth Engine Python API |
@@ -65,7 +67,9 @@ graph TD
 ## 🛠️ Key Features
 - **Interactive Farm Drawing:** Draw dynamic polygon boundaries directly on the map to bound the investigation.
 - **Live Earth Engine Telemetry:** The Python backend queries Google Earth Engine dynamically, extracting Live Topography (Slope, TWI), Structure (SAR VV/VH), and Vegetation indices (NDWI, NDVI).
+- **Advanced Contextual Intelligence (Phase 2 & 4):** Automatically extracts and downscales 100km-resolution GRACE-FO Liquid Water Equivalent (LWE) trends and Sentinel-2 seasonal NDVI variance to identify persistent subsurface moisture versus transient rainfall.
 - **XGBoost Subsurface Predictions:** Processes satellite data instantly through an XGBoost model trained on historical BGI borehole data to score locations on Water Table Depth, Yield, and Borehole Feasibility.
+- **CORS-Resilient Architecture:** Utilizes a Vite development proxy to cleanly route frontend requests to the FastAPI backend, bypassing strict browser Cross-Origin Resource Sharing (CORS) blocks natively.
 - **Automated Dossier Generation:** Prepares printable, professional hydrogeological reports instantly based on the drawn property boundaries.
 
 ---
