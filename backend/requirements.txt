@@ -1,0 +1,4 @@
+fastapi
+uvicorn
+earthengine-api
+pydantic

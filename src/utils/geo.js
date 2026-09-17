@@ -131,14 +131,15 @@ export function analyzePolygonWaterPotential(ring, points) {
   let lowCount = 0;
   let medCount = 0;
   let highCount = 0;
-  let sumDtwt = 0;
-  let sumProductivity = 0;
-  let sumBoreholeScore = 0;
-  let sumClay = 0;
-  let sumInfiltration = 0;
+  // Accumulators for real (non-missing) values only
+  let sumDtwt = 0; let countDtwt = 0;
+  let sumProductivity = 0; let countProductivity = 0;
+  let sumBoreholeScore = 0; let countBoreholeScore = 0;
+  let sumClay = 0; let countClay = 0;
+  let sumInfiltration = 0; let countInfiltration = 0;
   const dtwtClasses = {};
   let bestPoint = null;
-  let bestScore = -1;
+  let bestScore = -Infinity; // -Infinity so only real scores can win
 
   insidePoints.forEach((feature) => {
     const props = feature.properties;
@@ -147,21 +148,31 @@ export function analyzePolygonWaterPotential(ring, points) {
     else if (label === "Medium") medCount += 1;
     else lowCount += 1;
 
-    const dtwt = Number(props.depth_to_water_table_m || 45);
-    const prod = Number(props.aquifer_productivity_ls || 2.5);
-    const bScore = Number(props.borehole_feasibility_score || 0.65);
-    const clay = Number(props.clay_fraction_pct || 20);
-    const infiltration = Number(props.infiltration_score ?? 100 - clay);
-    const dtwtClass = props.dtwt_class || (dtwt < 25 ? "Shallow (<25 m)" : dtwt <= 75 ? "Moderate (25-75 m)" : "Deep (>75 m)");
+    // Only accumulate fields that are genuinely present
+    const dtwt = props.depth_to_water_table_m != null ? Number(props.depth_to_water_table_m) : null;
+    const prod = props.aquifer_productivity_ls != null ? Number(props.aquifer_productivity_ls) : null;
+    const bScore = props.borehole_feasibility_score != null ? Number(props.borehole_feasibility_score) : null;
+    const clay = props.clay_fraction_pct != null ? Number(props.clay_fraction_pct) : null;
+    const infiltration = props.infiltration_score != null
+      ? Number(props.infiltration_score)
+      : (clay != null ? 100 - clay : null);
 
-    sumDtwt += dtwt;
-    sumProductivity += prod;
-    sumBoreholeScore += bScore;
-    sumClay += clay;
-    sumInfiltration += infiltration;
+    if (dtwt != null) { sumDtwt += dtwt; countDtwt += 1; }
+    if (prod != null) { sumProductivity += prod; countProductivity += 1; }
+    if (bScore != null) { sumBoreholeScore += bScore; countBoreholeScore += 1; }
+    if (clay != null) { sumClay += clay; countClay += 1; }
+    if (infiltration != null) { sumInfiltration += infiltration; countInfiltration += 1; }
+
+    // Classify DTWT using actual depth or stored class string
+    const dtwtClass = props.dtwt_class || (
+      dtwt != null
+        ? (dtwt < 25 ? "Shallow (<25 m)" : dtwt <= 75 ? "Moderate (25-75 m)" : "Deep (>75 m)")
+        : "Unknown"
+    );
     dtwtClasses[dtwtClass] = (dtwtClasses[dtwtClass] || 0) + 1;
 
-    if (bScore > bestScore) {
+    // Only a real, non-null borehole_feasibility_score can claim bestPoint
+    if (bScore != null && bScore > bestScore) {
       bestScore = bScore;
       bestPoint = feature;
     }
@@ -176,15 +187,15 @@ export function analyzePolygonWaterPotential(ring, points) {
     sampleCount: total,
     shares: { Low: shareLow, Medium: shareMed, High: shareHigh },
     insidePoints,
-    avgDtwt: Math.round((sumDtwt / total) * 10) / 10,
-    avgProductivity: Math.round((sumProductivity / total) * 10) / 10,
-    avgBoreholeScore: Math.round((sumBoreholeScore / total) * 100),
-    avgClay: Math.round(sumClay / total),
-    avgInfiltration: Math.round(sumInfiltration / total),
+    avgDtwt: countDtwt > 0 ? Math.round((sumDtwt / countDtwt) * 10) / 10 : null,
+    avgProductivity: countProductivity > 0 ? Math.round((sumProductivity / countProductivity) * 10) / 10 : null,
+    avgBoreholeScore: countBoreholeScore > 0 ? Math.round((sumBoreholeScore / countBoreholeScore) * 100) : null,
+    avgClay: countClay > 0 ? Math.round(sumClay / countClay) : null,
+    avgInfiltration: countInfiltration > 0 ? Math.round(sumInfiltration / countInfiltration) : null,
     dtwtClass: Object.entries(dtwtClasses).sort((left, right) => right[1] - left[1])[0][0],
     bestBoreholePoint: bestPoint,
     recommendedAction: bestPoint?.properties?.recommended_action || "Targeted Borehole Siting",
-    aquiferType: bestPoint?.properties?.aquifer_type || "Fractured Karoo / Alluvial Sandstone",
+    aquiferType: bestPoint?.properties?.aquifer_type || "Unknown — not yet classified",
   };
 }
 

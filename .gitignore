@@ -3,3 +3,5 @@ dist
 .vercel
 .DS_Store
 *.log
+.gee_secrets/
+__pycache__/

@@ -45,6 +45,8 @@ const metricsSchema = z.object({
       .optional(),
   }),
   generated_at: z.string().optional(),
+  is_demo_data: z.boolean().optional(),
+  demo_data_warning: z.string().optional(),
 });
 
 const pointGeometrySchema = z.object({

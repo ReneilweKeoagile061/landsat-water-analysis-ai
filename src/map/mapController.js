@@ -68,7 +68,7 @@ export function createMap() {
   }).setView([-20.6, 24.5], 6.5);
 
   L.control.zoom({ position: "bottomright" }).addTo(map);
-  BASE_LAYERS.light.addTo(map);
+  BASE_LAYERS.esri.addTo(map);
 
   return map;
 }
@@ -158,8 +158,8 @@ function buildPointPopupHtml(feature, reportId) {
   const searchUrl = `https://www.google.com/maps/search/api=1&query=${lat.toFixed(5)},${lon.toFixed(5)}`;
 
   const isClayHazard = (props.clay_fraction_pct != null && Number(props.clay_fraction_pct) > 35) || props.clay_shielding_hazard;
-  const targetDepth = Number(props.depth_to_water_table_m || 45);
-  const vesAbMin = Math.max(3 * targetDepth, Math.round(targetDepth / 0.19));
+  const rawDepth = props.depth_to_water_table_m != null ? Number(props.depth_to_water_table_m) : null;
+  const vesAbMin = rawDepth != null ? Math.max(3 * rawDepth, Math.round(rawDepth / 0.19)) : null;
 
   return `
     <div class="point-popup">
@@ -178,18 +178,18 @@ function buildPointPopupHtml(feature, reportId) {
           : ""
       }
       <div class="popup-grid">
-        <div><span>Depth to Water:</span> <strong>~${Number(props.depth_to_water_table_m || 45).toFixed(0)} m</strong></div>
-        <div><span>Aquifer Yield:</span> <strong>${Number(props.aquifer_productivity_ls || 2.5).toFixed(1)} L/s</strong></div>
-        <div><span>Borehole Score:</span> <strong>${(Number(props.borehole_feasibility_score || 0.65) * 100).toFixed(0)}%</strong></div>
-        <div><span>Root-Zone Clay:</span> <strong>${Number(props.clay_fraction_pct || 20)}%</strong></div>
+        <div><span>Depth to Water:</span> <strong>${rawDepth != null ? `~${rawDepth.toFixed(0)} m` : "N/A"}</strong></div>
+        <div><span>Aquifer Yield:</span> <strong>${props.aquifer_productivity_ls != null ? `${Number(props.aquifer_productivity_ls).toFixed(1)} L/s` : "N/A"}</strong></div>
+        <div><span>Borehole Score:</span> <strong>${props.borehole_feasibility_score != null ? `${(Number(props.borehole_feasibility_score) * 100).toFixed(0)}%` : "N/A"}</strong></div>
+        <div><span>Root-Zone Clay:</span> <strong>${props.clay_fraction_pct != null ? `${Number(props.clay_fraction_pct)}%` : "N/A"}</strong></div>
         <div><span>DTWT Class:</span> <strong>${props.dtwt_class || "N/A"}</strong></div>
         <div><span>Phreatophyte:</span> <strong>${props.phreatophyte_index != null ? `${(Number(props.phreatophyte_index) * 100).toFixed(0)}%` : "N/A"}</strong></div>
         <div><span>Infiltration:</span> <strong>${props.infiltration_score != null ? `${Number(props.infiltration_score).toFixed(0)}%` : "N/A"}</strong></div>
         <div><span>Evidence Trust:</span> <strong>${props.evidence_confidence != null ? `${(Number(props.evidence_confidence) * 100).toFixed(0)}%` : "N/A"}</strong></div>
-        <div><span>VES Cable AB:</span> <strong>≥ ${vesAbMin} m</strong></div>
+        <div><span>VES Cable AB:</span> <strong>${vesAbMin != null ? `≥ ${vesAbMin} m` : "N/A — depth required"}</strong></div>
       </div>
       <div class="popup-aquifer">
-        <span>Aquifer:</span> <em>${props.aquifer_type || "Karoo / Alluvial Sedimentary"}</em>
+        <span>Aquifer:</span> <em>${props.aquifer_type || "Unknown — not yet classified"}</em>
       </div>
       <div class="popup-aquifer">
         <span>Evidence:</span> <em>${props.subsurface_data_source || "Unverified"} (${props.subsurface_data_quality || "screening"})</em>
@@ -218,7 +218,7 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
   let boreholeLayer = null;
   let bgiBoreholeLayer = null;
   let drillTargetLayer = null;
-  let activeBaseLayer = "light";
+  let activeBaseLayer = "esri";
   let lastBoundsKey = "";
   let currentPoints = [];
 
@@ -282,7 +282,7 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     if (clearBtn) clearBtn.hidden = true;
   };
 
-  const finishDrawing = () => {
+  const finishDrawing = async () => {
     if (drawPoints.length < 3) {
       alert("Please place at least 3 points to define a property polygon.");
       return;
@@ -308,15 +308,40 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
 
     if (drawnPolygonLayer) map.removeLayer(drawnPolygonLayer);
     drawnPolygonLayer = L.polygon(drawPoints, {
-      color: "#f5c84c",
+      color: "#b8623a",       /* terracotta survey bound */
       weight: 3,
-      fillColor: "#2ec9c5",
-      fillOpacity: 0.35,
+      fillColor: "#2c7a6b",   /* aquifer teal fill */
+      fillOpacity: 0.2,
       dashArray: "6, 6",
     }).addTo(map);
 
-    const analysis = analyzePolygonWaterPotential(ring, currentPoints);
-    showAnalysisResult(analysis);
+    // Show loading state
+    const card = document.getElementById("drawAnalysisCard");
+    const content = document.getElementById("drawAnalysisContent");
+    if (card && content) {
+      card.hidden = false;
+      content.innerHTML = '<p style="color: var(--muted); text-align: center; padding: 20px;">📡 Requesting live satellite telemetry from Earth Engine...</p>';
+    }
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/analyze-polygon", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ coordinates: [ring] })
+      });
+      
+      if (!response.ok) throw new Error("API request failed");
+      const data = await response.json();
+      
+      // The backend returns real EE points in data.features. Pass them to geo.js
+      const analysis = analyzePolygonWaterPotential(ring, data.features);
+      showAnalysisResult(analysis);
+    } catch (err) {
+      console.error(err);
+      if (content) {
+        content.innerHTML = '<p style="color: red; text-align: center; padding: 20px;">❌ Live API connection failed. Ensure backend is running.</p>';
+      }
+    }
   };
 
   const showAnalysisResult = (analysis) => {
@@ -328,8 +353,8 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     if (!card || !content) return;
     clearElement(content);
 
-    const bestProps = analysis.bestBoreholePoint.properties;
-    const bestCoords = analysis.bestBoreholePoint.geometry.coordinates;
+    const bestProps = analysis.bestBoreholePoint?.properties;
+    const bestCoords = analysis.bestBoreholePoint?.geometry?.coordinates;
 
     content.append(
       el("p", "analysis-ha", ` Property Area: ${analysis.hectares.toLocaleString()} ha`),
@@ -345,11 +370,11 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
       const subCard = el("div", "analysis-subsurface-box");
       subCard.append(
         el("p", "subsurface-header", " Subsurface & Borehole Siting"),
-        el("div", "subsurface-stat-row", ` Borehole Feasibility: ${analysis.avgBoreholeScore}%`),
-        el("div", "subsurface-stat-row", ` Depth to Water Table: ~${analysis.avgDtwt} m`),
-        el("div", "subsurface-stat-row", ` Expected Aquifer Yield: ~${analysis.avgProductivity} L/s`),
-        el("div", "subsurface-stat-row", ` Soil Clay / Sand: ${analysis.avgClay}% clay / ${100 - analysis.avgClay}% sand`),
-        el("div", "subsurface-stat-row", ` Infiltration Proxy: ${analysis.avgInfiltration}%`),
+        el("div", "subsurface-stat-row", ` Borehole Feasibility: ${analysis.avgBoreholeScore != null ? analysis.avgBoreholeScore + "%" : "N/A"}`),
+        el("div", "subsurface-stat-row", ` Depth to Water Table: ${analysis.avgDtwt != null ? "~" + analysis.avgDtwt + " m" : "N/A"}`),
+        el("div", "subsurface-stat-row", ` Expected Aquifer Yield: ${analysis.avgProductivity != null ? "~" + analysis.avgProductivity + " L/s" : "N/A"}`),
+        el("div", "subsurface-stat-row", ` Soil Clay / Sand: ${analysis.avgClay != null ? analysis.avgClay + "% clay / " + (100 - analysis.avgClay) + "% sand" : "N/A"}`),
+        el("div", "subsurface-stat-row", ` Infiltration Proxy: ${analysis.avgInfiltration != null ? analysis.avgInfiltration + "%" : "N/A"}`),
         el("div", "subsurface-stat-row", ` DTWT Class: ${analysis.dtwtClass}`)
       );
 
@@ -431,21 +456,21 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
       drillTargetLayer = L.layerGroup();
       
       const rankColors = { 1: "#fbbf24", 2: "#94a3b8", 3: "#b45309" }; // Gold, Silver, Bronze
-      const rankIcons = { 1: "", 2: "", 3: "" };
 
       targets.forEach(t => {
         const rank = t.target_rank || t.rank || 1;
-        const color = rankColors[rank] || "#3b82f6";
+        // Top 3 get medal colors, rest get the primary deep teal
+        const color = rankColors[rank] || "#2c7a6b";
         const mlScore = t.ml_prospectivity_score || t.ml_score || 0;
         const prioScore = t.final_priority_score || t.priority_score || 0;
         const action = t.recommended_action || t.ert_recommendation || "ERT Geophysics survey line recommended";
         
-        // Marker
+        // Marker with actual rank number
         const htmlIcon = L.divIcon({
-          html: `<div style="font-size: 16px; background: white; border: 2px solid ${color}; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">${rankIcons[rank] || ""}</div>`,
+          html: `<div style="font-size: 13px; font-weight: 700; color: #fff; background: ${color}; border: 2px solid #fff; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">${rank}</div>`,
           className: "",
-          iconSize: [24, 24],
-          iconAnchor: [12, 12]
+          iconSize: [26, 26],
+          iconAnchor: [13, 13]
         });
 
         const marker = L.marker([t.latitude, t.longitude], { icon: htmlIcon });
@@ -491,7 +516,7 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     const marker = L.circleMarker([lat, lng], {
       radius: 5,
       color: "#fff",
-      fillColor: "#1b8fe8",
+      fillColor: "#b8623a",
       fillOpacity: 1,
       weight: 2,
     }).addTo(map);
@@ -500,7 +525,7 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     if (drawPolyline) {
       drawPolyline.setLatLngs(drawPoints);
     } else {
-      drawPolyline = L.polyline(drawPoints, { color: "#1b8fe8", weight: 2.5, dashArray: "4, 4" }).addTo(map);
+      drawPolyline = L.polyline(drawPoints, { color: "#b8623a", weight: 2.5, dashArray: "4, 4" }).addTo(map);
     }
 
     const finishBtn = document.getElementById("finishDrawBtn");
@@ -650,14 +675,41 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     points.forEach((feature, index) => {
       const [lon, lat] = feature.geometry.coordinates;
       const reportId = `site-report-${index}`;
-      const label = feature.properties.predicted_label;
-      const color = label === "High" ? "#f5c84c" : label === "Medium" ? "#4db4ff" : "#8ea8ff";
+      
+      // Visual evidence-tier mapping
+      // measured = solid teal, modeled = hollow lighter, screening = dotted outline
+      const conf = parseFloat(feature.properties.evidence_confidence) || 0.4;
+      
+      let fillCol = "#1b8fe8";
+      let strCol = "#fff";
+      let strWeight = 2;
+      let dArray = null;
+      let fillOp = 0.92;
+
+      if (conf >= 0.8) {
+        // Measured
+        fillCol = "#2c7a6b";
+        strCol = "#fff";
+      } else if (conf >= 0.5) {
+        // Modeled
+        fillCol = "#3d9e8c";
+        fillOp = 0.4;
+        strCol = "#2c7a6b";
+      } else {
+        // Screening
+        fillCol = "#c9973a";
+        fillOp = 0.2;
+        strCol = "#b8623a";
+        dArray = "3, 3";
+      }
+
       const marker = L.circleMarker([lat, lon], {
         radius: 6,
-        color: "#fff",
-        fillColor: color,
-        fillOpacity: 0.92,
-        weight: 2,
+        color: strCol,
+        fillColor: fillCol,
+        fillOpacity: fillOp,
+        weight: strWeight,
+        dashArray: dArray,
         className: "water-point-marker",
       });
 
@@ -678,7 +730,7 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
           event.originalEvent.clientX - container.left,
           event.originalEvent.clientY - container.top
         );
-        marker.setStyle({ radius: 9, weight: 3 });
+        marker.setStyle({ radius: 9, weight: strWeight + 1 });
       });
       marker.on("mousemove", (event) => {
         const container = map.getContainer().getBoundingClientRect();
@@ -687,7 +739,7 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
       });
       marker.on("mouseout", () => {
         hideTooltip();
-        marker.setStyle({ radius: 6, weight: 2 });
+        marker.setStyle({ radius: 6, weight: strWeight });
       });
 
       classLayer.addLayer(marker);

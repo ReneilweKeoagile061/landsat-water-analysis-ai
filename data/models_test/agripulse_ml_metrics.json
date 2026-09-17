@@ -23,5 +23,19 @@
     "dist_to_structure_m": 0.0,
     "structural_density": 0.0,
     "intersection_index": 0.0
-  }
+  },
+  "confusion_matrix": [
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      4
+    ]
+  ],
+  "confusion_matrix_labels": [
+    "unsuccessful",
+    "productive"
+  ]
 }

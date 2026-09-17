@@ -172,6 +172,15 @@ export function bindWaterGainCalculator() {
 
   if (printBtn) {
     printBtn.addEventListener("click", () => {
+      // If a dossierModal is already open and populated, print it directly
+      const modal = document.getElementById("dossierModal");
+      if (modal && !modal.hidden) {
+        window.print();
+        return;
+      }
+      // Otherwise print the guide/sizer content (the side panel)
+      // by temporarily hiding the modal-overlay so @media print shows guide tab
+      if (modal) modal.hidden = true;
       window.print();
     });
   }

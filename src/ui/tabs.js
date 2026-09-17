@@ -63,7 +63,14 @@ export function bindPanelToggle() {
 
   toggle.addEventListener("click", () => {
     const collapsed = panel.classList.toggle("collapsed");
+    const dashboard = document.querySelector(".dashboard");
+    if (dashboard) {
+      dashboard.classList.toggle("panel-hidden", collapsed);
+    }
     toggle.setAttribute("aria-expanded", String(!collapsed));
     toggle.textContent = collapsed ? "Show panel" : "Hide panel";
+    
+    // Trigger window resize to fix map layout instantly
+    setTimeout(() => window.dispatchEvent(new Event('resize')), 50);
   });
 }

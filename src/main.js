@@ -66,13 +66,8 @@ async function bootstrap() {
   bindPanelToggle();
   bindWaterGainCalculator();
 
-  // Reset overlay toggles to false for a clean initial map
-  const initialToggles = getToggles();
-  Object.values(initialToggles).forEach((input) => {
-    if (input && input.type === "checkbox") {
-      input.checked = false;
-    }
-  });
+  // Note: toggles default values come from the HTML `checked` attributes.
+  // Do NOT reset them here — mapController reads them on init.
 
   cloudInput.addEventListener("input", () => {
     if (cloudValue) cloudValue.textContent = `${cloudInput.value}%`;
@@ -126,6 +121,24 @@ async function bootstrap() {
   appData = await loadData();
   setLoadingState(false);
   renderLoadStatus(appData.errors);
+
+  // Demo data guard — must run before any rendering
+  if (appData.metrics?.is_demo_data) {
+    const warning = appData.metrics.demo_data_warning ||
+      "⚠ DEMO DATA: All map points are randomly simulated and do NOT represent real observations.";
+    console.error("[DEMO DATA]", warning);
+    const banner = document.createElement("div");
+    banner.id = "demoBanner";
+    banner.setAttribute("role", "alert");
+    banner.style.cssText = [
+      "position:fixed", "top:0", "left:0", "right:0", "z-index:9999",
+      "background:#b91c1c", "color:#fff", "font-weight:600",
+      "padding:10px 16px", "text-align:center", "font-size:0.9rem",
+      "letter-spacing:0.02em", "box-shadow:0 2px 8px rgba(0,0,0,0.4)",
+    ].join(";");
+    banner.textContent = warning;
+    document.body.prepend(banner);
+  }
 
   if (!appData.isReady) {
     renderError("Unable to load required dashboard data. Check data exports and try again.");

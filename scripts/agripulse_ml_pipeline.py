@@ -30,8 +30,10 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(me
 logger = logging.getLogger("agripulse_ml")
 
 import pickle
+from sklearn.calibration import CalibratedClassifierCV
 from sklearn.metrics import (
     accuracy_score,
+    confusion_matrix,
     f1_score,
     mean_absolute_error,
     precision_score,
@@ -151,9 +153,13 @@ def train_and_validate_classifier(
             fold_auc = roc_auc_score(y_val, probs)
             fold_aucs.append(fold_auc)
 
-    # Train final full model
+    # Train final full model + calibrate probabilities
     final_clf = create_classifier(seed=42)
     final_clf.fit(X, y)
+
+    # Calibrate probability outputs (isotonic regression, cross-validated)
+    calibrated_clf = CalibratedClassifierCV(estimator=create_classifier(seed=42), method="isotonic", cv=3)
+    calibrated_clf.fit(X, y)
 
     importances = {}
     if hasattr(final_clf, "feature_importances_"):
@@ -161,6 +167,8 @@ def train_and_validate_classifier(
     else:
         # Uniform fallback for inspect
         importances = {feat: 1.0 / len(feature_cols) for feat in feature_cols}
+
+    cm = confusion_matrix(y, oof_preds).tolist()  # [[TN, FP], [FN, TP]]
 
     metrics = {
         "accuracy": float(accuracy_score(y, oof_preds)),
@@ -173,9 +181,11 @@ def train_and_validate_classifier(
         "class_balance_unsuccessful": int(np.sum(y == 0)),
         "model_engine": "XGBoost" if HAS_XGB else "HistGradientBoosting",
         "feature_importances": importances,
+        "confusion_matrix": cm,
+        "confusion_matrix_labels": ["unsuccessful", "productive"],
     }
 
-    return {"model": final_clf, "metrics": metrics, "oof_probs": oof_probs}
+    return {"model": calibrated_clf, "raw_model": final_clf, "metrics": metrics, "oof_probs": oof_probs}
 
 
 def run_pipeline(csv_path: str, output_model_dir: str):
@@ -235,12 +245,16 @@ def run_pipeline(csv_path: str, output_model_dir: str):
     clf_res = train_and_validate_classifier(df, groups, FEATURE_COLUMNS)
 
     # Save model artifacts
+    # Pickle = calibrated model (accurate probabilities for field use)
     model_path = os.path.join(output_model_dir, "agripulse_classifier.pkl")
     with open(model_path, "wb") as f:
         pickle.dump(clf_res["model"], f)
 
     if HAS_XGB:
-        clf_res["model"].save_model(os.path.join(output_model_dir, "agripulse_xgb_classifier.json"))
+        # Use raw_model (fitted XGBClassifier) — CalibratedClassifierCV.estimator is an unfitted template
+        raw_xgb = clf_res.get("raw_model")
+        if raw_xgb is not None and hasattr(raw_xgb, "save_model"):
+            raw_xgb.save_model(os.path.join(output_model_dir, "agripulse_xgb_classifier.json"))
 
     metrics_path = os.path.join(output_model_dir, "agripulse_ml_metrics.json")
     with open(metrics_path, "w") as f:

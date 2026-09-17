@@ -76,7 +76,7 @@ def apply_hydrogeological_gate(
 
 
 def rank_and_export_drill_targets(
-    farm_csv: str, model_path: str, output_json: str, top_k: int = 3
+    farm_csv: str, model_path: str, output_json: str, top_k: int = 10
 ) -> List[Dict]:
     """Scores candidate pixels with ML model, gates with domain rules, and outputs top drill sites."""
     import pickle
@@ -106,18 +106,28 @@ def rank_and_export_drill_targets(
 
     results = []
     for _, row in top_targets.iterrows():
+        ml_score = float(row["ml_prospectivity_score"])
+        # Evidence confidence: scale by ML score but cap at screening level (0.45)
+        # until an independent field measurement confirms it
+        evidence_confidence = round(min(0.45, ml_score * 0.45), 3)
         results.append(
             {
                 "target_rank": int(row["target_rank"]),
                 "longitude": float(row["longitude"]),
                 "latitude": float(row["latitude"]),
-                "ml_prospectivity_score": float(row["ml_prospectivity_score"]),
+                "ml_prospectivity_score": ml_score,
                 "final_priority_score": float(row["final_priority_score"]),
                 "structural_density": float(row["structural_density"]),
                 "dist_to_structure_m": float(row["dist_to_structure_m"]),
                 "slope_deg": float(row["slope_deg"]),
                 "twi": float(row["twi"]),
                 "recommended_action": f"ERT Geophysics Line 100m centered on ({row['latitude']:.5f}, {row['longitude']:.5f})",
+                "evidence_confidence": evidence_confidence,
+                "data_source": "AgriPulse XGBoost classifier (GEE Sentinel-1 + Landsat features)",
+                "validation_next_step": (
+                    "Schlumberger VES survey, then test borehole — "
+                    "ML screening only, not a confirmed aquifer"
+                ),
             }
         )
 

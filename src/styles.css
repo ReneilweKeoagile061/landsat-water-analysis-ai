@@ -9,10 +9,11 @@
 
 .ghost-btn {
   border: 1px solid var(--panel-border);
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(251, 248, 242, 0.85);
   color: var(--text);
-  border-radius: 10px;
+  border-radius: 4px;
   padding: 8px 12px;
+  font-family: var(--font-body);
   font-size: 0.78rem;
   font-weight: 600;
   cursor: pointer;
@@ -29,7 +30,7 @@
   z-index: 1000;
   display: grid;
   place-items: center;
-  background: rgba(232, 242, 250, 0.82);
+  background: rgba(242, 237, 226, 0.82);
   backdrop-filter: blur(4px);
 }
 
@@ -39,10 +40,10 @@
 
 .loading-card {
   padding: 24px 28px;
-  border-radius: 16px;
-  background: #fff;
+  border-radius: 4px;
+  background: var(--panel);
   border: 1px solid var(--panel-border);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-strong);
   text-align: center;
 }
 
@@ -50,7 +51,7 @@
   width: 36px;
   height: 36px;
   margin: 0 auto 12px;
-  border: 3px solid rgba(27, 143, 232, 0.18);
+  border: 3px solid rgba(44, 122, 107, 0.18);
   border-top-color: var(--primary);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
@@ -70,7 +71,7 @@
   z-index: 900;
   max-width: min(720px, calc(100% - 24px));
   padding: 10px 14px;
-  border-radius: 12px;
+  border-radius: 4px;
   background: #fff4f4;
   border: 1px solid #efb6b6;
   box-shadow: var(--shadow);
