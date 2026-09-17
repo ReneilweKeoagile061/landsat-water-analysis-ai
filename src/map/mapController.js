@@ -378,7 +378,7 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
       )
     );
 
-    if (analysis.sampleCount > 0) {
+      if (analysis.sampleCount > 0) {
       const subCard = el("div", "analysis-subsurface-box");
       subCard.append(
         el("p", "subsurface-header", " Subsurface & Borehole Siting"),
@@ -389,6 +389,17 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
         el("div", "subsurface-stat-row", ` Infiltration Proxy: ${analysis.avgInfiltration != null ? analysis.avgInfiltration + "%" : "N/A"}`),
         el("div", "subsurface-stat-row", ` DTWT Class: ${analysis.dtwtClass}`)
       );
+      
+      // Phase 2 & 4 Advanced Features
+      if (analysis.avgGrace != null || analysis.avgNdviVar != null) {
+        subCard.append(el("p", "subsurface-header", " Advanced Telemetry (Live)"));
+        if (analysis.avgGrace != null) {
+            subCard.append(el("div", "subsurface-stat-row", ` GRACE-FO Trend (LWE): ${analysis.avgGrace > 0 ? "+" : ""}${analysis.avgGrace} cm`));
+        }
+        if (analysis.avgNdviVar != null) {
+            subCard.append(el("div", "subsurface-stat-row", ` Seasonal Vegetation Variance: ${analysis.avgNdviVar} (NDVI σ)`));
+        }
+      }
 
       if (bestCoords) {
         subCard.append(

@@ -95,9 +95,29 @@ async def analyze_polygon(request: PolygonRequest):
         ndmi = s2.normalizedDifference(['B8', 'B11']).rename('ndmi')
         ndwi = s2.normalizedDifference(['B3', 'B8']).rename('ndwi')
         s2Features = ee.Image([ndvi, ndmi, ndwi])
+        # 4. GRACE-FO (Phase 2 - Regional Groundwater Trend)
+        # Use recent data, resampled to smooth the 100km resolution blockiness
+        grace = (ee.ImageCollection("NASA/GRACE/MASS_GRIDS/MASCON")
+                 .filterDate('2023-01-01', '2024-01-01')
+                 .select('lwe_thickness')
+                 .mean()
+                 .resample('bilinear')
+                 .rename('grace_lwe_trend'))
+
+        # 5. Sentinel-2 Seasonal NDVI Variance (Phase 4)
+        # Standard deviation of vegetation to detect persistent moisture vs rainfall spike
+        def calc_ndvi(img):
+            return img.normalizedDifference(['B8', 'B4']).rename('ndvi')
+        
+        ndvi_variance = ee.Algorithms.If(
+            s2col.size().gt(0),
+            s2col.map(calc_ndvi).reduce(ee.Reducer.stdDev()).rename('ndvi_variance'),
+            ee.Image.constant([0.0]).rename(['ndvi_variance'])
+        )
+        ndvi_variance = ee.Image(ndvi_variance)
         
         # Combine Stack
-        stack = ee.Image([dem, slope, twi, flowAcc, s1Features, s2Features])
+        stack = ee.Image([dem, slope, twi, flowAcc, s1Features, s2Features, grace, ndvi_variance])
         
         samples = stack.sample(region=geometry, scale=100, geometries=True, numPixels=50).getInfo()
         features = samples.get('features', [])

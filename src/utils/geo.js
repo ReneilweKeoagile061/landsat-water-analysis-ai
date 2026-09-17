@@ -141,10 +141,13 @@ export function analyzePolygonWaterPotential(ring, points) {
   let bestPoint = null;
   let bestScore = -Infinity; // -Infinity so only real scores can win
 
+  let sumGrace = 0, countGrace = 0;
+  let sumNdviVar = 0, countNdviVar = 0;
+
   insidePoints.forEach((feature) => {
     const props = feature.properties;
     const label = props.predicted_label;
-    if (label === "High") highCount += 1;
+    if (label === "High" || label === "Prime") highCount += 1;
     else if (label === "Medium") medCount += 1;
     else lowCount += 1;
 
@@ -162,6 +165,9 @@ export function analyzePolygonWaterPotential(ring, points) {
     if (bScore != null) { sumBoreholeScore += bScore; countBoreholeScore += 1; }
     if (clay != null) { sumClay += clay; countClay += 1; }
     if (infiltration != null) { sumInfiltration += infiltration; countInfiltration += 1; }
+
+    if (props.grace_lwe_trend != null) { sumGrace += Number(props.grace_lwe_trend); countGrace += 1; }
+    if (props.ndvi_variance != null) { sumNdviVar += Number(props.ndvi_variance); countNdviVar += 1; }
 
     // Classify DTWT using actual depth or stored class string
     const dtwtClass = props.dtwt_class || (
@@ -190,6 +196,8 @@ export function analyzePolygonWaterPotential(ring, points) {
     avgDtwt: countDtwt > 0 ? Math.round((sumDtwt / countDtwt) * 10) / 10 : null,
     avgProductivity: countProductivity > 0 ? Math.round((sumProductivity / countProductivity) * 10) / 10 : null,
     avgBoreholeScore: countBoreholeScore > 0 ? Math.round((sumBoreholeScore / countBoreholeScore) * 100) : null,
+    avgGrace: countGrace > 0 ? Math.round((sumGrace / countGrace) * 100) / 100 : null,
+    avgNdviVar: countNdviVar > 0 ? Math.round((sumNdviVar / countNdviVar) * 1000) / 1000 : null,
     avgClay: countClay > 0 ? Math.round(sumClay / countClay) : null,
     avgInfiltration: countInfiltration > 0 ? Math.round(sumInfiltration / countInfiltration) : null,
     dtwtClass: Object.entries(dtwtClasses).sort((left, right) => right[1] - left[1])[0][0],
