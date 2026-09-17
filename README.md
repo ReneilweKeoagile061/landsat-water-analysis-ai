@@ -31,11 +31,11 @@ graph TD
         XGB["🧠 XGBoost ML Engine"]:::ml
     end
 
-    subgraph GCP ["Google Cloud & Earth Engine"]
+    subgraph GCP ["Google Cloud and Earth Engine"]
         EE["🌍 Google Earth Engine (Python API)"]:::cloud
         DEM["⛰️ Copernicus DEM 30m"]:::cloud
         SAR["📡 Sentinel-1 (Radar)"]:::cloud
-        Multi["🛰️ Sentinel-2 (Multispectral & Variance)"]:::cloud
+        Multi["🛰️ Sentinel-2 (Multispectral and Variance)"]:::cloud
         GRACE["🌊 GRACE-FO (Regional Trends)"]:::cloud
     end
 
