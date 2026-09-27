@@ -316,10 +316,10 @@ export function bindRoiCalculator() {
     // Headline numbers
     const grid = el("div", "roi-grid");
     const metrics = [
-      ["💧 Avoided Drilling Waste", `BWP ${fmt(avoidedCost)}`],
-      ["📈 Annual Water Value",     `BWP ${fmt(annualWaterValue)}`],
-      ["🏆 First-Year Net Benefit", `BWP ${fmt(totalRoi)}`],
-      ["⚡ Subscription Payback",   paybackDays ? `${paybackDays} days` : "—"],
+      ["Avoided Drilling Waste", `BWP ${fmt(avoidedCost)}`],
+      ["Annual Water Value",     `BWP ${fmt(annualWaterValue)}`],
+      ["First-Year Net Benefit", `BWP ${fmt(totalRoi)}`],
+      ["Subscription Payback",   paybackDays ? `${paybackDays} days` : "—"],
     ];
     metrics.forEach(([label, value]) => {
       const cell = el("div", "roi-metric-cell");
