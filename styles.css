@@ -31,8 +31,13 @@ body {
   height: 100%;
   overflow: hidden;
   font-family: var(--font-body);
+  letter-spacing: -0.15px;
   color: var(--text);
   background: var(--bg);
+}
+
+h1, h2, h3, h4 {
+  letter-spacing: -0.02em;
 }
 
 .dashboard {
@@ -355,10 +360,9 @@ body {
 .info-card {
   margin-bottom: 12px;
   padding: 12px;
-  border-radius: 3px;
-  border: 1px solid var(--panel-border);
+  border-radius: 6px;
   border-left: 3px solid var(--primary);
-  background: rgba(251, 248, 242, 0.7);
+  background: rgba(0, 0, 0, 0.025);
 }
 
 .info-label {
@@ -434,14 +438,12 @@ select {
   font-weight: 600;
   cursor: pointer;
   color: #fff;
-  background: linear-gradient(135deg, var(--primary), var(--primary-soft));
-  box-shadow: 0 4px 14px rgba(44, 122, 107, 0.30);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  background: var(--primary);
+  transition: background 0.15s ease, transform 0.15s ease;
 }
 
 .primary-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(44, 122, 107, 0.38);
+  background: var(--primary-soft);
 }
 
 .table-wrap {
@@ -570,28 +572,24 @@ th {
 
 .prime-toggle-btn {
   border: 1px solid rgba(245, 200, 76, 0.6);
-  background: linear-gradient(135deg, rgba(254, 243, 199, 0.9), rgba(253, 230, 138, 0.95));
+  background: rgba(254, 243, 199, 0.9);
   color: #854d0e;
   border-radius: 10px;
   padding: 7px 12px;
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(202, 138, 4, 0.15);
-  transition: all 0.18s ease;
+  transition: background 0.15s ease;
 }
 
 .prime-toggle-btn:hover {
-  background: linear-gradient(135deg, #fef08a, #fde047);
-  box-shadow: 0 4px 12px rgba(202, 138, 4, 0.25);
-  transform: translateY(-1px);
+  background: #fde047;
 }
 
 .prime-toggle-btn.active {
-  background: linear-gradient(135deg, #eab308, #ca8a04);
+  background: #ca8a04;
   color: #fff;
   border-color: #a16207;
-  box-shadow: 0 0 14px rgba(234, 179, 8, 0.45);
 }
 
 .preset-filter-row {
@@ -1263,7 +1261,7 @@ th {
 
 /* ROI Calculator Styles */
 .roi-card { border-left-color: var(--primary); }
-.roi-result-box { margin-top: 14px; padding: 12px; background: rgba(44, 122, 107, 0.04); border: 1px solid rgba(44, 122, 107, 0.12); border-radius: 4px; }
+.roi-result-box { margin-top: 14px; padding: 12px; background: rgba(44, 122, 107, 0.05); border-radius: 6px; }
 .roi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
 .roi-metric-cell { display: flex; flex-direction: column; gap: 4px; }
 .roi-metric-label { font-size: 0.7rem; color: var(--muted); font-weight: 600; text-transform: uppercase; }
