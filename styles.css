@@ -1260,3 +1260,11 @@ th {
     width: 260px;
   }
 }
+
+/* ROI Calculator Styles */
+.roi-card { border-left-color: var(--primary); }
+.roi-result-box { margin-top: 14px; padding: 12px; background: rgba(44, 122, 107, 0.04); border: 1px solid rgba(44, 122, 107, 0.12); border-radius: 4px; }
+.roi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.roi-metric-cell { display: flex; flex-direction: column; gap: 4px; }
+.roi-metric-label { font-size: 0.7rem; color: var(--muted); font-weight: 600; text-transform: uppercase; }
+.roi-metric-value { font-size: 1.05rem; font-weight: 700; color: var(--primary); font-family: var(--font-heading); }

@@ -274,6 +274,72 @@ export function bindWaterGainCalculator() {
   }
 }
 
+export function bindRoiCalculator() {
+  const ids = ["roiBoreholes", "roiCostPerBorehole", "roiYield", "roiBaselineDry", "roiPlatformDry", "roiWaterPrice"];
+  const out = document.getElementById("roiResult");
+  if (!out || !ids.every(id => document.getElementById(id))) return;
+
+  const fmt = (n) => n.toLocaleString("en-ZA", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+  const render = () => {
+    const n         = Number(document.getElementById("roiBoreholes").value);
+    const cost      = Number(document.getElementById("roiCostPerBorehole").value);
+    const yieldLs   = Number(document.getElementById("roiYield").value);
+    const baseDry   = Number(document.getElementById("roiBaselineDry").value) / 100;
+    const platDry   = Number(document.getElementById("roiPlatformDry").value) / 100;
+    const waterPrc  = Number(document.getElementById("roiWaterPrice").value);
+
+    clearElement(out);
+
+    if (!(n >= 1) || !(cost > 0) || !(yieldLs > 0)) {
+      out.appendChild(el("p", "muted", "Fill in all fields to calculate ROI."));
+      return;
+    }
+    if (platDry >= baseDry) {
+      out.appendChild(el("p", "muted", "Platform dry-hole rate must be lower than baseline rate to show savings."));
+      return;
+    }
+
+    // Core math (mirrors Python estimate_avoided_drilling_cost)
+    const baselineDryCount  = n * baseDry;
+    const platformDryCount  = n * platDry;
+    const avoidedHoles      = Math.max(0, baselineDryCount - platformDryCount);
+    const avoidedCost       = avoidedHoles * cost;
+    const dailyM3           = yieldLs * 8 * 3600 / 1000;    // 8h pumping default
+    const annualWaterValue  = dailyM3 * waterPrc * 365;
+    const totalRoi          = avoidedCost + annualWaterValue;
+    const annualSub         = 500 * 12;                      // BWP 500/month default
+    const paybackDays       = totalRoi > 0 ? Math.round(annualSub / (totalRoi / 365)) : null;
+
+    const roiBox = el("div", "roi-result-box");
+
+    // Headline numbers
+    const grid = el("div", "roi-grid");
+    const metrics = [
+      ["💧 Avoided Drilling Waste", `BWP ${fmt(avoidedCost)}`],
+      ["📈 Annual Water Value",     `BWP ${fmt(annualWaterValue)}`],
+      ["🏆 First-Year Net Benefit", `BWP ${fmt(totalRoi)}`],
+      ["⚡ Subscription Payback",   paybackDays ? `${paybackDays} days` : "—"],
+    ];
+    metrics.forEach(([label, value]) => {
+      const cell = el("div", "roi-metric-cell");
+      cell.append(el("span", "roi-metric-label", label), el("strong", "roi-metric-value", value));
+      grid.appendChild(cell);
+    });
+    roiBox.appendChild(grid);
+
+    // Breakdown line
+    const breakdown = el("p", "muted");
+    breakdown.textContent = `Without screening: ~${baselineDryCount.toFixed(1)} dry holes expected. With AI targeting: ~${platformDryCount.toFixed(1)} dry holes — saving ${avoidedHoles.toFixed(1)} wasted drills.`;
+    roiBox.appendChild(breakdown);
+
+    out.appendChild(roiBox);
+  };
+
+  ids.forEach(id => document.getElementById(id).addEventListener("input", render));
+  render();
+}
+
 export function renderTable(scenes) {
   const body = document.getElementById("sceneTableBody");
   if (!body) return;

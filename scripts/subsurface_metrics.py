@@ -258,3 +258,67 @@ def clay_shielding(clay_fraction_pct: float | None) -> dict[str, Any]:
         "apparent_resistivity_note": None,
         "recommended_action": None,
     }
+
+
+# ---------------------------------------------------------------------------
+# ROI / Financial Calculator
+# ---------------------------------------------------------------------------
+
+# Botswana market defaults (2024)
+DEFAULT_COST_PER_BOREHOLE_BWP = 85_000   # drilling + casing
+DEFAULT_BASELINE_DRY_RATE = 0.35          # 35% dry-hole rate without targeted screening
+DEFAULT_WATER_PRICE_BWP_PER_M3 = 8.50    # average municipal/tanker rate
+
+
+def estimate_avoided_drilling_cost(
+    n_boreholes: int,
+    cost_per_borehole_bwp: float = DEFAULT_COST_PER_BOREHOLE_BWP,
+    baseline_dry_rate: float = DEFAULT_BASELINE_DRY_RATE,
+    platform_dry_rate: float = 0.08,      # ~8% dry-hole rate with AI screening
+    yield_ls: float = 3.0,                # litres/second from target borehole
+    pumping_hours_per_day: float = 8.0,
+    water_price_bwp_per_m3: float = DEFAULT_WATER_PRICE_BWP_PER_M3,
+    platform_subscription_bwp: float = 500.0,   # monthly cost of the platform
+) -> dict[str, object]:
+    """Estimate financial ROI of using AI screening versus random borehole drilling.
+
+    Returns a dict with:
+        avoided_drilling_cost_bwp     - money saved by not drilling dry holes
+        annual_water_value_bwp        - value of water produced from high-yield site
+        total_first_year_roi_bwp      - combined first-year net benefit
+        payback_days                  - how many days until subscription cost is recovered
+        baseline_dry_count            - expected dry holes without screening
+        platform_dry_count            - expected dry holes with AI screening
+        daily_yield_m3                - daily production volume
+    """
+    if n_boreholes <= 0:
+        raise ValueError("n_boreholes must be >= 1")
+    if not (0.0 <= baseline_dry_rate <= 1.0) or not (0.0 <= platform_dry_rate <= 1.0):
+        raise ValueError("Dry rates must be between 0 and 1")
+
+    baseline_dry_count = n_boreholes * baseline_dry_rate
+    platform_dry_count = n_boreholes * platform_dry_rate
+    avoided_holes = max(0.0, baseline_dry_count - platform_dry_count)
+    avoided_cost = avoided_holes * cost_per_borehole_bwp
+
+    # Daily yield → annual water value
+    daily_m3 = yield_ls * pumping_hours_per_day * 3600 / 1000
+    annual_water_value = daily_m3 * water_price_bwp_per_m3 * 365
+
+    total_roi = avoided_cost + annual_water_value
+    annual_subscription = platform_subscription_bwp * 12
+    payback_days: float | None = None
+    if total_roi > 0:
+        payback_days = round(annual_subscription / (total_roi / 365), 1)
+
+    return {
+        "avoided_drilling_cost_bwp": round(avoided_cost, 2),
+        "annual_water_value_bwp": round(annual_water_value, 2),
+        "total_first_year_roi_bwp": round(total_roi, 2),
+        "payback_days": payback_days,
+        "baseline_dry_count": round(baseline_dry_count, 2),
+        "platform_dry_count": round(platform_dry_count, 2),
+        "daily_yield_m3": round(daily_m3, 1),
+        "annual_subscription_bwp": round(annual_subscription, 2),
+    }
+

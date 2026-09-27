@@ -9,6 +9,7 @@ import {
   renderMetrics,
   renderTable,
   bindWaterGainCalculator,
+  bindRoiCalculator,
   applyPropertyAnalysisToCalculator,
 } from "./ui/dashboard.js";
 import { bindPanelToggle, bindTabs } from "./ui/tabs.js";
@@ -65,6 +66,7 @@ async function bootstrap() {
   bindTabs();
   bindPanelToggle();
   bindWaterGainCalculator();
+  bindRoiCalculator();
 
   // Note: toggles default values come from the HTML `checked` attributes.
   // Do NOT reset them here — mapController reads them on init.

@@ -335,6 +335,42 @@
                 <li><strong>Soil Sponge Mulching (Sandy Uplands):</strong> Organic mulch to arrest rapid drainage and minimize evaporation.</li>
               </ul>
             </div>
+
+            <div class="info-card roi-card">
+              <p class="info-label">3. 💰 Drilling ROI &amp; Cost Avoidance Calculator</p>
+              <p class="muted" style="margin-bottom: 12px;">Estimate the financial benefit of AI-targeted drilling vs. uninformed borehole siting.</p>
+              <div class="form-stack">
+                <div class="share-row">
+                  <label>
+                    Boreholes planned
+                    <input id="roiBoreholes" type="number" min="1" max="20" value="3" />
+                  </label>
+                  <label>
+                    Cost per borehole (BWP)
+                    <input id="roiCostPerBorehole" type="number" min="10000" step="5000" value="85000" />
+                  </label>
+                  <label>
+                    Expected yield (L/s)
+                    <input id="roiYield" type="number" min="0.1" max="20" step="0.1" value="3.0" />
+                  </label>
+                </div>
+                <div class="share-row">
+                  <label>
+                    Baseline dry-hole rate (%)
+                    <input id="roiBaselineDry" type="number" min="0" max="100" value="35" />
+                  </label>
+                  <label>
+                    Platform dry-hole rate (%)
+                    <input id="roiPlatformDry" type="number" min="0" max="100" value="8" />
+                  </label>
+                  <label>
+                    Water price (BWP/m³)
+                    <input id="roiWaterPrice" type="number" min="0.5" step="0.5" value="8.50" />
+                  </label>
+                </div>
+              </div>
+              <div id="roiResult" style="margin-top: 14px;"></div>
+            </div>
           </section>
         </div>
       </aside>
