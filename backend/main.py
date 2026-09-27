@@ -18,7 +18,11 @@ app.add_middleware(
 
 # Initialize Earth Engine
 SERVICE_ACCOUNT = 'landsatwater-keo@optimal-pursuit-507215-b8.iam.gserviceaccount.com'
-KEY_FILE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.gee_secrets', 'service_account.json'))
+
+# Render places secret files in /etc/secrets/. Local dev uses .gee_secrets/.
+LOCAL_KEY_FILE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.gee_secrets', 'service_account.json'))
+RENDER_KEY_FILE = '/etc/secrets/service_account.json'
+KEY_FILE = RENDER_KEY_FILE if os.path.exists(RENDER_KEY_FILE) else LOCAL_KEY_FILE
 
 try:
     if os.path.exists(KEY_FILE):

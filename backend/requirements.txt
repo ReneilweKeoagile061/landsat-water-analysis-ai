@@ -2,3 +2,6 @@ fastapi
 uvicorn
 earthengine-api
 pydantic
+xgboost
+pandas
+numpy
