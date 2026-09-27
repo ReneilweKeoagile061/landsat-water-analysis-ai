@@ -174,7 +174,7 @@ def schlumberger_geometric_factor(ab_m: float, mn_m: float) -> float:
     """K = π ((AB/2)² − (MN/2)²) / (2 × (MN/2))."""
     if ab_m <= 0 or mn_m <= 0:
         raise ValueError("AB and MN must be positive")
-    if ab_m < MIN_AB_OVER_MN * mn_m:
+    if ab_m < (MIN_AB_OVER_MN * mn_m) - 1e-6:
         raise ValueError(f"Array geometry requires AB >= {MIN_AB_OVER_MN} × MN")
     half_ab = ab_m / 2.0
     half_mn = mn_m / 2.0
