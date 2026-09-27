@@ -5,3 +5,4 @@ pydantic
 xgboost
 pandas
 numpy
+scikit-learn
