@@ -5,3 +5,16 @@ dist
 *.log
 .gee_secrets/
 __pycache__/
+scratch/
+data/external/
+*.zip
+
+
+# Model artifacts — download from versioned release, don't commit large binaries
+data/models/*.pkl
+data/models_test/
+!data/models/two_stage_*.json
+!data/models/agripulse_ml_metrics.json
+
+# Notebook — coursework, not product code
+CET313_Artificial_Intelligence_Prototype*.ipynb

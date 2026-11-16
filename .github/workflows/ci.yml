@@ -21,11 +21,14 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install dependencies
+      - name: Install frontend dependencies
         run: npm ci
 
-      - name: Install Python test deps
+      - name: Install Python test deps (root)
         run: pip install -r requirements.txt
+
+      - name: Install backend dependencies
+        run: pip install -r backend/requirements.txt
 
       - name: Lint
         run: npm run lint
@@ -38,6 +41,62 @@ jobs:
 
       - name: Label-agreement check
         run: python scripts/validate_labels.py
+
+      - name: Backend feature-integrity check
+        run: |
+          python - <<'EOF'
+          import re, sys, pathlib
+          src = pathlib.Path("backend/main.py").read_text(encoding="utf-8")
+
+          # Syntax check
+          compile(src, "backend/main.py", "exec")
+          print("backend/main.py: syntax OK")
+
+          # Verify constant structural features are gone from FEATURE_COLUMNS
+          fc_match = re.search(r"FEATURE_COLUMNS\s*=\s*\[(.*?)\]", src, re.DOTALL)
+          if fc_match:
+              cols = fc_match.group(1)
+              bad = [f for f in ("dist_to_structure_m", "structural_density", "intersection_index") if f in cols]
+              if bad:
+                  print(f"ERROR: Hardcoded constant features still in FEATURE_COLUMNS: {bad}", file=sys.stderr)
+                  sys.exit(1)
+          print("FEATURE_COLUMNS integrity: PASSED (no constant structural features)")
+
+          # Verify formula-derived hydrogeological outputs are removed
+          formula_outputs = ("depth_to_water_table_m", "aquifer_productivity_ls", "clay_fraction_pct", "infiltration_score")
+          found = [f for f in formula_outputs if f'"{f}"' in src or f"'{f}'" in src]
+          if found:
+              print(f"ERROR: Formula-derived outputs still in response: {found}", file=sys.stderr)
+              sys.exit(1)
+          print("Formula output check: PASSED")
+
+          # Verify wildcard CORS is gone
+          if '"*"' in src and "allow_origins" in src:
+              # Check it's not in the allow_origins list
+              cors_match = re.search(r"allow_origins\s*=\s*\[(.*?)\]", src, re.DOTALL)
+              if cors_match and '"*"' in cors_match.group(1):
+                  print("ERROR: CORS wildcard allow_origins=[\"*\"] still present", file=sys.stderr)
+                  sys.exit(1)
+          print("CORS check: PASSED")
+
+          print("All backend integrity checks PASSED")
+          EOF
+
+      - name: Demo data safety check
+        run: |
+          python - <<'EOF'
+          import json, pathlib, sys
+          metrics_path = pathlib.Path("public/data/exports/metrics.json")
+          if metrics_path.exists():
+              data = json.loads(metrics_path.read_text())
+              if not data.get("is_demo_data"):
+                  print("ERROR: public/data/exports/metrics.json exists but is_demo_data flag is missing or false.", file=sys.stderr)
+                  print("This would ship synthetic demo data without a warning label.", file=sys.stderr)
+                  sys.exit(1)
+              print(f"Demo data flag check: PASSED (is_demo_data={data['is_demo_data']})")
+          else:
+              print("No metrics.json present yet — skipping demo data check")
+          EOF
 
       - name: Generate catalog data
         run: python scripts/generate_catalog_data.py --output-dir public/data/exports

@@ -9,12 +9,23 @@ Expected Input CSV Schema (from GEE feature stack export + BGI join):
   - yield_m3h (float or blank): Measured yield; leave blank if unknown, NOT 0
   - is_productive (1, 0, or blank): 1=productive, 0=dry, blank=unknown (excluded from training)
   - water_strike_m (float or blank): Optional
-  - 14 GEE features: s1_vv, s1_vh, s1_vv_vh_ratio, radar_contrast, ndvi, ndmi, ndwi,
-    dem_elevation, slope_deg, twi, flow_accumulation, dist_to_structure_m,
-    structural_density, intersection_index
+  - static_water_level_m (float or blank): Optional; future regressor target
+  - 12 GEE features (v2): s1_vv, s1_vh, s1_vv_vh_ratio, radar_contrast,
+    ndvi, ndmi, ndwi, ndvi_variance,
+    dem_elevation, slope_deg, twi, flow_accumulation
 
-All 14 features MUST be present (non-synthetic) for training. If any missing,
-pipeline raises an error and stops—no auto-fill fallback.
+  Removed from v1 (14 features):
+    - dist_to_structure_m, structural_density, intersection_index were hardcoded
+      constants (500, 0.3, 0) at inference. Replace with real BGI shapefile data
+      once obtained (contact: llesole@gov.bw, BWA_DGS_1M_MLF / BWA_DGS_1M_MSF).
+
+  Not included despite being computed:
+    - grace_lwe_trend: ~100 km resolution acts as location ID with 84-point dataset.
+    - twi_mean_250m, s1_vv_mean_250m: experimental; add only if region-held-out
+      AUC improves under nested CV.
+
+All 12 features MUST be present (non-synthetic) for training. If any missing,
+pipeline raises an error and stops -- no auto-fill fallback.
 """
 
 import argparse
@@ -89,6 +100,13 @@ def validate_required_columns(df: pd.DataFrame) -> None:
     logger.info(f"✓ All required base columns present.")
 
 
+# Feature columns v2 -- 12 real GEE-derived features.
+# Removed: dist_to_structure_m, structural_density, intersection_index
+#   (were constants 500/0.3/0 at inference; zero real signal).
+#   When BWA_DGS_1M_MLF/MSF shapefiles arrive from BGI (llesole@gov.bw),
+#   compute dist-to-dyke and lineament density and add here.
+# Removed: grace_lwe_trend (100 km resolution = location ID with 84 rows).
+# Added: ndvi_variance -- seasonal NDVI std-dev; persistent moisture signal.
 FEATURE_COLUMNS = [
     "s1_vv",
     "s1_vh",
@@ -97,13 +115,11 @@ FEATURE_COLUMNS = [
     "ndvi",
     "ndmi",
     "ndwi",
+    "ndvi_variance",    # Sentinel-2 seasonal NDVI std-dev
     "dem_elevation",
     "slope_deg",
     "twi",
     "flow_accumulation",
-    "dist_to_structure_m",
-    "structural_density",
-    "intersection_index",
 ]
 
 

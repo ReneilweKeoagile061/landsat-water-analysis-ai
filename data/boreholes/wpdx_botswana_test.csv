@@ -1,0 +1,1 @@
+source,source_id,country,longitude,latitude,drill_date,depth_m,yield_m3h,static_water_level_m,water_source,status_raw,is_productive,label_quality,yield_column_used

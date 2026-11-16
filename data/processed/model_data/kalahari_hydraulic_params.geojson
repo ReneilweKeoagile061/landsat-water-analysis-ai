@@ -1,0 +1,15 @@
+{
+"type": "FeatureCollection",
+"name": "kalahari_hydraulic_params",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "bh_id": "WW39842", "country": "NAMIBIA", "long": 18.7934, "lat": -24.04592, "aquifer": "KALAHARI", "t_m2/d": 6.65, "kx_m/d": 0.13, "water_leve": 20.53, "depth_m": 102.0, "kalahari": 54.39928, "kx_calc": 0.12224 }, "geometry": { "type": "Point", "coordinates": [ 1499011.927893810439855, -2694330.525938399601728 ] } },
+{ "type": "Feature", "properties": { "bh_id": "WW39845", "country": "NAMIBIA", "long": 19.62489, "lat": -23.40098, "aquifer": "KALAHARI", "t_m2/d": 0.135, "kx_m/d": 0.001, "water_leve": 50.71, "depth_m": 53.0, "kalahari": 23.44672, "kx_calc": 0.00576 }, "geometry": { "type": "Point", "coordinates": [ 1589913.587113761808723, -2628360.939833780750632 ] } },
+{ "type": "Feature", "properties": { "bh_id": "WW39849", "country": "NAMIBIA", "long": 19.33483, "lat": -24.80009, "aquifer": "KALAHARI", "t_m2/d": 6.29, "kx_m/d": 0.12, "water_leve": 103.5, "depth_m": 168.4, "kalahari": 158.70427, "kx_calc": 0.03963 }, "geometry": { "type": "Point", "coordinates": [ 1548270.273303942754865, -2782759.031986770685762 ] } },
+{ "type": "Feature", "properties": { "bh_id": "WW39852", "country": "NAMIBIA", "long": 18.41784, "lat": -25.29149, "aquifer": "KALAHARI", "t_m2/d": 43.0, "kx_m/d": 1.44, "water_leve": 11.1, "depth_m": 55.0, "kalahari": 48.71548, "kx_calc": 0.88268 }, "geometry": { "type": "Point", "coordinates": [ 1450831.105399719672278, -2830812.067942830268294 ] } },
+{ "type": "Feature", "properties": { "bh_id": "WW39854", "country": "NAMIBIA", "long": 19.43266, "lat": -25.46122, "aquifer": "KALAHARI", "t_m2/d": 0.2, "kx_m/d": 0.006, "water_leve": 61.06, "depth_m": 129.0, "kalahari": 133.34285, "kx_calc": 0.0015 }, "geometry": { "type": "Point", "coordinates": [ 1552477.999621642753482, -2857518.288709941320121 ] } },
+{ "type": "Feature", "properties": { "bh_id": "WW40960", "country": "NAMIBIA", "long": 18.56329, "lat": -24.51987, "aquifer": "KALAHARI", "t_m2/d": 2.08, "kx_m/d": 0.17, "water_leve": 35.98, "depth_m": 47.0, "kalahari": 24.3872, "kx_calc": 0.08529 }, "geometry": { "type": "Point", "coordinates": [ 1471720.105335291009396, -2745652.307893632445484 ] } },
+{ "type": "Feature", "properties": { "bh_id": "WW40963", "country": "NAMIBIA", "long": 18.50329, "lat": -24.09057, "aquifer": "KALAHARI", "t_m2/d": 16.0, "kx_m/d": 0.5, "water_leve": 7.2, "depth_m": 58.0, "kalahari": 38.922, "kx_calc": 0.41108 }, "geometry": { "type": "Point", "coordinates": [ 1468892.019940321566537, -2697256.649650711100549 ] } },
+{ "type": "Feature", "properties": { "bh_id": "WW40965", "country": "NAMIBIA", "long": 19.22812, "lat": -23.77163, "aquifer": "KALAHARI", "t_m2/d": 0.01, "kx_m/d": 0.001, "water_leve": 49.92, "depth_m": 65.0, "kalahari": 44.0871, "kx_calc": 0.00023 }, "geometry": { "type": "Point", "coordinates": [ 1545912.691565861226991, -2666847.071212790440768 ] } }
+]
+}

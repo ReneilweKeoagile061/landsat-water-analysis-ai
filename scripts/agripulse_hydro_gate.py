@@ -17,37 +17,39 @@ logger = logging.getLogger("agripulse_gate")
 def apply_hydrogeological_gate(
     df_farm_candidates: pd.DataFrame,
     min_prospectivity: float = 0.65,
-    max_dist_to_structure_m: float = 1200.0,
-    min_structural_density: float = 0.25,
     max_slope_deg: float = 8.0,
     min_twi: float = 5.0,
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
-    Applies AgriPulse domain hard constraints and returns (accepted, rejected).
+    Applies domain hard constraints and returns (accepted, rejected).
 
-    Structural condition (OR is intentional): a candidate passes structure if it is
-    close to a mapped structure OR has sufficient structural density.
-    The overall hard gate is AND across structure, slope, and TWI.
+    Gate criteria (all must pass):
+      - slope_deg <= max_slope_deg  (too-steep sites shed runoff)
+      - twi >= min_twi              (low TWI = poor recharge zone)
+      - ml_prospectivity_score >= min_prospectivity
+
+    Structural gate (dist_to_structure_m, structural_density) has been removed:
+    those columns were hardcoded constants at inference, so the gate was
+    always applying the same filter to every pixel. It will be restored once
+    real BGI shapefile features are available (llesole@gov.bw).
     """
     df = df_farm_candidates.copy().reset_index(drop=True)
 
-    struct_pass = (df["dist_to_structure_m"] <= max_dist_to_structure_m) | (
-        df["structural_density"] >= min_structural_density
-    )
     slope_pass = df["slope_deg"] <= max_slope_deg
-    twi_pass = df["twi"] >= min_twi
+    twi_pass   = df["twi"] >= min_twi
+    score_pass = df["ml_prospectivity_score"] >= min_prospectivity
 
-    df["hydro_gate_passed"] = struct_pass & slope_pass & twi_pass
+    df["hydro_gate_passed"] = slope_pass & twi_pass & score_pass
     df["gate_reasons"] = ""
 
     for idx in df.index:
         reasons = []
-        if not bool(struct_pass.loc[idx]):
-            reasons.append("No Fracture/Structure in Proximity (>1.2km)")
         if not bool(slope_pass.loc[idx]):
-            reasons.append("High Slope (>8° Runoff Shedding)")
+            reasons.append("High Slope (>8 deg runoff shedding)")
         if not bool(twi_pass.loc[idx]):
             reasons.append("Low Topographic Wetness (<5.0 TWI)")
+        if not bool(score_pass.loc[idx]):
+            reasons.append("Low ML prospectivity (<0.65)")
         df.at[idx, "gate_reasons"] = (
             "; ".join(reasons) if reasons else "Approved by Hydrogeological Gate"
         )
@@ -59,10 +61,12 @@ def apply_hydrogeological_gate(
         logger.info("Hydro gate: 0 accepted, %s rejected", len(rejected_df))
         return accepted_df.reset_index(drop=True), rejected_df
 
+    # Priority score: ML score weighted with neighbourhood TWI context.
+    # twi_mean_250m is experimental; fall back to pixel twi if not present.
+    twi_col = "twi_mean_250m" if "twi_mean_250m" in accepted_df.columns else "twi"
     accepted_df["final_priority_score"] = (
-        accepted_df["ml_prospectivity_score"] * 0.50
-        + accepted_df["structural_density"] * 0.30
-        + (1.0 / (1.0 + accepted_df["dist_to_structure_m"] / 500.0)) * 0.20
+        accepted_df["ml_prospectivity_score"] * 0.70
+        + (accepted_df[twi_col] / 15.0).clip(0.0, 0.30)
     )
     accepted_df = accepted_df.sort_values(
         by="final_priority_score", ascending=False
@@ -117,8 +121,6 @@ def rank_and_export_drill_targets(
                 "latitude": float(row["latitude"]),
                 "ml_prospectivity_score": ml_score,
                 "final_priority_score": float(row["final_priority_score"]),
-                "structural_density": float(row["structural_density"]),
-                "dist_to_structure_m": float(row["dist_to_structure_m"]),
                 "slope_deg": float(row["slope_deg"]),
                 "twi": float(row["twi"]),
                 "recommended_action": f"ERT Geophysics Line 100m centered on ({row['latitude']:.5f}, {row['longitude']:.5f})",

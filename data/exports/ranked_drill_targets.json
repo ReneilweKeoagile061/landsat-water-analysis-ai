@@ -1,38 +1,104 @@
 [
   {
-    "target_rank": 1,
-    "longitude": 26.094444444444445,
-    "latitude": -24.4,
-    "ml_prospectivity_score": 0.9690696597099304,
-    "final_priority_score": 0.7893841035795207,
-    "structural_density": 0.755830149370827,
-    "dist_to_structure_m": 780.4059782078456,
-    "slope_deg": 0.7792318681604014,
-    "twi": 5.418997919477578,
-    "recommended_action": "ERT Geophysics Line 100m centered on (-24.40000, 26.09444)"
+    "rank": 1,
+    "target_id": "TARGET-STAS-01",
+    "latitude": -21.736256,
+    "longitude": 28.07983,
+    "water_strike_probability_pct": 69.6,
+    "yield_tier": "Commercial High (\u2265 5.0 m\u00b3/h)",
+    "estimated_yield_m3h": 19.2,
+    "recommended_drilling_depth_m": 157.0,
+    "depth_to_water_strike_m": 70.0,
+    "estimated_tds_salinity_mg_l": 620.0,
+    "potability_classification": "Good Potable Water (< 1,000 mg/L)",
+    "structural_fracture_distance_m": 42.0,
+    "fracture_family": "NE-SW (45\u00b0)",
+    "lineament_density_km_km2": 3.4,
+    "ert_geophysics_line": {
+      "length_m": 200.0,
+      "strike_deg": 45.0,
+      "center_coordinate": [
+        28.07983,
+        -21.736256
+      ],
+      "transect_start": [
+        28.079145,
+        -21.735619
+      ],
+      "transect_end": [
+        28.080515,
+        -21.736892
+      ],
+      "profile_type": "200m Dipole-Dipole Resistivity (ERT) Transect"
+    },
+    "recommended_action": "Execute 200m ERT geophysics line perpendicular to NE-SW (45\u00b0) lineament before rig mobilization."
   },
   {
-    "target_rank": 2,
-    "longitude": 26.05,
-    "latitude": -24.405555555555555,
-    "ml_prospectivity_score": 0.8559861779212952,
-    "final_priority_score": 0.7249296384898235,
-    "structural_density": 0.7865483128175191,
-    "dist_to_structure_m": 1140.0955958972609,
-    "slope_deg": 7.833040664100181,
-    "twi": 7.274532534075556,
-    "recommended_action": "ERT Geophysics Line 100m centered on (-24.40556, 26.05000)"
+    "rank": 2,
+    "target_id": "TARGET-STAS-02",
+    "latitude": -21.761737,
+    "longitude": 28.090803,
+    "water_strike_probability_pct": 65.0,
+    "yield_tier": "Commercial High (\u2265 5.0 m\u00b3/h)",
+    "estimated_yield_m3h": 17.9,
+    "recommended_drilling_depth_m": 169.0,
+    "depth_to_water_strike_m": 75.0,
+    "estimated_tds_salinity_mg_l": 620.0,
+    "potability_classification": "Good Potable Water (< 1,000 mg/L)",
+    "structural_fracture_distance_m": 60.0,
+    "fracture_family": "NW-SE (135\u00b0)",
+    "lineament_density_km_km2": 3.0,
+    "ert_geophysics_line": {
+      "length_m": 200.0,
+      "strike_deg": 135.0,
+      "center_coordinate": [
+        28.090803,
+        -21.761737
+      ],
+      "transect_start": [
+        28.091488,
+        -21.761101
+      ],
+      "transect_end": [
+        28.090118,
+        -21.762373
+      ],
+      "profile_type": "200m Dipole-Dipole Resistivity (ERT) Transect"
+    },
+    "recommended_action": "Execute 200m ERT geophysics line perpendicular to NW-SE (135\u00b0) lineament before rig mobilization."
   },
   {
-    "target_rank": 3,
-    "longitude": 26.072222222222223,
-    "latitude": -24.41111111111111,
-    "ml_prospectivity_score": 0.6378188133239746,
-    "final_priority_score": 0.7239365138817515,
-    "structural_density": 0.748847724546799,
-    "dist_to_structure_m": 54.407347582678085,
-    "slope_deg": 4.105158147280558,
-    "twi": 10.508868637657017,
-    "recommended_action": "ERT Geophysics Line 100m centered on (-24.41111, 26.07222)"
+    "rank": 3,
+    "target_id": "TARGET-STAS-03",
+    "latitude": -21.707524,
+    "longitude": 28.078505,
+    "water_strike_probability_pct": 61.0,
+    "yield_tier": "Commercial High (\u2265 5.0 m\u00b3/h)",
+    "estimated_yield_m3h": 16.8,
+    "recommended_drilling_depth_m": 181.0,
+    "depth_to_water_strike_m": 80.0,
+    "estimated_tds_salinity_mg_l": 620.0,
+    "potability_classification": "Good Potable Water (< 1,000 mg/L)",
+    "structural_fracture_distance_m": 78.0,
+    "fracture_family": "N-S (0\u00b0)",
+    "lineament_density_km_km2": 2.6,
+    "ert_geophysics_line": {
+      "length_m": 200.0,
+      "strike_deg": 0.0,
+      "center_coordinate": [
+        28.078505,
+        -21.707524
+      ],
+      "transect_start": [
+        28.077537,
+        -21.707524
+      ],
+      "transect_end": [
+        28.079474,
+        -21.707524
+      ],
+      "profile_type": "200m Dipole-Dipole Resistivity (ERT) Transect"
+    },
+    "recommended_action": "Execute 200m ERT geophysics line perpendicular to N-S (0\u00b0) lineament before rig mobilization."
   }
 ]

@@ -57,11 +57,12 @@ def test_positive_yield_is_productive():
 
 
 def test_missing_ml_features_fail_loudly():
+    # Only provide a small subset -- pipeline must reject with a clear error.
+    # dist_to_structure_m / structural_density intentionally omitted:
+    # they were constants in v1 and are no longer in FEATURE_COLUMNS.
     df = pd.DataFrame({
         "latitude": [-23.9],
         "longitude": [24.95],
-        "dist_to_structure_m": [500],
-        "structural_density": [1.5],
         "slope_deg": [3.0],
         "twi": [6.5],
     })
@@ -94,12 +95,12 @@ def test_unknown_productivity_excluded_from_training_frame():
 
 
 def test_hydro_gate_returns_accepted_and_rejected():
+    # Gate criteria (v2): slope <= 8, twi >= 5, ml_score >= 0.65.
+    # dist_to_structure_m and structural_density removed: were constants.
     df = pd.DataFrame({
-        "slope_deg": [3.0, 9.0, 3.0, 3.0],
-        "twi": [6.5, 6.5, 4.0, 6.5],
-        "dist_to_structure_m": [500, 500, 500, 1500],
-        "structural_density": [0.5, 0.5, 0.5, 0.10],
-        "ml_prospectivity_score": [0.8, 0.8, 0.8, 0.8],
+        "slope_deg": [3.0, 9.0, 3.0, 3.0],   # row 1 fails slope
+        "twi":       [6.5, 6.5, 4.0, 6.5],   # row 2 fails twi
+        "ml_prospectivity_score": [0.8, 0.8, 0.8, 0.5],  # row 3 fails score
     })
 
     accepted, rejected = apply_hydrogeological_gate(df)
@@ -108,19 +109,31 @@ def test_hydro_gate_returns_accepted_and_rejected():
     assert len(rejected) == 3
     assert accepted["slope_deg"].iloc[0] == 3.0
     assert accepted["twi"].iloc[0] == 6.5
-    assert accepted["dist_to_structure_m"].iloc[0] == 500
     assert "gate_reasons" in rejected.columns
 
 
-def test_hydro_gate_structure_or_density():
-    """Far from structure still passes if structural density is high (intentional OR)."""
+def test_hydro_gate_all_criteria_pass():
+    """A row passing slope, TWI, and ML score should be accepted."""
     df = pd.DataFrame({
         "slope_deg": [3.0],
         "twi": [6.5],
-        "dist_to_structure_m": [1500],
-        "structural_density": [0.5],
         "ml_prospectivity_score": [0.8],
     })
     accepted, rejected = apply_hydrogeological_gate(df)
     assert len(accepted) == 1
     assert len(rejected) == 0
+
+
+def test_hydro_gate_low_score_rejected():
+    """A row with high slope AND low score should be rejected for two reasons."""
+    df = pd.DataFrame({
+        "slope_deg": [12.0],
+        "twi": [6.5],
+        "ml_prospectivity_score": [0.4],
+    })
+    accepted, rejected = apply_hydrogeological_gate(df)
+    assert len(accepted) == 0
+    assert len(rejected) == 1
+    reasons = rejected["gate_reasons"].iloc[0]
+    assert "slope" in reasons.lower()
+    assert "prospectivity" in reasons.lower()

@@ -15,6 +15,8 @@ import {
 import { bindPanelToggle, bindTabs } from "./ui/tabs.js";
 import { debounce } from "./utils/geo.js";
 import { renderLoadStatus, setLoadingState } from "./utils/dom.js";
+import { auth } from "./auth/authManager.js";
+import { initLandingPage } from "./ui/landingPage.js";
 import "./styles.css";
 
 let appData = null;
@@ -32,6 +34,9 @@ function getToggles() {
     drillTargets: document.getElementById("toggleDrillTargets"),
     regions: document.getElementById("toggleRegions"),
     classes: document.getElementById("toggleClasses"),
+    geeNdwi: document.getElementById("toggleGeeNdwi"),
+    geeSar: document.getElementById("toggleGeeSar"),
+    geeTwi: document.getElementById("toggleGeeTwi"),
   };
 }
 
@@ -55,6 +60,47 @@ function refreshDashboard() {
   shouldFitBounds = false;
 }
 
+function updateUserProfileUi(user) {
+  const nameEl = document.getElementById("topbarUserName");
+  const roleEl = document.getElementById("topbarUserRole");
+  if (!user) return;
+  if (nameEl) nameEl.textContent = user.name || "Commercial Client";
+  if (roleEl) roleEl.textContent = user.roleLabel || (user.role === "admin" ? "Lead Hydrogeologist" : "Commercial Client");
+}
+
+function bindViewMode() {
+  const adminDrawer = document.getElementById("adminLayersDrawer");
+
+  const setMode = (mode) => {
+    const isComm = mode === "commercial";
+    document.body.classList.toggle("commercial-mode", isComm);
+    document.body.classList.toggle("admin-mode", !isComm);
+
+    if (adminDrawer) {
+      adminDrawer.hidden = isComm;
+    }
+
+    if (isComm) {
+      const activeTab = document.querySelector(".tab.active");
+      if (activeTab && (activeTab.dataset.tab === "filters" || activeTab.dataset.tab === "scenes" || activeTab.dataset.tab === "model")) {
+        const guideTab = document.querySelector('[data-tab="guide"]') || document.querySelector('[data-tab="overview"]');
+        if (guideTab) guideTab.click();
+      }
+    }
+  };
+
+  // Sits on window for programmatic role sync
+  window.setViewMode = setMode;
+
+  // Initialize according to current auth role
+  const user = auth.getUser();
+  if (user && user.role === "admin") {
+    setMode("admin");
+  } else {
+    setMode("commercial");
+  }
+}
+
 async function bootstrap() {
   const cloudInput = document.getElementById("cloudInput");
   const cloudValue = document.getElementById("cloudValue");
@@ -67,14 +113,38 @@ async function bootstrap() {
   bindPanelToggle();
   bindWaterGainCalculator();
   bindRoiCalculator();
+  bindViewMode();
+
+  // Initialize Landing Page & Auth system
+  initLandingPage((user) => {
+    updateUserProfileUi(user);
+    if (window.setViewMode) {
+      window.setViewMode(user.role === "admin" ? "admin" : "commercial");
+    }
+    setTimeout(() => mapController?.invalidate(), 150);
+  });
+
+  const switchPortalBtn = document.getElementById("switchPortalBtn");
+  if (switchPortalBtn) {
+    switchPortalBtn.addEventListener("click", () => {
+      if (window.showPortalLanding) window.showPortalLanding();
+    });
+  }
+
+  // Update profile for current session if exists
+  if (auth.isAuthenticated()) {
+    updateUserProfileUi(auth.getUser());
+  }
 
   // Note: toggles default values come from the HTML `checked` attributes.
   // Do NOT reset them here — mapController reads them on init.
 
-  cloudInput.addEventListener("input", () => {
+  if (cloudInput) {
+    cloudInput.addEventListener("input", () => {
+      if (cloudValue) cloudValue.textContent = `${cloudInput.value}%`;
+    });
     if (cloudValue) cloudValue.textContent = `${cloudInput.value}%`;
-  });
-  if (cloudValue && cloudInput) cloudValue.textContent = `${cloudInput.value}%`;
+  }
 
   const potentialInput = document.getElementById("potentialInput");
   const potentialValue = document.getElementById("potentialValue");
@@ -95,10 +165,12 @@ async function bootstrap() {
     }
   };
 
-  potentialInput.addEventListener("input", () => {
+  if (potentialInput) {
+    potentialInput.addEventListener("input", () => {
+      syncPotentialUi(potentialInput.value);
+    });
     syncPotentialUi(potentialInput.value);
-  });
-  if (potentialInput) syncPotentialUi(potentialInput.value);
+  }
 
   document.querySelectorAll(".preset-pill").forEach((pill) => {
     pill.addEventListener("click", () => {
@@ -108,16 +180,18 @@ async function bootstrap() {
     });
   });
 
-  primeToggleBtn.addEventListener("click", () => {
-    const current = Number(potentialInput?.value || 0);
-    const next = current >= 90 ? 0 : 90;
-    syncPotentialUi(next);
-    refreshDashboard();
-  });
+  if (primeToggleBtn) {
+    primeToggleBtn.addEventListener("click", () => {
+      const current = Number(potentialInput?.value || 0);
+      const next = current >= 90 ? 0 : 90;
+      syncPotentialUi(next);
+      refreshDashboard();
+    });
+  }
 
   const debouncedRefresh = debounce(refreshDashboard, 300);
-  cloudInput.addEventListener("input", debouncedRefresh);
-  potentialInput.addEventListener("input", debouncedRefresh);
+  if (cloudInput) cloudInput.addEventListener("input", debouncedRefresh);
+  if (potentialInput) potentialInput.addEventListener("input", debouncedRefresh);
 
   setLoadingState(true);
   appData = await loadData();
@@ -144,23 +218,55 @@ async function bootstrap() {
 
   if (!appData.isReady) {
     renderError("Unable to load required dashboard data. Check data exports and try again.");
-    retryBtn.addEventListener("click", () => window.location.reload());
+    if (retryBtn) retryBtn.addEventListener("click", () => window.location.reload());
     return;
   }
 
   mapController = createMapController(map, tooltipEl, getToggles(), applyPropertyAnalysisToCalculator, downloadSiteReport);
   mapController.bindToggles();
 
-  runBtn.addEventListener("click", () => {
-    shouldFitBounds = true;
-    refreshDashboard();
-  });
+  const analyzePointBtn = document.getElementById("analyzePointBtn");
+  if (analyzePointBtn) {
+    analyzePointBtn.addEventListener("click", () => {
+      const latVal = parseFloat(document.getElementById("pointLat")?.value) || -21.7439;
+      const lonVal = parseFloat(document.getElementById("pointLon")?.value) || 28.0716;
+      mapController.analyzePoint(latVal, lonVal, 50.0);
+    });
+  }
 
-  ["aoiInput", "seasonInput", "tierInput"].forEach((id) => {
-    document.getElementById(id).addEventListener("change", () => {
+  const sidePanelAnalyzeBtn = document.getElementById("sidePanelAnalyzeBtn");
+  if (sidePanelAnalyzeBtn) {
+    sidePanelAnalyzeBtn.addEventListener("click", () => {
+      const latVal = parseFloat(document.getElementById("pointLat")?.value) || -21.7439;
+      const lonVal = parseFloat(document.getElementById("pointLon")?.value) || 28.0716;
+      mapController.analyzePoint(latVal, lonVal, 50.0);
+    });
+  }
+
+  const sidePanelDossierBtn = document.getElementById("sidePanelDossierBtn");
+  if (sidePanelDossierBtn) {
+    sidePanelDossierBtn.addEventListener("click", () => {
+      const latVal = parseFloat(document.getElementById("pointLat")?.value) || -21.7439;
+      const lonVal = parseFloat(document.getElementById("pointLon")?.value) || 28.0716;
+      mapController.analyzePoint(latVal, lonVal, 50.0);
+    });
+  }
+
+  if (runBtn) {
+    runBtn.addEventListener("click", () => {
       shouldFitBounds = true;
       refreshDashboard();
     });
+  }
+
+  ["aoiInput", "seasonInput", "tierInput"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener("change", () => {
+        shouldFitBounds = true;
+        refreshDashboard();
+      });
+    }
   });
 
   refreshDashboard();

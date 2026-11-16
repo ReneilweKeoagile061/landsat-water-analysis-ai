@@ -1,3 +1,5 @@
+import { icons } from "./icons.js";
+
 export function bindTabs() {
   const tabs = document.querySelectorAll(".tab");
   const panels = document.querySelectorAll(".tab-panel");
@@ -68,7 +70,9 @@ export function bindPanelToggle() {
       dashboard.classList.toggle("panel-hidden", collapsed);
     }
     toggle.setAttribute("aria-expanded", String(!collapsed));
-    toggle.textContent = collapsed ? "Show panel" : "Hide panel";
+    toggle.innerHTML = collapsed 
+      ? `<span class="toggle-icon">${icons.chevronRight}</span> Show Panel` 
+      : `<span class="toggle-icon">${icons.chevronLeft}</span> Hide Panel`;
     
     // Trigger window resize to fix map layout instantly
     setTimeout(() => window.dispatchEvent(new Event('resize')), 50);
