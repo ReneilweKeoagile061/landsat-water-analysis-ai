@@ -31,9 +31,9 @@ app.add_middleware(
     allow_origins=[
         "https://landsatwater.com",
         "https://landsat-water-analysis-ai.onrender.com",
+        "https://landsat-water-analysis.vercel.app",
         "http://localhost:5173",
         "http://localhost:4173",
-        "*",
     ],
     allow_credentials=False,
     allow_methods=["*"],

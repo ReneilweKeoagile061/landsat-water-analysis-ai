@@ -1,5 +1,5 @@
 pandas
-g geopandas
+geopandas
 rasterio
 matplotlib
 seaborn

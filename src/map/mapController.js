@@ -14,6 +14,7 @@ import {
   computeAoiScores,
   minMax,
   normalize,
+  polygonAreaHectares,
   sampleArray,
   scoreToColor,
   softEllipseFromRing,
@@ -209,7 +210,6 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
   let pointRadiusCircle = null;
   let pointCenterMarker = null;
   let dynamicTargetsLayer = null;
-  let lastCommercialData = null;
   let activeBaseLayer = "satellite";
   let lastBoundsKey = "";
   let currentPoints = [];
@@ -730,7 +730,6 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
   };
 
   const renderPointAnalysisResult = (data) => {
-    lastCommercialData = data;
     const card = document.getElementById("pointAnalysisCard");
     const content = document.getElementById("pointAnalysisContent");
     const dossierBtn = document.getElementById("dossierFromPointBtn");

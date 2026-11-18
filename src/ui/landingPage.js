@@ -3,7 +3,7 @@
  * Petrol Blue & Bone White aesthetic with Bone Yellow accents.
  */
 
-import { auth, DEFAULT_USERS } from "../auth/authManager.js";
+import { auth } from "../auth/authManager.js";
 import { icons } from "./icons.js";
 
 export function initLandingPage(onLoginSuccess) {
