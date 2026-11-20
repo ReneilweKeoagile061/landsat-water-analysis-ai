@@ -365,7 +365,8 @@ async def healthz():
         "stage1_model_loaded": bool(clf_stage1 is not None),
         "stage2_model_loaded": bool(clf_stage2 is not None),
         "earth_engine_connected": ee_available,
-        "api_version": "2.0.0"
+        "api_version": "2.0.0",
+        "git_commit": os.environ.get("RENDER_GIT_COMMIT", "4e00194")
     }
 
 @app.get("/api/v1/gee_tiles")
