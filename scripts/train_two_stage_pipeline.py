@@ -2,8 +2,6 @@ import os
 import sys
 import numpy as np
 import pandas as pd
-import geopandas as gpd
-from shapely.geometry import Point
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, recall_score, precision_score, f1_score
 from xgboost import XGBClassifier
@@ -103,9 +101,9 @@ labeled = pd.merge(labeled, df_84_unique[['lat_round', 'long_round'] + sat_cols]
 # Combine elevation sources
 labeled['elevation_combined'] = labeled['dem_elevation'].combine_first(labeled['elevation'])
 
-# Clean and Impute All Features
+# Clean and Impute All Features (NO post-drilling clean_depth_m leakage)
 all_feature_names = [
-    'lat', 'long', 'clean_depth_m', 'dist_to_dolerite_m', 'is_in_recharge_zone',
+    'lat', 'long', 'dist_to_dolerite_m', 'is_in_recharge_zone',
     'clean_tds_mgl', 'so4_mg_l', 'NO3_mg_l', 'f_mg_l', 'elevation_combined',
     'ndwi', 'ndvi', 'twi', 's1_vv', 's1_vh'
 ]

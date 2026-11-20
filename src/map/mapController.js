@@ -413,20 +413,31 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     try {
       let commData = null;
       try {
-        const response = await fetch("/api/v1/analyze_point", {
+        const geojsonCoords = [ring.map(pt => [pt[0], pt[1]])]; // [[lon, lat], ...]
+        const response = await fetch("/api/v1/analyze_polygon", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            latitude: Number(polyCenterLat),
-            longitude: Number(polyCenterLon),
-            radius_km: 15.0
+            coordinates: geojsonCoords
           })
         });
         if (response.ok) {
-          commData = await response.json();
+          const respJson = await response.json();
+          commData = respJson.commercial_analysis || respJson;
+        } else {
+          // Fallback to /api/analyze-polygon or /api/v1/analyze_point
+          const fb = await fetch("/api/analyze-polygon", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ coordinates: geojsonCoords })
+          });
+          if (fb.ok) {
+            const fbJson = await fb.json();
+            commData = fbJson.commercial_analysis || fbJson;
+          }
         }
       } catch (e) {
-        console.warn("Backend /api/v1/analyze_point unavailable for polygon centroid:", e);
+        console.warn("Backend /api/v1/analyze_polygon query notice:", e);
       }
 
       const analysis = analyzePolygonWaterPotential(ring, currentPoints);
@@ -455,6 +466,75 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     }
   };
 
+  const renderTargetsOnMap = (targets, centerCoords = null) => {
+    if (dynamicTargetsLayer) map.removeLayer(dynamicTargetsLayer);
+    dynamicTargetsLayer = L.layerGroup().addTo(map);
+
+    const rankColors = { 1: "#fbbf24", 2: "#94a3b8", 3: "#b45309" };
+    const boundsPoints = centerCoords ? [[centerCoords.lat, centerCoords.lon]] : [];
+
+    targets.forEach(t => {
+      boundsPoints.push([t.latitude, t.longitude]);
+      const color = rankColors[t.rank] || "#2c7a6b";
+      const strikeProb = t.water_strike_probability_pct || 75.0;
+      const yieldTier = t.yield_tier || "Commercial High";
+
+      const htmlIcon = L.divIcon({
+        html: `<div style="font-size: 13px; font-weight: 700; color: #fff; background: ${color}; border: 2px solid #fff; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer;">${t.rank}</div>`,
+        className: "",
+        iconSize: [28, 28],
+        iconAnchor: [14, 14]
+      });
+
+      const marker = L.marker([t.latitude, t.longitude], { icon: htmlIcon });
+      marker.bindPopup(`
+        <div class="point-popup">
+          <div class="popup-title">
+            <strong>Target ${t.rank}: ${t.target_id}</strong>
+            <span class="tag ${yieldTier.toLowerCase().includes('high') ? 'high' : yieldTier.toLowerCase().includes('medium') ? 'medium' : 'low'}">${yieldTier}</span>
+          </div>
+          <div class="popup-action-highlight">
+            <strong>${t.recommended_action}</strong>
+          </div>
+          <div class="popup-grid">
+            <div><span>Strike Prob:</span> <strong>${strikeProb.toFixed(1)}%</strong></div>
+            <div><span>Est. Yield:</span> <strong>${t.estimated_yield_m3h} m³/h</strong></div>
+            <div><span>Drill Depth:</span> <strong>~${t.recommended_drilling_depth_m} m</strong></div>
+            <div><span>Water Strike:</span> <strong>~${t.depth_to_water_strike_m} m</strong></div>
+            <div><span>TDS Salinity:</span> <strong>${t.estimated_tds_salinity_mg_l} mg/L</strong></div>
+            <div><span>Fracture:</span> <strong>${t.fracture_family}</strong></div>
+          </div>
+          <div class="popup-aquifer">
+            <span>Potability:</span> <em>${t.potability_classification}</em>
+          </div>
+          <div class="popup-coords">${t.latitude.toFixed(5)}°, ${t.longitude.toFixed(5)}°</div>
+        </div>
+      `, { className: "leaflet-custom-popup", maxWidth: 300 });
+
+      dynamicTargetsLayer.addLayer(marker);
+
+      // Render 200m ERT line
+      if (t.ert_geophysics_line && t.ert_geophysics_line.transect_start && t.ert_geophysics_line.transect_end) {
+        const ert = t.ert_geophysics_line;
+        const ertLine = L.polyline(
+          [
+            [ert.transect_start[1], ert.transect_start[0]],
+            [ert.transect_end[1], ert.transect_end[0]]
+          ],
+          {
+            color: "#ef4444",
+            weight: 3.5,
+            dashArray: "6, 4",
+            opacity: 0.95
+          }
+        ).bindTooltip(`ERT Profile: 200m @ ${ert.strike_deg}°`, { sticky: true });
+        dynamicTargetsLayer.addLayer(ertLine);
+      }
+    });
+
+    return boundsPoints;
+  };
+
   const showAnalysisResult = (analysis) => {
     const card = document.getElementById("drawAnalysisCard");
     const content = document.getElementById("drawAnalysisContent");
@@ -467,13 +547,17 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     const centerLat = analysis.polyCenterLat || (drawPoints[0] ? drawPoints[0][0] : -21.7439);
     const centerLon = analysis.polyCenterLon || (drawPoints[0] ? drawPoints[0][1] : 28.0716);
     const comm = analysis.commData;
+    const targets = (comm && comm.top_recommended_drill_targets) ? comm.top_recommended_drill_targets : [];
+    const prime = targets.length > 0 ? targets[0] : null;
 
-    const strikeScore = comm ? comm.water_strike_probability_pct : (analysis.avgBoreholeScore || 72.5);
-    const estYieldVal = comm ? (comm.estimated_yield_m3h || 5.0) : (analysis.avgProductivity ? Math.round(analysis.avgProductivity * 3.6 * 10) / 10 : 4.5);
-    const yieldTier = comm ? comm.overall_yield_tier : (estYieldVal >= 5.0 ? "Commercial High (≥ 5.0 m³/h)" : "Medium Yield (1.0 - 5.0 m³/h)");
-    const recDepthVal = comm ? comm.recommended_drilling_depth_m : (analysis.avgDtwt ? Math.round(analysis.avgDtwt * 2.2) : 135.0);
-    const strikeDepthVal = comm ? (comm.depth_to_water_strike_m || 55.0) : (analysis.avgDtwt || 55.0);
-    const tdsVal = comm ? comm.estimated_tds_salinity_mg_l : 620.0;
+    const primeLat = prime ? prime.latitude : centerLat;
+    const primeLon = prime ? prime.longitude : centerLon;
+    const strikeScore = prime ? prime.water_strike_probability_pct : (comm ? comm.water_strike_probability_pct : (analysis.avgBoreholeScore || 72.5));
+    const estYieldVal = prime ? prime.estimated_yield_m3h : (comm ? (comm.estimated_yield_m3h || 5.0) : (analysis.avgProductivity ? Math.round(analysis.avgProductivity * 3.6 * 10) / 10 : 4.5));
+    const yieldTier = prime ? prime.yield_tier : (comm ? comm.overall_yield_tier : (estYieldVal >= 5.0 ? "Commercial High (≥ 5.0 m³/h)" : "Medium Yield (1.0 - 5.0 m³/h)"));
+    const recDepthVal = prime ? prime.recommended_drilling_depth_m : (comm ? comm.recommended_drilling_depth_m : (analysis.avgDtwt ? Math.round(analysis.avgDtwt * 2.2) : 135.0));
+    const strikeDepthVal = prime ? prime.depth_to_water_strike_m : (comm ? (comm.depth_to_water_strike_m || 55.0) : (analysis.avgDtwt || 55.0));
+    const tdsVal = prime ? prime.estimated_tds_salinity_mg_l : (comm ? comm.estimated_tds_salinity_mg_l : 620.0);
     const jurisdiction = comm ? comm.country_jurisdiction : (centerLon < 20.0 ? "NAMIBIA" : centerLat < -26.5 ? "SOUTH AFRICA" : "BOTSWANA");
     const isViable = strikeScore >= 50;
 
@@ -493,13 +577,19 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
       el(
         "div",
         "subsurface-target-coord",
-        `📍 Prime Borehole Target: ${centerLat.toFixed(4)}°, ${centerLon.toFixed(4)}° (Optimal Parcel Siting)`
+        `📍 Prime Borehole Target: ${primeLat.toFixed(5)}°, ${primeLon.toFixed(5)}° (Optimal Parcel Siting - Rank #1)`
       )
     );
     content.appendChild(subCard);
 
     card.hidden = false;
     if (clearBtn) clearBtn.hidden = false;
+
+    // Immediately render the top 3 drill targets and their ERT profiles on the map inside the polygon!
+    if (targets.length > 0) {
+      renderTargetsOnMap(targets, { lat: primeLat, lon: primeLon });
+      syncSidePanel(comm);
+    }
 
     if (applyBtn) {
       applyBtn.onclick = () => {
@@ -816,78 +906,7 @@ export function createMapController(map, tooltipEl, toggles, onApplyPropertyData
     }, 200);
 
     // 3. Render the 3 drill targets + their ERT transects
-    const rankColors = { 1: "#fbbf24", 2: "#94a3b8", 3: "#b45309" };
-    const boundsPoints = [[lat, lon]];
-
-    targets.forEach(t => {
-      boundsPoints.push([t.latitude, t.longitude]);
-      const color = rankColors[t.rank] || "#2c7a6b";
-      const strikeProb = t.water_strike_probability_pct || 75.0;
-      const yieldTier = t.yield_tier || "Commercial High";
-
-      const htmlIcon = L.divIcon({
-        html: `<div style="font-size: 13px; font-weight: 700; color: #fff; background: ${color}; border: 2px solid #fff; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">${t.rank}</div>`,
-        className: "",
-        iconSize: [28, 28],
-        iconAnchor: [14, 14]
-      });
-
-      const marker = L.marker([t.latitude, t.longitude], { icon: htmlIcon });
-      marker.bindPopup(`
-        <div class="point-popup">
-          <div class="popup-title">
-            <strong>Target ${t.rank}: ${t.target_id}</strong>
-            <span class="tag ${yieldTier.toLowerCase().includes('high') ? 'high' : yieldTier.toLowerCase().includes('medium') ? 'medium' : 'low'}">${yieldTier}</span>
-          </div>
-          <div class="popup-action-highlight">
-            <strong>${t.recommended_action}</strong>
-          </div>
-          <div class="popup-grid">
-            <div><span>Strike Prob:</span> <strong>${strikeProb.toFixed(1)}%</strong></div>
-            <div><span>Est. Yield:</span> <strong>${t.estimated_yield_m3h} m³/h</strong></div>
-            <div><span>Drill Depth:</span> <strong>~${t.recommended_drilling_depth_m} m</strong></div>
-            <div><span>Water Strike:</span> <strong>~${t.depth_to_water_strike_m} m</strong></div>
-            <div><span>TDS Salinity:</span> <strong>${t.estimated_tds_salinity_mg_l} mg/L</strong></div>
-            <div><span>Fracture:</span> <strong>${t.fracture_family}</strong></div>
-          </div>
-          <div class="popup-aquifer">
-            <span>Potability:</span> <em>${t.potability_classification}</em>
-          </div>
-          <div class="popup-coords">${t.latitude.toFixed(5)}°, ${t.longitude.toFixed(5)}°</div>
-        </div>
-      `, { className: "leaflet-custom-popup", maxWidth: 300 });
-
-      dynamicTargetsLayer.addLayer(marker);
-
-      // Render 200m ERT line
-      if (t.ert_geophysics_line && t.ert_geophysics_line.transect_start && t.ert_geophysics_line.transect_end) {
-        const ert = t.ert_geophysics_line;
-        const ertLine = L.polyline(
-          [
-            [ert.transect_start[1], ert.transect_start[0]],
-            [ert.transect_end[1], ert.transect_end[0]]
-          ],
-          {
-            color: "#ef4444",
-            weight: 3.5,
-            dashArray: "6, 4",
-            opacity: 0.95
-          }
-        );
-        ertLine.bindPopup(`
-          <div class="point-popup">
-            <div class="popup-title"><strong>200m ERT Geophysics Line (#${t.rank})</strong></div>
-            <div><span>Orientation:</span> <strong>${ert.strike_deg}° (Orthogonal to ${t.fracture_family})</strong></div>
-            <div><span>Survey Length:</span> <strong>${ert.length_m} m</strong></div>
-            <div><span>Array Type:</span> <em>${ert.profile_type}</em></div>
-            <p style="font-size:0.75rem; margin-top:6px; color:#b91c1c;">
-              <strong>Field Clearance:</strong> Verify freshwater-saline contact before mobilizing drilling rig.
-            </p>
-          </div>
-        `, { className: "leaflet-custom-popup", maxWidth: 280 });
-        dynamicTargetsLayer.addLayer(ertLine);
-      }
-    });
+    const boundsPoints = renderTargetsOnMap(targets, { lat, lon });
 
     // Fit map view to farm center and targets
     map.fitBounds(L.latLngBounds(boundsPoints).pad(0.3), { animate: true, duration: 0.6 });
