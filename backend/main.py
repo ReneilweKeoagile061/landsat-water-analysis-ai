@@ -254,45 +254,50 @@ class PolygonRequest(BaseModel):
 # -------------------------------------------------------------
 # Google Earth Engine Live Feature Extraction
 # -------------------------------------------------------------
-def extract_live_gee_features(lat: float, lon: float) -> Optional[Dict[str, float]]:
+def extract_live_gee_features(lat: float, lon: float) -> Tuple[Optional[Dict[str, float]], Optional[str]]:
     if not ee_available:
-        return None
+        return None, "EE_NOT_INITIALIZED: Earth Engine client not initialized."
     try:
         pt = ee.Geometry.Point([lon, lat])
         
         # 1. Topography & Hydro (Copernicus 30m DEM + MERIT Hydro)
-        dem = ee.ImageCollection("COPERNICUS/DEM/GLO30_2024_1").select('DEM').mosaic().rename('dem_elevation')
-        slope = ee.Terrain.slope(dem).rename('slope_deg')
+        dem_col = ee.ImageCollection("COPERNICUS/DEM/GLO30_2024_1").select('DEM')
+        dem_raw = dem_col.mosaic()
+        # ee.Terrain.slope strictly expects an input band named 'elevation'
+        slope = ee.Terrain.slope(dem_raw.rename('elevation')).rename('slope_deg')
+        dem = dem_raw.rename('dem_elevation')
         flowAcc = ee.Image("MERIT/Hydro/v1_0_1").select('upa').rename('flow_accumulation')
         twi = ee.Image().expression(
-            'log((flowAcc + 1) / tan(slope * 3.14159265 / 180 + 0.001))',
+            'log((flowAcc + 1) / (tan(slope * 3.14159265 / 180) + 0.001))',
             {'flowAcc': flowAcc, 'slope': slope}
         ).rename('twi')
         
         # 2. Sentinel-1 SAR C-Band Radar (Moisture & Dielectric Permittivity)
         s1 = ee.ImageCollection('COPERNICUS/S1_GRD') \
-            .filterBounds(pt.buffer(500)) \
-            .filterDate('2022-01-01', '2024-01-01') \
-            .filter(ee.Filter.eq('instrumentMode', 'IW')) \
+            .filterBounds(pt.buffer(2000)) \
+            .filterDate('2021-01-01', '2024-01-01') \
+            .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VV')) \
             .select(['VV', 'VH']) \
             .mean()
+        s1_vv = s1.select('VV').rename('s1_vv').unmask(-11.5)
+        s1_vh = s1.select('VH').rename('s1_vh').unmask(-17.2)
         
         # 3. Sentinel-2 Multispectral Surface Reflectance (Vegetation & Moisture)
         s2 = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED") \
-            .filterBounds(pt.buffer(500)) \
-            .filterDate('2022-01-01', '2024-01-01') \
-            .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 25)) \
+            .filterBounds(pt.buffer(2000)) \
+            .filterDate('2021-01-01', '2024-01-01') \
+            .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 35)) \
             .median()
         
-        ndvi = s2.normalizedDifference(['B8', 'B4']).rename('ndvi')
-        ndwi = s2.normalizedDifference(['B3', 'B8']).rename('ndwi')
-        ndmi = s2.normalizedDifference(['B8', 'B11']).rename('ndmi')
+        ndvi = s2.normalizedDifference(['B8', 'B4']).rename('ndvi').unmask(0.25)
+        ndwi = s2.normalizedDifference(['B3', 'B8']).rename('ndwi').unmask(-0.40)
+        ndmi = s2.normalizedDifference(['B8', 'B11']).rename('ndmi').unmask(-0.20)
         
-        stack = ee.Image([dem, slope, twi, s1.select(['VV', 'VH']).rename(['s1_vv', 's1_vh']), ndvi, ndwi, ndmi])
+        stack = ee.Image([dem, slope, twi, s1_vv, s1_vh, ndvi, ndwi, ndmi])
         
         sampled = stack.reduceRegion(
             reducer=ee.Reducer.mean(),
-            geometry=pt.buffer(60),
+            geometry=pt.buffer(90),
             scale=30,
             maxPixels=1000000
         ).getInfo()
@@ -308,10 +313,13 @@ def extract_live_gee_features(lat: float, lon: float) -> Optional[Dict[str, floa
                 'ndwi': float(sampled.get('ndwi', -0.40)),
                 'ndmi': float(sampled.get('ndmi', -0.20)),
                 'source': 'LIVE_GOOGLE_EARTH_ENGINE'
-            }
+            }, None
+        else:
+            return None, "EE_EMPTY_SAMPLE: reduceRegion returned null or missing dem_elevation."
     except Exception as e:
-        logger.warning(f"Live GEE extraction notice at ({lat}, {lon}): {e}")
-    return None
+        err_msg = str(e)
+        logger.warning(f"Live GEE extraction notice at ({lat}, {lon}): {err_msg}")
+        return None, err_msg
 
 # -------------------------------------------------------------
 # Utility: Geo Geodesic Calculations
@@ -385,10 +393,10 @@ async def get_gee_tiles():
         s1_map = s1.getMapId({'min': -22.0, 'max': -5.0, 'palette': ['#000000', '#252525', '#525252', '#737373', '#969696', '#cccccc', '#ffffff']})
         
         # SRTM Topographic Wetness Index (TWI)
-        dem = ee.ImageCollection("COPERNICUS/DEM/GLO30_2024_1").select('DEM').mosaic()
+        dem = ee.ImageCollection("COPERNICUS/DEM/GLO30_2024_1").select('DEM').mosaic().rename('elevation')
         slope = ee.Terrain.slope(dem)
         flowAcc = ee.Image("MERIT/Hydro/v1_0_1").select('upa')
-        twi_img = ee.Image().expression('log((flowAcc + 1) / tan(slope * 3.14159265 / 180 + 0.001))', {'flowAcc': flowAcc, 'slope': slope})
+        twi_img = ee.Image().expression('log((flowAcc + 1) / (tan(slope * 3.14159265 / 180) + 0.001))', {'flowAcc': flowAcc, 'slope': slope})
         twi_map = twi_img.getMapId({'min': 3.0, 'max': 12.0, 'palette': ['#ffffcc', '#a1dab4', '#41b6c4', '#2c7fb8', '#253494']})
         
         return {
@@ -419,7 +427,7 @@ async def analyze_point(request: PointRadiusRequest):
         
         # 1. Query Ground-Truth Registries & Live GEE Telemetry
         gt_info = find_nearest_ground_truth(lat, lon)
-        live_gee = extract_live_gee_features(lat, lon)
+        live_gee, gee_err = extract_live_gee_features(lat, lon)
 
         # 2. Prepare Feature Vector for Target Center
         feat_dict = BASELINE_DEFAULTS.copy()
@@ -469,7 +477,7 @@ async def analyze_point(request: PointRadiusRequest):
         else:
             feat_dict['elevation_combined'] = max(900.0, 1280.0 - abs(lat + 22.0) * 40.0)
             feat_dict['dist_to_dolerite_m'] = 450.0 if (lon > 25.0 or lat < -25.0) else 1800.0
-            telemetry_status = "CALIBRATED_BASELINE"
+            telemetry_status = "GEE_PERMISSION_REQUIRED" if gee_err else "CALIBRATED_BASELINE"
             telemetry_metrics = {
                 'dem_elevation': feat_dict['elevation_combined'],
                 'slope_deg': 1.6,
@@ -479,7 +487,8 @@ async def analyze_point(request: PointRadiusRequest):
                 'ndvi': feat_dict['ndvi'],
                 'ndwi': feat_dict['ndwi'],
                 'ndmi': -0.22,
-                'source': 'CALIBRATED_REGIONAL_BASELINE'
+                'source': f"GEE_DIAGNOSTIC: {gee_err}" if gee_err else 'CALIBRATED_REGIONAL_BASELINE'
+            }
             }
         
         df_center = pd.DataFrame([feat_dict])[MODEL_FEATURES]
