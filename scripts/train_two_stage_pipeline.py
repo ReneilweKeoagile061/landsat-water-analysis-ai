@@ -9,6 +9,7 @@ from xgboost import XGBClassifier
 # Master Paths
 ENRICHED_CSV = r"C:\Users\pc\Desktop\Landsat-Water Current\data\boreholes\transboundary_regional_enriched.csv"
 CLEAN_84_CSV = r"C:\Users\pc\Desktop\Landsat-Water Current\data\boreholes\clean_exported_84.csv"
+MASTER_GEE_CSV = r"C:\Users\pc\Desktop\Landsat-Water Current\data\boreholes\transboundary_gee_enriched_master.csv"
 STAS_RAW_CSV = r"C:\Users\pc\Desktop\Landsat-Water Current\data\external\orasecom_stas\STAS_BoreholeDatabase_Clean.csv"
 STAGE1_MODEL_PATH = r"C:\Users\pc\Desktop\Landsat-Water Current\data\models\two_stage_strike_filter.json"
 STAGE2_MODEL_PATH = r"C:\Users\pc\Desktop\Landsat-Water Current\data\models\two_stage_yield_sizer.json"
@@ -88,15 +89,28 @@ num_stas_unique = num_stas.drop_duplicates(subset=['lat_round', 'long_round'])
 labeled = pd.merge(labeled, num_stas_unique[['lat_round', 'long_round', 'elevation', 'so4_mg_l', 'NO3_mg_l', 'f_mg_l']], 
                    on=['lat_round', 'long_round'], how='left')
 
-# 3. Fuse with Satellite & Terrain Radar Features from existing ground truth
-df_84 = pd.read_csv(CLEAN_84_CSV)
+# 3. Fuse with Satellite & Terrain Radar Features
 sat_cols = ['dem_elevation', 'flow_accumulation', 'ndmi', 'ndvi', 'ndwi', 'radar_contrast', 's1_vh', 's1_vv', 'twi']
-df_84['lat_round'] = df_84['latitude'].round(5)
-df_84['long_round'] = df_84['longitude'].round(5)
-df_84_unique = df_84.drop_duplicates(subset=['lat_round', 'long_round'])
 
-labeled = pd.merge(labeled, df_84_unique[['lat_round', 'long_round'] + sat_cols], 
-                   on=['lat_round', 'long_round'], how='left')
+if os.path.exists(MASTER_GEE_CSV):
+    print(f"Loading full Earth Engine master dataset from {MASTER_GEE_CSV}...")
+    df_gee_master = pd.read_csv(MASTER_GEE_CSV)
+    df_gee_master['lat_round'] = df_gee_master['lat'].round(5)
+    df_gee_master['long_round'] = df_gee_master['long'].round(5)
+    # Available satellite columns in master
+    avail_cols = [c for c in sat_cols if c in df_gee_master.columns]
+    gee_unique = df_gee_master.drop_duplicates(subset=['lat_round', 'long_round'])
+    labeled = pd.merge(labeled, gee_unique[['lat_round', 'long_round'] + avail_cols],
+                       on=['lat_round', 'long_round'], how='left')
+    print(f"Merged with full GEE extraction ({len(avail_cols)} satellite covariates).")
+else:
+    print(f"Notice: MASTER_GEE_CSV not found. Using baseline {CLEAN_84_CSV}...")
+    df_84 = pd.read_csv(CLEAN_84_CSV)
+    df_84['lat_round'] = df_84['latitude'].round(5)
+    df_84['long_round'] = df_84['longitude'].round(5)
+    df_84_unique = df_84.drop_duplicates(subset=['lat_round', 'long_round'])
+    labeled = pd.merge(labeled, df_84_unique[['lat_round', 'long_round'] + sat_cols], 
+                       on=['lat_round', 'long_round'], how='left')
 
 # Combine elevation sources
 labeled['elevation_combined'] = labeled['dem_elevation'].combine_first(labeled['elevation'])
