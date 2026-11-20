@@ -276,7 +276,9 @@ def extract_live_gee_features(lat: float, lon: float) -> Tuple[Optional[Dict[str
         s1 = ee.ImageCollection('COPERNICUS/S1_GRD') \
             .filterBounds(pt.buffer(2000)) \
             .filterDate('2021-01-01', '2024-01-01') \
+            .filter(ee.Filter.eq('instrumentMode', 'IW')) \
             .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VV')) \
+            .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VH')) \
             .select(['VV', 'VH']) \
             .mean()
         s1_vv = s1.select('VV').rename('s1_vv').unmask(-11.5)
@@ -388,6 +390,7 @@ async def get_gee_tiles():
         s1 = ee.ImageCollection('COPERNICUS/S1_GRD') \
             .filterDate('2023-01-01', '2024-01-01') \
             .filter(ee.Filter.eq('instrumentMode', 'IW')) \
+            .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VV')) \
             .select('VV') \
             .mean()
         s1_map = s1.getMapId({'min': -22.0, 'max': -5.0, 'palette': ['#000000', '#252525', '#525252', '#737373', '#969696', '#cccccc', '#ffffff']})
